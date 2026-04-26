@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Buffet Bhai | Premium Home Catering in Delhi NCR</title>
+    <meta name="description" content="Premium buffet catering for 10-200 guests in Delhi NCR. Hot food, complete setup, zero kitchen stress. Ghar Pe Dawaat Ka Scene? Chhod Do Hamare Pe.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            /* Color System */
+            --primary: #E8681A;      /* Deep Saffron */
+            --secondary: #7C1D2E;    /* Rich Burgundy */
+            --accent: #F5C842;       /* Turmeric Gold */
+            --dark: #1A1208;         /* Charcoal Brown */
+            --light: #FAF5EC;        /* Warm Ivory */
+            --white: #FFFFFF;
+            
+            /* Typography */
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --font-hinglish: 'Baloo 2', cursive;
+            
+            /* Layout */
+            --section-padding: 80px 5%;
+            --container-max: 1200px;
+            --border-radius: 16px;
+            
+            /* Shadows */
+            --shadow-warm: 0 10px 30px rgba(124, 29, 46, 0.1);
+            --shadow-glow: 0 0 20px rgba(232, 104, 26, 0.3);
+            
+            /* Backgrounds */
+            --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            --pattern: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 3.33331C20 3.33331 23.3333 13.3333 30 16.6666C36.6667 20 40 20 40 20C40 20 30 23.3333 23.3333 30C16.6667 36.6666 20 40 20 40C20 40 16.6667 30 10 23.3333C3.33333 16.6666 0 20 0 20C0 20 10 16.6666 16.6667 10C23.3333 3.33331 20 3.33331 20 3.33331Z' fill='%23F5C842' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            line-height: 1.2;
+        }
+
+        h1 { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 900; }
+        h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; }
+        h3 { font-family: var(--font-body); font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 600; }
+        
+        p { font-size: 1.125rem; }
+
+        a { text-decoration: none; color: inherit; }
+
+        ul { list-style: none; }
+
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hinglish {
+            font-family: var(--font-hinglish);
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .text-center { text-align: center; }
+
+        /* Typography Colors */
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-accent { color: var(--accent); }
+        .text-light { color: var(--light); }
+        .text-white { color: var(--white); }
+
+        /* Utility Classes */
+        .section-dark {
+            background-color: var(--dark);
+            color: var(--light);
+            position: relative;
+        }
+        
+        .section-dark::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: var(--grain);
+            pointer-events: none;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .section-dark > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-light {
+            background-color: var(--light);
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-light::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: var(--pattern);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .section-light > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            padding: var(--section-padding);
+        }
+
+        .clip-diagonal-bottom {
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+            margin-bottom: -5vw;
+            padding-bottom: calc(80px + 5vw);
+            z-index: 10;
+        }
+
+        .clip-diagonal-top {
+            clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+            margin-top: -5vw;
+            padding-top: calc(80px + 5vw);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--dark);
+            box-shadow: 0 4px 15px rgba(232, 104, 26, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+            background-color: #ff7b2b;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(232, 104, 26, 0.1);
+        }
+
+        .btn-outline-light {
+            background-color: transparent;
+            color: var(--light);
+            border: 2px solid var(--light);
+        }
+
+        .btn-outline-light:hover {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        .btn-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(232, 104, 26, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(232, 104, 26, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(232, 104, 26, 0); }
+        }
+
+        /* 1. Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(26, 18, 8, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--container-max);
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1.05rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: var(--light);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 2. Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 120px;
+            overflow: hidden;
+            background: linear-gradient(to right, rgba(26, 18, 8, 0.95) 40%, rgba(26, 18, 8, 0.6)), url('https://images.unsplash.com/photo-1585937421612-70a008356fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: var(--grain);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(245, 200, 66, 0.15);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-family: var(--font-hinglish);
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 i {
+            color: var(--primary);
+            font-style: italic;
+            display: block;
+        }
+
+        .hero p.lead {
+            color: var(--light);
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .social-proof-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(250, 245, 236, 0.1);
+        }
+
+        .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--light);
+            font-family: var(--font-hinglish);
+            font-size: 1.1rem;
+        }
+
+        .proof-item i {
+            color: var(--accent);
+        }
+
+        /* 3. Problem Section */
+        .problem-section {
+            text-align: center;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            margin-bottom: 20px;
+        }
+        .section-header h2 span {
+            color: var(--primary);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background-color: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-warm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(124, 29, 46, 0.15);
+            border-top-color: var(--primary);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(232, 104, 26, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 1.5rem;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+            font-family: var(--font-display);
+        }
+
+        .transition-line {
+            font-size: 1.5rem;
+            font-family: var(--font-hinglish);
+            color: var(--secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        /* 4. Solution Section */
+        .solution-section {
+            text-align: center;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .solution-card {
+            padding: 20px;
+        }
+
+        .solution-card .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--white);
+            transform: rotate(-5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .solution-card:hover .icon-wrapper {
+            transform: rotate(0);
+        }
+
+        .solution-card h3 {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-family: var(--font-display);
+        }
+
+        .solution-card p {
+            color: rgba(250, 245, 236, 0.8);
+        }
+
+        /* 5. Packages Section */
+        .packages-section {
+            background-color: var(--light);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border-radius: 30px;
+            border: 2px solid var(--secondary);
+            background: transparent;
+            color: var(--secondary);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--secondary);
+            color: var(--white);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .package-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-warm);
+            padding: 40px 30px;
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(124, 29, 46, 0.05);
+        }
+
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(124, 29, 46, 0.15);
+        }
+
+        .package-tag {
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            background-color: var(--primary);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-family: var(--font-hinglish);
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .package-name {
+            font-family: var(--font-display);
+            color: var(--secondary);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .package-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .package-price span {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .package-guests {
+            color: var(--primary);
+            font-family: var(--font-hinglish);
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .package-menu {
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .package-menu li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        .package-menu li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .package-ctas {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .package-ctas .btn {
+            width: 100%;
+        }
+
+        /* 6. Instagram Section */
+        .instagram-section {
+            padding: var(--section-padding);
+        }
+
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .insta-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+
+        .insta-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .insta-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(124, 29, 46, 0.8), rgba(232, 104, 26, 0.4));
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+            color: var(--white);
+        }
+
+        .insta-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .insta-item:hover .insta-overlay {
+            opacity: 1;
+        }
+
+        /* 7. Why Choose Us */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .trust-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .trust-icon {
+            font-size: 2.5rem;
+            background: rgba(245, 200, 66, 0.1);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            flex-shrink: 0;
+        }
+
+        .trust-content h4 {
+            font-family: var(--font-body);
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .trust-content p {
+            color: rgba(250, 245, 236, 0.8);
+            font-size: 1rem;
+        }
+
+        /* 8. How It Works */
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 30px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-warm);
+            align-items: center;
+            color: var(--dark);
+        }
+
+        .step-number {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(232, 104, 26, 0.2);
+            line-height: 1;
+            position: relative;
+        }
+
+        .step-number span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: var(--font-body);
+        }
+
+        .step-content h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        /* 9. Testimonials */
+        .testimonials-carousel {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 0 40px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .testimonials-carousel::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .testimonial-card {
+            min-width: 350px;
+            background: var(--dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--accent);
+            opacity: 0.2;
+            width: 60px;
+            height: 60px;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .author-info h4 {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            color: rgba(250, 245, 236, 0.6);
+        }
+
+        .google-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--white);
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: var(--dark);
+            margin-top: 30px;
+            font-weight: 600;
+        }
+
+        /* 10. FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: rgba(250, 245, 236, 0.5);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+            color: var(--primary);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: #555;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 25px 20px;
+            max-height: 200px;
+        }
+
+        /* 11. Final CTA */
+        .final-cta {
+            text-align: center;
+        }
+
+        .cta-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            background: var(--dark);
+            padding: 60px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-container::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: var(--grain);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            text-align: left;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-content h2 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            color: var(--light);
+            opacity: 0.9;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .inquiry-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .inquiry-form .btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .form-success {
+            display: none;
+            background: rgba(46, 204, 113, 0.1);
+            color: #27ae60;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .areas-served {
+            margin-top: 40px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .area-tag {
+            color: var(--primary);
+            font-family: var(--font-hinglish);
+            font-weight: 600;
+        }
+
+        /* 12. Footer */
+        footer {
+            background: #0A0703;
+            color: rgba(250, 245, 236, 0.6);
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .footer-tagline {
+            font-family: var(--font-hinglish);
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: background 0.3s;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* Floating Elements */
+        .fab-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: transform 0.3s;
+            animation: pulse-wa 2s infinite;
+        }
+        
+        .fab-whatsapp i {
+            width: 30px;
+            height: 30px;
+        }
+
+        .fab-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse-wa {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .mobile-sticky-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            z-index: 1001;
+            padding: 15px 5%;
+            padding-bottom: calc(15px + env(safe-area-inset-bottom));
+        }
+
+        .mobile-sticky-bar .btn {
+            width: 100%;
+            padding: 12px;
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .solution-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .cta-container {
+                grid-template-columns: 1fr;
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 60px 5%;
+            }
+            
+            .nav-links, .nav-btn {
+                display: none !important;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-active .nav-links {
+                display: flex !important;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--dark);
+                padding: 20px 5%;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .nav-active .nav-btn {
+                display: inline-flex;
+                margin-top: 20px;
+                width: 100%;
+            }
+
+            .solution-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .insta-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .mobile-sticky-bar {
+                display: block;
+            }
+
+            .fab-whatsapp {
+                bottom: 80px; /* Above mobile bar */
+            }
+            
+            footer {
+                padding-bottom: 100px; /* Space for sticky bar */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .insta-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Navigation -->
+    <header id="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i data-lucide="chef-hat" class="logo-icon"></i>
+                The Buffet Bhai
+            </a>
+            <nav class="nav-links">
+                <a href="#packages">Packages</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering." class="btn btn-primary nav-btn" target="_blank">
+                Bhai Ko Bulao
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. Hero Section -->
+    <section class="hero section-dark clip-diagonal-bottom">
+        <div class="container hero-content animate-on-scroll">
+            <div class="badge">
+                <i data-lucide="star"></i> Delhi NCR ka #1 House Party Caterer
+            </div>
+            <h1>Ghar Pe Dawaat Ka Scene? <i>Chhod Do Hamare Pe.</i></h1>
+            <p class="lead">Premium buffet catering for 10–200 guests. Hot food, complete setup, zero kitchen stress — delivered to your door.</p>
+            
+            <div class="hero-ctas">
+                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering." class="btn btn-primary btn-pulse" target="_blank">
+                    <i data-lucide="message-circle"></i> Bhai Ko Bulao
+                </a>
+                <a href="#packages" class="btn btn-outline-light">Packages Dekho</a>
+            </div>
+
+            <div class="social-proof-bar">
+                <div class="proof-item">
+                    <i data-lucide="star" fill="#F5C842"></i> 4.8 Rating
+                </div>
+                <div class="proof-item">
+                    <i data-lucide="users"></i> 15,000+ Dawaatein Served
+                </div>
+                <div class="proof-item">
+                    <i data-lucide="tag"></i> ₹1,499/- per person starting
+                </div>
+                <div class="proof-item">
+                    <i data-lucide="clock"></i> Same-Day Booking Available
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Problem-Agitation Section -->
+    <section class="problem-section section-light clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Jab Ghar Mein Party Ho, <span>Toh Tension Kyun?</span></h2>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card animate-on-scroll">
+                    <div class="card-icon"><i data-lucide="flame"></i></div>
+                    <h3>Kitchen ka Mela</h3>
+                    <p>"30 log ke liye khana banana, wo bhi properly? Dal, chawal, sabzi, dessert — aur phir cleaning bhi? Nahi bhai, nahi."</p>
+                </div>
+                <div class="card animate-on-scroll" style="transition-delay: 0.1s">
+                    <div class="card-icon"><i data-lucide="clock-4"></i></div>
+                    <h3>Time Toh Hai Hi Nahi</h3>
+                    <p>"Decoration, shopping, guests ka jugaad — aur upar se cooking? Ek hi haath mein itna sambhalna possible nahi."</p>
+                </div>
+                <div class="card animate-on-scroll" style="transition-delay: 0.2s">
+                    <div class="card-icon"><i data-lucide="frown"></i></div>
+                    <h3>Kya Sochenge Log?</h3>
+                    <p>"Mehman aaye aur khana dum wala na ho? Woh moment sabse important hai. Isme gamble mat karo."</p>
+                </div>
+            </div>
+
+            <div class="transition-line animate-on-scroll">
+                "Isliye The Buffet Bhai hai. Aap host bano, baaki hum dekhte hain."
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Solution / What We Do -->
+    <section class="solution-section section-dark clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="text-white">Aapki Dawaat, <span class="text-primary">Hamari Zimmedari</span></h2>
+            </div>
+
+            <div class="solution-grid">
+                <div class="solution-card animate-on-scroll">
+                    <div class="icon-wrapper"><i data-lucide="truck" size="40"></i></div>
+                    <h3>Hot & Fresh Delivery</h3>
+                    <p>Restaurant-quality food, packed in heat-retaining containers, delivered right before your guests arrive.</p>
+                </div>
+                <div class="solution-card animate-on-scroll" style="transition-delay: 0.1s">
+                    <div class="icon-wrapper"><i data-lucide="utensils" size="40"></i></div>
+                    <h3>Complete Buffet Setup</h3>
+                    <p>Premium disposables, serving spoons, napkins, chafing dishes — everything. You literally just open the box.</p>
+                </div>
+                <div class="solution-card animate-on-scroll" style="transition-delay: 0.2s">
+                    <div class="icon-wrapper"><i data-lucide="smartphone" size="40"></i></div>
+                    <h3>Book in Minutes</h3>
+                    <p>WhatsApp us your date, guest count, and menu preference. Confirm in under an hour.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Packages Section -->
+    <section id="packages" class="packages-section section-light clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Choose Your <span>Package</span></h2>
+                <p class="text-secondary">Every package is priced per person, fully customizable, and built for real Delhi appetites.</p>
+            </div>
+
+            <div class="tabs animate-on-scroll">
+                <button class="tab-btn active" data-tab="veg">🌿 Pure Veg</button>
+                <button class="tab-btn" data-tab="non-veg">🍗 Non-Veg</button>
+                <button class="tab-btn" data-tab="premium">🎉 Premium Spreads</button>
+            </div>
+
+            <!-- Veg Tab -->
+            <div class="tab-content active" id="tab-veg">
+                <!-- Package 1 -->
+                <div class="package-card">
+                    <div class="package-name">Seedha Saadha Dawaat</div>
+                    <div class="package-price">₹1,499<span>/person</span></div>
+                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 10 guests</div>
+                    <ul class="package-menu">
+                        <li>Dal Makhani</li>
+                        <li>Mix Veg</li>
+                        <li>Shahi Paneer</li>
+                        <li>Jeera Rice & Roti</li>
+                        <li>Salad & Raita</li>
+                    </ul>
+                    <div class="package-ctas">
+                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Seedha%20Saadha%20Dawaat." class="btn btn-primary" target="_blank">Order Karo</a>
+                    </div>
+                </div>
+                <!-- Package 2 -->
+                <div class="package-card" style="border-top-color: var(--primary); transform: scale(1.05); z-index: 2;">
+                    <div class="package-tag">Most Popular</div>
+                    <div class="package-name">Dilli Wali Dawaat</div>
+                    <div class="package-price">₹1,799<span>/person</span></div>
+                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 10 guests</div>
+                    <ul class="package-menu">
+                        <li>Dal Makhani & Matar Mushroom</li>
+                        <li>Malai Kofta</li>
+                        <li>Jeera Rice & Assorted Breads</li>
+                        <li>Salad & Raita</li>
+                        <li>Phirni</li>
+                    </ul>
+                    <div class="package-ctas">
+                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Dilli%20Wali%20Dawaat." class="btn btn-primary btn-pulse" target="_blank">Order Karo</a>
+                    </div>
+                </div>
+                <!-- Package 3 -->
+                <div class="package-card">
+                    <div class="package-name">Shahi Veg Spread</div>
+                    <div class="package-price">₹2,299<span>/person</span></div>
+                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 15 guests</div>
+                    <ul class="package-menu">
+                        <li>Full 8-course veg menu</li>
+                        <li>Assorted Starters (3)</li>
+                        <li>Premium Mains (4)</li>
+                        <li>Assorted Breads & Rice</li>
+                        <li>Desserts (2)</li>
+                    </ul>
+                    <div class="package-ctas">
+                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Shahi%20Veg%20Spread." class="btn btn-primary" target="_blank">Order Karo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Non-Veg Tab -->
+            <div class="tab-content" id="tab-non-veg">
+                <!-- Package 1 -->
+                <div class="package-card">
+                    <div class="package-name">Non-Veg Essential</div>
+                    <div class="package-price">₹1,999<span>/person</span></div>
+                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 10 guests</div>
+                    <ul class="package-menu">
+                        <li>Butter Chicken</li>
+                        <li>Mutton Curry</li>
+                        <li>Dal Fry</li>
+                        <li>Biryani & Roti</li>
+                        <li>Salad & Raita</li>
+                    </ul>
+                    <div class="package-ctas">
+                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Non-Veg%20Essential." class="btn btn-primary" target="_blank">Order Karo</a>
+                    </div>
+                </div>
+                <!-- Package 2 -->
+                <div class="package-card" style="border-top-color: var(--primary); transform: scale(1.05); z-index: 2;">
+                    <div class="package-tag">Staff Favorite</div>
+                    <div class="package-name">Mughlai Feast</div>
+                    <div class="package-price">₹2,499<span>/person</span></div>
+                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 15 guests</div>
+                    <ul class="package-menu">
+                        <li>Seekh Kebab & Chicken Tikka</li>
+                        <li>Butter Chicken & Fish Curry</li>
+                        <li>Shahi Korma</li>
+                        <li>Mutton Biryani</li>
+                        <li>Rich Desserts</li>
+                    </ul>
+                    <div class="package-ctas">
+                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Mughlai%20Feast." class="btn btn-primary btn-pulse" target="_blank">Order Karo</a>
+                    </div>
+                </div>
+                <!-- Package 3 -->
+                <div class="package-card">
+                    <div class="package-name">Royal Non-Veg</div>
+                    <div class="package-price">₹3,299<span>/person</span></div>
+                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 20 guests</div>
+                    <ul class="package-menu">
+                        <li>Full 9-course feast</li>
+                        <li>Premium Mutton Cuts</li>
+                        <li>Live carving station add-on</li>
+                        <li>Unlimited Starters</li>
+                        <li>Gourmet Desserts</li>
+                    </ul>
+                    <div class="package-ctas">
+                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Royal%20Non-Veg%20Spread." class="btn btn-primary" target="_blank">Order Karo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Tab -->
+            <div class="tab-content" id="tab-premium">
+                 <!-- Package 1 -->
+                 <div class="package-card">
+                    <div class="package-name">Office Party Pack</div>
+                    <div class="package-price">₹1,299<span>/person</span></div>
+                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 20 guests</div>
+                    <ul class="package-menu">
+                        <li>Assorted Finger Foods</li>
+                        <li>Mix Starters (Veg/Non-Veg)</li>
+                        <li>Easy to eat Mains</li>
+                        <li>Live counter optional</li>
+                        <li>Beverages</li>
+                    </ul>
+                    <div class="package-ctas">
+                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Office%20Party%20Pack." class="btn btn-primary" target="_blank">Order Karo</a>
+                    </div>
+                </div>
+                <!-- Package 2 -->
+                <div class="package-card">
+                    <div class="package-name">Puja Prasad Thali</div>
+                    <div class="package-price">₹999<span>/person</span></div>
+                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 15 guests</div>
+                    <ul class="package-menu">
+                        <li>Saatvik Menu (No Onion/Garlic)</li>
+                        <li>Puri, Chole, Aloo Sabzi</li>
+                        <li>Kheer / Halwa</li>
+                        <li>Traditional Setup</li>
+                        <li>100% Pure Preparation</li>
+                    </ul>
+                    <div class="package-ctas">
+                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Puja%20Prasad%20Thali." class="btn btn-primary" target="_blank">Order Karo</a>
+                    </div>
+                </div>
+                <!-- Package 3 -->
+                <div class="package-card" style="border-top-color: var(--primary);">
+                    <div class="package-tag">Custom</div>
+                    <div class="package-name">Daawat-e-Khas</div>
+                    <div class="package-price">Quote<span>/custom</span></div>
+                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 50 guests</div>
+                    <ul class="package-menu">
+                        <li>Full wedding-style home setup</li>
+                        <li>Fully custom menu planning</li>
+                        <li>Dedicated serving staff</li>
+                        <li>Premium Crockery</li>
+                        <li>Live Counters</li>
+                    </ul>
+                    <div class="package-ctas">
+                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20inquire%20about%20Daawat-e-Khas." class="btn btn-primary" target="_blank">Get Custom Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Instagram Section -->
+    <section class="instagram-section section-dark clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="text-white">This is What a <span class="text-primary">Real Daawat Looks Like</span></h2>
+                <p class="text-light">Follow us on Instagram @TheBuffetBhai for behind-the-scenes, new dishes, and daawat inspo.</p>
+            </div>
+
+            <div class="insta-grid animate-on-scroll">
+                <!-- Using high quality Unsplash placeholders for food styling -->
+                <div class="insta-item">
+                    <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Indian Food Spread">
+                    <div class="insta-overlay"><i data-lucide="instagram" size="40"></i></div>
+                </div>
+                <div class="insta-item">
+                    <img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Biryani">
+                    <div class="insta-overlay"><i data-lucide="instagram" size="40"></i></div>
+                </div>
+                <div class="insta-item">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Samosa">
+                    <div class="insta-overlay"><i data-lucide="instagram" size="40"></i></div>
+                </div>
+                <div class="insta-item">
+                    <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tikka">
+                    <div class="insta-overlay"><i data-lucide="instagram" size="40"></i></div>
+                </div>
+                <div class="insta-item">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bowl">
+                    <div class="insta-overlay"><i data-lucide="instagram" size="40"></i></div>
+                </div>
+                <div class="insta-item">
+                    <img src="https://images.unsplash.com/photo-1626779843666-6415bf306917?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dessert">
+                    <div class="insta-overlay"><i data-lucide="instagram" size="40"></i></div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="https://www.instagram.com/thebuffetbhai?igsh=ZXVrdWxpbHFnMGV6&utm_source=qr" target="_blank" class="btn btn-outline-light"><i data-lucide="instagram"></i> Follow @TheBuffetBhai</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Why Choose Us -->
+    <section class="trust-section section-light clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Trusted by 15,000+ Families. <span>Why Not You?</span></h2>
+            </div>
+
+            <div class="trust-grid">
+                <div class="trust-item animate-on-scroll">
+                    <div class="trust-icon">🏆</div>
+                    <div class="trust-content">
+                        <h4>Delhi NCR's Most Trusted</h4>
+                        <p>7+ years of delivering unforgettable dawaats across the NCR.</p>
+                    </div>
+                </div>
+                <div class="trust-item animate-on-scroll" style="transition-delay: 0.1s">
+                    <div class="trust-icon">⏱️</div>
+                    <div class="trust-content">
+                        <h4>On-Time, Every Time</h4>
+                        <p>Your food arrives hot before your first guest. Guaranteed.</p>
+                    </div>
+                </div>
+                <div class="trust-item animate-on-scroll" style="transition-delay: 0.2s">
+                    <div class="trust-icon">🌶️</div>
+                    <div class="trust-content">
+                        <h4>Authentic Delhi Flavors</h4>
+                        <p>Recipes perfected over decades. Ghee ka tadka included.</p>
+                    </div>
+                </div>
+                <div class="trust-item animate-on-scroll">
+                    <div class="trust-icon">💸</div>
+                    <div class="trust-content">
+                        <h4>100% Transparency</h4>
+                        <p>No hidden charges. Full transparency from quote to delivery.</p>
+                    </div>
+                </div>
+                <div class="trust-item animate-on-scroll" style="transition-delay: 0.1s">
+                    <div class="trust-icon">🎁</div>
+                    <div class="trust-content">
+                        <h4>Everything Included</h4>
+                        <p>Disposables, containers, cutlery — nothing extra to arrange.</p>
+                    </div>
+                </div>
+                <div class="trust-item animate-on-scroll" style="transition-delay: 0.2s">
+                    <div class="trust-icon">📱</div>
+                    <div class="trust-content">
+                        <h4>Direct on WhatsApp</h4>
+                        <p>Order, track, inquire — all on WhatsApp. No app downloads.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. How It Works -->
+    <section id="how-it-works" class="steps-section section-dark clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="text-white">Three Steps. <span class="text-primary">One Amazing Daawat.</span></h2>
+            </div>
+
+            <div class="steps-container">
+                <div class="step animate-on-scroll">
+                    <div class="step-number">01<span>1</span></div>
+                    <div class="step-content">
+                        <h3>Tell Us Your Needs</h3>
+                        <p>Tell us your guest count, date, and whether you want veg or non-veg. Takes 2 minutes on WhatsApp.</p>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-number">02<span>2</span></div>
+                    <div class="step-content">
+                        <h3>Finalize Your Menu</h3>
+                        <p>We send you a customized menu + quote within 1 hour. Confirm with 50% advance.</p>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-number">03<span>3</span></div>
+                    <div class="step-content">
+                        <h3>Be the Host, Just Relax</h3>
+                        <p>We deliver piping hot food. You greet guests, take compliments, and enjoy the party.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Testimonials Section -->
+    <section id="reviews" class="testimonials-section section-light clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>What Our <span>Clients Say</span></h2>
+            </div>
+
+            <div class="testimonials-carousel animate-on-scroll">
+                <div class="testimonial-card section-dark">
+                    <i data-lucide="quote" class="quote-icon"></i>
+                    <p class="testimonial-text">"Bete ki birthday pe 40 log aaye. Buffet Bhai ne poora setup bhi karwa diya, khana toh lajawab tha. Mummy ne pucha kaun sa restaurant tha!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div class="author-info">
+                            <h4>Ritu Aggarwal</h4>
+                            <p>Dwarka, Delhi</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card section-dark">
+                    <i data-lucide="quote" class="quote-icon"></i>
+                    <p class="testimonial-text">"Office farewell tha, 60 log. Finger foods se leke biryani tak sab kuch perfect. Delivery bhi time pe. Recommend karna toh banega hi."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <h4>Siddharth Kapoor</h4>
+                            <p>Gurugram</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card section-dark">
+                    <i data-lucide="quote" class="quote-icon"></i>
+                    <p class="testimonial-text">"Puja ke liye no-onion-garlic package liya. Halwa, kheer, paneer, dal — sab saatvik aur delicious. Panditji bhi impressed ho gaye!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <h4>Savita Nair</h4>
+                            <p>Noida Sector 50</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card section-dark">
+                    <i data-lucide="quote" class="quote-icon"></i>
+                    <p class="testimonial-text">"Meri anniversary ka surprise plan kiya tha. Buffet Bhai ne itna perfect khana diya, biwi khush, sas khush, main khush."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div class="author-info">
+                            <h4>Rahul Mehta</h4>
+                            <p>Greater Noida</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card section-dark">
+                    <i data-lucide="quote" class="quote-icon"></i>
+                    <p class="testimonial-text">"Tried 3 caterers before finding these guys. Koi mukaabla nahi. Taste, quantity, packaging — sab best."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">T</div>
+                        <div class="author-info">
+                            <h4>Tanvi Suri</h4>
+                            <p>Vasant Kunj, Delhi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center animate-on-scroll">
+                <div class="google-badge">
+                    <i data-lucide="star" fill="#F5C842" color="#F5C842"></i> 4.8/5 | 8,000+ Google Reviews
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FAQ Section -->
+    <section id="faq" class="faq-section section-light clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Have Some <span>Questions?</span></h2>
+            </div>
+
+            <div class="faq-container animate-on-scroll">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is your minimum guest requirement?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Minimum 10 guests. Maximum? We cater for up to 300+ guests at home events.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can the menu be customized?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely. Veg, non-veg, saatvik, jain, no-onion-garlic — everything is possible. Just let us know.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How far in advance should I book?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        24 hours advance preferred, but same-day orders are also possible (subject to availability). Contact us on WhatsApp.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Are there separate delivery charges?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Delivery charges are clearly mentioned in the quote based on your location. There are no hidden charges.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Will the food arrive hot?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes. We use heat-retentive premium packaging, so your food arrives oven-fresh.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Are plates, spoons, and napkins included?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes. Premium eco-friendly disposables are included in all packages.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is tasting possible?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! You can order a sample thali or contact us on WhatsApp to arrange a tasting.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is the advance payment for booking?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        50% advance at booking, the rest on delivery. UPI, bank transfer, and cash are accepted.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. Final CTA Section -->
+    <section class="final-cta section-light clip-diagonal-top">
+        <div class="container">
+            <div class="cta-container animate-on-scroll">
+                <div class="cta-content">
+                    <h2>Is Weekend Ki Dawaat <span class="text-primary">Confirm Kar Lo</span></h2>
+                    <p>Slots fill up fast, especially on weekends. Ek WhatsApp message bhejo — hum baaki sambhal lete hain.</p>
+                    <div class="cta-buttons">
+                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering." class="btn btn-primary btn-pulse" target="_blank" style="font-size: 1.3rem; padding: 1.2rem 2rem;">
+                            <i data-lucide="message-circle" size="24"></i> Bhai Ko Bulao
+                        </a>
+                        <a href="tel:+919643968546" class="btn btn-outline-light">
+                            <i data-lucide="phone"></i> Call: +91 9643968546
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="inquiry-form">
+                    <h3 style="margin-bottom: 20px; color: var(--secondary);">Quick Inquiry</h3>
+                    <div id="formSuccess" class="form-success">
+                        <i data-lucide="check-circle" style="display:inline; vertical-align:middle; margin-right:5px;"></i> Thanks! Bhai will contact you shortly.
+                    </div>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Phone Number" required>
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <div class="form-group" style="flex:1;">
+                                <input type="number" class="form-control" placeholder="Guests" required>
+                            </div>
+                            <div class="form-group" style="flex:1;">
+                                <input type="date" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Any special requests?" rows="2"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Details</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="areas-served animate-on-scroll">
+                <span class="area-tag">Delhi</span> •
+                <span class="area-tag">Gurugram</span> •
+                <span class="area-tag">Noida</span> •
+                <span class="area-tag">Greater Noida</span> •
+                <span class="area-tag">Ghaziabad</span> •
+                <span class="area-tag">Faridabad</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">The Buffet Bhai</div>
+            <div class="footer-tagline">"Apka Buffet, Apki Shaan."</div>
+            
+            <div class="footer-links">
+                <a href="#packages">Packages</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#faq">FAQ</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com/thebuffetbhai?igsh=ZXVrdWxpbHFnMGV6&utm_source=qr" class="social-icon" target="_blank"><i data-lucide="instagram"></i></a>
+                <a href="#" class="social-icon"><i data-lucide="facebook"></i></a>
+                <a href="https://wa.me/919643968546" class="social-icon" target="_blank"><i data-lucide="message-circle"></i></a>
+            </div>
+
+            <div class="footer-bottom">
+                &copy; 2026 The Buffet Bhai. All rights reserved. Serving Delhi NCR since 2026.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Elements -->
+    <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering." class="fab-whatsapp" target="_blank" aria-label="WhatsApp Us">
+        <i data-lucide="message-circle"></i>
+    </a>
+
+    <div class="mobile-sticky-bar">
+        <div style="display: flex; gap: 10px;">
+            <a href="#packages" class="btn btn-secondary" style="flex: 1;">Order Karo</a>
+            <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering." class="btn btn-primary btn-pulse" style="flex: 1;" target="_blank">Bhai Ko Bulao</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Sticky Nav & Scroll Animations
+        const header = document.getElementById('header');
+        const scrollElements = document.querySelectorAll('.animate-on-scroll');
+
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend);
+        };
+
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+
+        const handleScrollAnimation = () => {
+            // Sticky Header
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            // Fade in elements
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.1)) {
+                    displayScrollElement(el);
+                }
+            })
+        }
+
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        
+        // Trigger once on load
+        handleScrollAnimation();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        mobileMenuBtn.addEventListener('click', () => {
+            header.classList.toggle('nav-active');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                header.classList.remove('nav-active');
+            });
+        });
+
+        // Tabs Logic
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active classes
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                // Show corresponding content
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById('tab-' + tabId).classList.add('active');
+            });
+        });
+
+        // FAQ Accordion Logic
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items
+                faqItems.forEach(faq => faq.classList.remove('active'));
+                
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Form Submission (Client-side simulation)
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+
+        if(contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Simulate form sending
+                contactForm.style.opacity = '0.5';
+                setTimeout(() => {
+                    contactForm.style.display = 'none';
+                    formSuccess.style.display = 'block';
+                }, 800);
+            });
+        }
+    </script>
+</body>
+</html>
