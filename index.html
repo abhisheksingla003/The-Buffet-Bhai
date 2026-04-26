@@ -1,43 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Buffet Bhai | Premium Home Catering in Delhi NCR</title>
-    <meta name="description" content="Premium buffet catering for 10-200 guests in Delhi NCR. Hot food, complete setup, zero kitchen stress. Ghar Pe Dawaat Ka Scene? Chhod Do Hamare Pe.">
-    
+    <meta name="description"
+        content="Premium buffet catering for 10-100 guests in Delhi NCR. Hot food, complete setup, zero kitchen stress. Ghar Pe Dawaat Ka Scene? Chhod Do Hamare Pe.">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         :root {
             /* Color System */
-            --primary: #E8681A;      /* Deep Saffron */
-            --secondary: #7C1D2E;    /* Rich Burgundy */
-            --accent: #F5C842;       /* Turmeric Gold */
-            --dark: #1A1208;         /* Charcoal Brown */
-            --light: #FAF5EC;        /* Warm Ivory */
+            --primary: #E8681A;
+            /* Deep Saffron */
+            --secondary: #7C1D2E;
+            /* Rich Burgundy */
+            --accent: #F5C842;
+            /* Turmeric Gold */
+            --dark: #1A1208;
+            /* Charcoal Brown */
+            --light: #FAF5EC;
+            /* Warm Ivory */
             --white: #FFFFFF;
-            
+
             /* Typography */
             --font-display: 'Playfair Display', serif;
             --font-body: 'DM Sans', sans-serif;
             --font-hinglish: 'Baloo 2', cursive;
-            
+
             /* Layout */
-            --section-padding: 80px 5%;
+            --section-padding: 50px 5%;
             --container-max: 1200px;
             --border-radius: 16px;
-            
+
             /* Shadows */
             --shadow-warm: 0 10px 30px rgba(124, 29, 46, 0.1);
             --shadow-glow: 0 0 20px rgba(232, 104, 26, 0.3);
-            
+
             /* Backgrounds */
             --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
             --pattern: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 3.33331C20 3.33331 23.3333 13.3333 30 16.6666C36.6667 20 40 20 40 20C40 20 30 23.3333 23.3333 30C16.6667 36.6666 20 40 20 40C20 40 16.6667 30 10 23.3333C3.33333 16.6666 0 20 0 20C0 20 10 16.6666 16.6667 10C23.3333 3.33331 20 3.33331 20 3.33331Z' fill='%23F5C842' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
@@ -52,6 +61,8 @@
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
         }
 
         body {
@@ -60,22 +71,47 @@
             background-color: var(--light);
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: var(--font-display);
             line-height: 1.2;
         }
 
-        h1 { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 900; }
-        h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; }
-        h3 { font-family: var(--font-body); font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 600; }
-        
-        p { font-size: 1.125rem; }
+        h1 {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 900;
+        }
 
-        a { text-decoration: none; color: inherit; }
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+        }
 
-        ul { list-style: none; }
+        h3 {
+            font-family: var(--font-body);
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.125rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
 
         .container {
             max-width: var(--container-max);
@@ -89,14 +125,30 @@
             color: var(--primary);
         }
 
-        .text-center { text-align: center; }
+        .text-center {
+            text-align: center;
+        }
 
         /* Typography Colors */
-        .text-primary { color: var(--primary); }
-        .text-secondary { color: var(--secondary); }
-        .text-accent { color: var(--accent); }
-        .text-light { color: var(--light); }
-        .text-white { color: var(--white); }
+        .text-primary {
+            color: var(--primary);
+        }
+
+        .text-secondary {
+            color: var(--secondary);
+        }
+
+        .text-accent {
+            color: var(--accent);
+        }
+
+        .text-light {
+            color: var(--light);
+        }
+
+        .text-white {
+            color: var(--white);
+        }
 
         /* Utility Classes */
         .section-dark {
@@ -104,7 +156,7 @@
             color: var(--light);
             position: relative;
         }
-        
+
         .section-dark::before {
             content: "";
             position: absolute;
@@ -115,7 +167,7 @@
             z-index: 1;
         }
 
-        .section-dark > * {
+        .section-dark>* {
             position: relative;
             z-index: 2;
         }
@@ -135,7 +187,7 @@
             z-index: 1;
         }
 
-        .section-light > * {
+        .section-light>* {
             position: relative;
             z-index: 2;
         }
@@ -144,18 +196,7 @@
             padding: var(--section-padding);
         }
 
-        .clip-diagonal-bottom {
-            clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
-            margin-bottom: -5vw;
-            padding-bottom: calc(80px + 5vw);
-            z-index: 10;
-        }
 
-        .clip-diagonal-top {
-            clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
-            margin-top: -5vw;
-            padding-top: calc(80px + 5vw);
-        }
 
         /* Buttons */
         .btn {
@@ -189,6 +230,19 @@
             background-color: #ff7b2b;
         }
 
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
         .btn-secondary {
             background-color: transparent;
             color: var(--primary);
@@ -215,9 +269,17 @@
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(232, 104, 26, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(232, 104, 26, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(232, 104, 26, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(232, 104, 26, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(232, 104, 26, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(232, 104, 26, 0);
+            }
         }
 
         /* 1. Navigation */
@@ -235,7 +297,7 @@
             background-color: rgba(26, 18, 8, 0.95);
             backdrop-filter: blur(10px);
             padding: 1rem 5%;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .nav-container {
@@ -378,13 +440,14 @@
 
         .section-header {
             max-width: 800px;
-            margin: 0 auto 60px;
+            margin: 0 auto 40px;
             text-align: center;
         }
 
         .section-header h2 {
             margin-bottom: 20px;
         }
+
         .section-header h2 span {
             color: var(--primary);
         }
@@ -515,7 +578,8 @@
             gap: 8px;
         }
 
-        .tab-btn.active, .tab-btn:hover {
+        .tab-btn.active,
+        .tab-btn:hover {
             background-color: var(--secondary);
             color: var(--white);
         }
@@ -527,25 +591,160 @@
 
         .tab-content.active {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
         .package-card {
+            background-color: transparent;
+            perspective: 1000px;
+            padding: 0;
+            border: none;
+            box-shadow: none;
+            position: relative;
+            /* Allow it to grow naturally */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            cursor: pointer;
+            display: grid;
+            grid-template-areas: "card";
+        }
+
+        /* Trigger flip on hover for desktop, or touch */
+        @media (min-width: 771px) {
+            .package-card:hover .package-card-inner {
+                transform: rotateY(180deg);
+            }
+        }
+
+        .package-card.flipped .package-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .package-card-front,
+        .package-card-back {
+            grid-area: card;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
             background-color: var(--white);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-warm);
             padding: 40px 30px;
-            position: relative;
-            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             border: 1px solid rgba(124, 29, 46, 0.05);
+            border-top: 4px solid transparent;
         }
 
-        .package-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(124, 29, 46, 0.15);
+        .package-card-back {
+            transform: rotateY(180deg);
+            justify-content: center;
+        }
+
+        .best-seller-face {
+            border-top-color: var(--primary);
+        }
+
+        @media (min-width: 1024px) {
+            .best-seller-container {
+                transform: scale(1.02);
+                z-index: 2;
+            }
+        }
+
+        .price-highlight {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 25px;
+            background: rgba(245, 200, 66, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px dashed var(--accent);
+            align-items: center;
+            text-align: center;
+        }
+
+        .price-highlight .price-val {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.1;
+        }
+
+        .price-highlight .per-head {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .price-highlight .pax-label {
+            font-size: 0.95rem;
+            color: #666;
+            margin-top: 5px;
+            font-family: var(--font-hinglish);
+        }
+
+        .package-subtitle {
+            font-size: 1.05rem;
+            color: #666;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .package-pricing {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .package-pricing th,
+        .package-pricing td {
+            padding: 15px 10px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .package-pricing th {
+            font-family: var(--font-display);
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .package-pricing .price-val {
+            font-weight: 800;
+            color: var(--dark);
+            font-size: 1.2rem;
+        }
+
+        .flip-hint {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-style: italic;
+        }
+
+        .package-menu .qty-badge {
+            background: rgba(232, 104, 26, 0.1);
+            color: var(--primary);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 8px;
         }
 
         .package-tag {
@@ -618,7 +817,7 @@
             flex-direction: column;
             gap: 15px;
         }
-        
+
         .package-ctas .btn {
             width: 100%;
         }
@@ -702,9 +901,9 @@
             margin-bottom: 10px;
             font-weight: 700;
         }
-        
+
         .trust-content p {
-            color: rgba(250, 245, 236, 0.8);
+            color: #555555;
             font-size: 1rem;
         }
 
@@ -757,17 +956,20 @@
             display: flex;
             gap: 30px;
             overflow-x: auto;
-            padding: 20px 0 40px;
+            padding: 20px 0 10px;
             scroll-snap-type: x mandatory;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
+            /* Firefox */
+            -webkit-overflow-scrolling: touch;
         }
 
         .testimonials-carousel::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
+            display: none;
+            /* Chrome, Safari, Opera */
         }
 
         .testimonial-card {
-            min-width: 350px;
+            min-width: 300px;
             background: var(--dark);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 40px 30px;
@@ -799,7 +1001,7 @@
             align-items: center;
             gap: 15px;
         }
-        
+
         .author-avatar {
             width: 50px;
             height: 50px;
@@ -819,7 +1021,7 @@
             color: var(--accent);
             margin-bottom: 2px;
         }
-        
+
         .author-info p {
             font-size: 0.9rem;
             color: rgba(250, 245, 236, 0.6);
@@ -847,7 +1049,7 @@
             background: var(--white);
             margin-bottom: 15px;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             overflow: hidden;
         }
 
@@ -905,7 +1107,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .cta-container::before {
             content: "";
             position: absolute;
@@ -1041,7 +1243,7 @@
         .social-icon {
             width: 45px;
             height: 45px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1056,7 +1258,7 @@
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 30px;
             font-size: 0.9rem;
         }
@@ -1079,7 +1281,7 @@
             transition: transform 0.3s;
             animation: pulse-wa 2s infinite;
         }
-        
+
         .fab-whatsapp i {
             width: 30px;
             height: 30px;
@@ -1090,9 +1292,17 @@
         }
 
         @keyframes pulse-wa {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
         }
 
         .mobile-sticky-bar {
@@ -1102,7 +1312,7 @@
             left: 0;
             width: 100%;
             background: var(--white);
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
             z-index: 1001;
             padding: 15px 5%;
             padding-bottom: calc(15px + env(safe-area-inset-bottom));
@@ -1126,8 +1336,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Media Queries */
@@ -1135,6 +1352,7 @@
             .solution-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
             .cta-container {
                 grid-template-columns: 1fr;
                 padding: 40px 30px;
@@ -1145,11 +1363,12 @@
             :root {
                 --section-padding: 60px 5%;
             }
-            
-            .nav-links, .nav-btn {
+
+            .nav-links,
+            .nav-btn {
                 display: none !important;
             }
-            
+
             .mobile-menu-btn {
                 display: block;
             }
@@ -1163,9 +1382,9 @@
                 width: 100%;
                 background: var(--dark);
                 padding: 20px 5%;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
-            
+
             .nav-active .nav-btn {
                 display: inline-flex;
                 margin-top: 20px;
@@ -1190,11 +1409,13 @@
             }
 
             .fab-whatsapp {
-                bottom: 80px; /* Above mobile bar */
+                bottom: 80px;
+                /* Above mobile bar */
             }
-            
+
             footer {
-                padding-bottom: 100px; /* Space for sticky bar */
+                padding-bottom: 100px;
+                /* Space for sticky bar */
             }
         }
 
@@ -1202,12 +1423,20 @@
             .insta-grid {
                 grid-template-columns: 1fr;
             }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
         }
+
+        .offer-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- 1. Navigation -->
@@ -1218,13 +1447,16 @@
                 The Buffet Bhai
             </a>
             <nav class="nav-links">
+                <a href="#offers" style="color: var(--accent); font-weight: 700;">Offers</a>
                 <a href="#packages">Packages</a>
                 <a href="#how-it-works">How It Works</a>
                 <a href="#reviews">Reviews</a>
                 <a href="#faq">FAQ</a>
             </nav>
-            <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering." class="btn btn-primary nav-btn" target="_blank">
-                Bhai Ko Bulao
+            <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
+                class="btn btn-whatsapp nav-btn btn-pulse" target="_blank">
+                <img src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg" alt="WhatsApp"
+                    style="width: 20px; height: 20px;"> Book Now
             </a>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i data-lucide="menu"></i>
@@ -1239,29 +1471,88 @@
                 <i data-lucide="star"></i> Delhi NCR ka #1 House Party Caterer
             </div>
             <h1>Ghar Pe Dawaat Ka Scene? <i>Chhod Do Hamare Pe.</i></h1>
-            <p class="lead">Premium buffet catering for 10–200 guests. Hot food, complete setup, zero kitchen stress — delivered to your door.</p>
-            
+            <p class="lead">Premium buffet catering for 10–100 guests. Hot food, complete setup, zero kitchen stress —
+                delivered to your door.</p>
+
             <div class="hero-ctas">
-                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering." class="btn btn-primary btn-pulse" target="_blank">
-                    <i data-lucide="message-circle"></i> Bhai Ko Bulao
+                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
+                    class="btn btn-whatsapp btn-pulse" target="_blank">
+                    <img src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg" alt="WhatsApp"
+                        style="width: 20px; height: 20px;"> Book Now
                 </a>
-                <a href="#packages" class="btn btn-outline-light">Packages Dekho</a>
+                <a href="#packages" class="btn btn-outline-light">View Packages</a>
             </div>
 
             <div class="social-proof-bar">
                 <div class="proof-item">
-                    <i data-lucide="star" fill="#F5C842"></i> 4.8 Rating
+                    <i data-lucide="utensils"></i> Premium Buffet Setup
                 </div>
                 <div class="proof-item">
-                    <i data-lucide="users"></i> 15,000+ Dawaatein Served
+                    <i data-lucide="flame"></i> Hot & Fresh Delivery
                 </div>
                 <div class="proof-item">
-                    <i data-lucide="tag"></i> ₹1,499/- per person starting
+                    <i data-lucide="tag"></i> ₹300 per person starting
                 </div>
                 <div class="proof-item">
-                    <i data-lucide="clock"></i> Same-Day Booking Available
+                    <i data-lucide="check-circle"></i> Fully Customizable Menu
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section id="offers" class="offers-section"
+        style="padding: 60px 5%; background: linear-gradient(135deg, #1A1208, #302010); position: relative; overflow: hidden;">
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="section-header animate-on-scroll" style="margin-bottom: 40px;">
+                <h2 style="color: #fff; font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin: 0;">Special <span
+                        style="color: var(--accent);">Offers</span></h2>
+                <p style="color: rgba(250, 245, 236, 0.8); text-align: center; margin-top: 10px;">Grab these exclusive
+                    deals before they're gone!</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <!-- Offer 1 -->
+                <div class="offer-card animate-on-scroll"
+                    style="background: rgba(255,255,255,0.05); border: 1px solid rgba(245, 200, 66, 0.2); border-radius: 20px; padding: 40px 30px; text-align: center; position: relative; overflow: hidden; backdrop-filter: blur(10px); transition: all 0.4s ease; cursor: pointer;">
+                    <div
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--accent);">
+                    </div>
+                    <div
+                        style="width: 70px; height: 70px; background: rgba(245, 200, 66, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <img src="images/social logos/instagram-svgrepo-com.svg" alt="Instagram"
+                            style="width: 35px; height: 35px; filter: invert(80%) sepia(30%) saturate(1000%) hue-rotate(350deg) brightness(110%);">
+                    </div>
+                    <h3 style="color: #fff; font-size: 1.6rem; margin-bottom: 15px; font-family: var(--font-display);">
+                        5% Cashback</h3>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.6;">Upload an Instagram
+                        Story of our food & tag us! Show it to our team to get an instant 5% cashback on your order.</p>
+                </div>
+
+                <!-- Offer 2 -->
+                <div class="offer-card animate-on-scroll"
+                    style="transition-delay: 0.1s; background: rgba(255,255,255,0.05); border: 1px solid rgba(232, 104, 26, 0.2); border-radius: 20px; padding: 40px 30px; text-align: center; position: relative; overflow: hidden; backdrop-filter: blur(10px); transition: all 0.4s ease; cursor: pointer;">
+                    <div
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--primary);">
+                    </div>
+                    <div
+                        style="width: 70px; height: 70px; background: rgba(232, 104, 26, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <i data-lucide="cake" style="color: var(--primary); width: 35px; height: 35px;"></i>
+                    </div>
+                    <h3 style="color: #fff; font-size: 1.6rem; margin-bottom: 15px; font-family: var(--font-display);">
+                        Free Birthday Cake</h3>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.6;">Celebrating a
+                        birthday with us? Get a complimentary 1/2 KG Cake on the house! (Valid ID proof required).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Background decorative elements -->
+        <div
+            style="position: absolute; top: -100px; right: -50px; width: 300px; height: 300px; background: rgba(245, 200, 66, 0.05); border-radius: 50%; filter: blur(50px); pointer-events: none;">
+        </div>
+        <div
+            style="position: absolute; bottom: -100px; left: -50px; width: 300px; height: 300px; background: rgba(232, 104, 26, 0.05); border-radius: 50%; filter: blur(50px); pointer-events: none;">
         </div>
     </section>
 
@@ -1271,17 +1562,19 @@
             <div class="section-header animate-on-scroll">
                 <h2>Jab Ghar Mein Party Ho, <span>Toh Tension Kyun?</span></h2>
             </div>
-            
+
             <div class="cards-grid">
                 <div class="card animate-on-scroll">
                     <div class="card-icon"><i data-lucide="flame"></i></div>
                     <h3>Kitchen ka Mela</h3>
-                    <p>"30 log ke liye khana banana, wo bhi properly? Dal, chawal, sabzi, dessert — aur phir cleaning bhi? Nahi bhai, nahi."</p>
+                    <p>"30 log ke liye khana banana, wo bhi properly? Dal, chawal, sabzi, dessert — aur phir cleaning
+                        bhi? Nahi bhai, nahi."</p>
                 </div>
                 <div class="card animate-on-scroll" style="transition-delay: 0.1s">
                     <div class="card-icon"><i data-lucide="clock-4"></i></div>
                     <h3>Time Toh Hai Hi Nahi</h3>
-                    <p>"Decoration, shopping, guests ka jugaad — aur upar se cooking? Ek hi haath mein itna sambhalna possible nahi."</p>
+                    <p>"Decoration, shopping, guests ka jugaad — aur upar se cooking? Ek hi haath mein itna sambhalna
+                        possible nahi."</p>
                 </div>
                 <div class="card animate-on-scroll" style="transition-delay: 0.2s">
                     <div class="card-icon"><i data-lucide="frown"></i></div>
@@ -1307,12 +1600,14 @@
                 <div class="solution-card animate-on-scroll">
                     <div class="icon-wrapper"><i data-lucide="truck" size="40"></i></div>
                     <h3>Hot & Fresh Delivery</h3>
-                    <p>Restaurant-quality food, packed in heat-retaining containers, delivered right before your guests arrive.</p>
+                    <p>Restaurant-quality food, packed in heat-retaining containers, delivered right before your guests
+                        arrive.</p>
                 </div>
                 <div class="solution-card animate-on-scroll" style="transition-delay: 0.1s">
                     <div class="icon-wrapper"><i data-lucide="utensils" size="40"></i></div>
                     <h3>Complete Buffet Setup</h3>
-                    <p>Premium disposables, serving spoons, napkins, chafing dishes — everything. You literally just open the box.</p>
+                    <p>Premium disposables, serving spoons, napkins, chafing dishes — everything. You literally just
+                        open the box.</p>
                 </div>
                 <div class="solution-card animate-on-scroll" style="transition-delay: 0.2s">
                     <div class="icon-wrapper"><i data-lucide="smartphone" size="40"></i></div>
@@ -1328,173 +1623,732 @@
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <h2>Choose Your <span>Package</span></h2>
-                <p class="text-secondary">Every package is priced per person, fully customizable, and built for real Delhi appetites.</p>
+                <p class="text-secondary">Every package is priced per person, fully customizable, and built for real
+                    Delhi appetites.</p>
             </div>
 
             <div class="tabs animate-on-scroll">
                 <button class="tab-btn active" data-tab="veg">🌿 Pure Veg</button>
                 <button class="tab-btn" data-tab="non-veg">🍗 Non-Veg</button>
-                <button class="tab-btn" data-tab="premium">🎉 Premium Spreads</button>
+                <button class="tab-btn" data-tab="extras">🍟 Snacks & Extras</button>
             </div>
 
             <!-- Veg Tab -->
             <div class="tab-content active" id="tab-veg">
-                <!-- Package 1 -->
+                <!-- Desi Dawat -->
                 <div class="package-card">
-                    <div class="package-name">Seedha Saadha Dawaat</div>
-                    <div class="package-price">₹1,499<span>/person</span></div>
-                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 10 guests</div>
-                    <ul class="package-menu">
-                        <li>Dal Makhani</li>
-                        <li>Mix Veg</li>
-                        <li>Shahi Paneer</li>
-                        <li>Jeera Rice & Roti</li>
-                        <li>Salad & Raita</li>
-                    </ul>
-                    <div class="package-ctas">
-                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Seedha%20Saadha%20Dawaat." class="btn btn-primary" target="_blank">Order Karo</a>
+                    <div class="package-card-inner">
+                        <!-- Front -->
+                        <div class="package-card-front">
+                            <div class="package-name">Desi Dawat</div>
+                            <div class="package-subtitle">Simple, desi, satisfying</div>
+                            <div class="price-highlight">
+                                <span class="price-val">₹2,999</span>
+                                <span class="per-head">(₹300 / head)</span>
+                                <div class="pax-label">For 10 Guests</div>
+                            </div>
+                            <div class="package-menu">
+                                <div class="menu-header">Menu Includes (Per 10 Pax)</div>
+                                <ul>
+                                    <li><span class="qty-badge">1.5 full</span> Kadai Paneer</li>
+                                    <li><span class="qty-badge">1.5 full</span> Dal Makhani</li>
+                                    <li><span class="qty-badge">1.5 full</span> Rajma / Chole (choice)</li>
+                                    <li><span class="qty-badge">12 pcs</span> Butter Naan</li>
+                                    <li><span class="qty-badge">8 pcs</span> Lachha Parantha</li>
+                                    <li><span class="qty-badge">1 full</span> Jeera Rice</li>
+                                    <li><span class="qty-badge">1 bowl</span> Boondi Raita + Green Salad + Papad</li>
+                                    <li><span class="qty-badge">Sweet</span> Gulab Jamun (2 pcs/person)</li>
+                                </ul>
+                            </div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Desi%20Dawat."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Desi Dawat</a>
+                            </div>
+                            <div class="flip-hint">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="package-card-back">
+                            <div class="package-name">Desi Dawat</div>
+                            <div class="package-subtitle">Pricing for larger groups</div>
+                            <table class="package-pricing">
+                                <tr>
+                                    <th>Guests</th>
+                                    <th>Price</th>
+                                    <th>Per Head</th>
+                                </tr>
+                                <tr>
+                                    <td>10 pax</td>
+                                    <td class="price-val">₹2,999</td>
+                                    <td>₹300</td>
+                                </tr>
+                                <tr>
+                                    <td>15 pax</td>
+                                    <td class="price-val">₹4,499</td>
+                                    <td>₹300</td>
+                                </tr>
+                                <tr>
+                                    <td>20 pax</td>
+                                    <td class="price-val">₹5,999</td>
+                                    <td>₹300</td>
+                                </tr>
+                                <tr>
+                                    <td>25 pax</td>
+                                    <td class="price-val">₹7,499</td>
+                                    <td>₹300</td>
+                                </tr>
+                            </table>
+                            <div style="flex-grow: 1;"></div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Desi%20Dawat."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Desi Dawat</a>
+                            </div>
+                            <div class="flip-hint" style="margin-top: 20px;">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see menu
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Package 2 -->
-                <div class="package-card" style="border-top-color: var(--primary); transform: scale(1.05); z-index: 2;">
-                    <div class="package-tag">Most Popular</div>
-                    <div class="package-name">Dilli Wali Dawaat</div>
-                    <div class="package-price">₹1,799<span>/person</span></div>
-                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 10 guests</div>
-                    <ul class="package-menu">
-                        <li>Dal Makhani & Matar Mushroom</li>
-                        <li>Malai Kofta</li>
-                        <li>Jeera Rice & Assorted Breads</li>
-                        <li>Salad & Raita</li>
-                        <li>Phirni</li>
-                    </ul>
-                    <div class="package-ctas">
-                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Dilli%20Wali%20Dawaat." class="btn btn-primary btn-pulse" target="_blank">Order Karo</a>
+
+                <!-- Shahi Dawat -->
+                <div class="package-card best-seller-container">
+                    <div class="package-card-inner">
+                        <!-- Front -->
+                        <div class="package-card-front best-seller-face">
+                            <div class="package-tag">Best Seller</div>
+                            <div class="package-name">Shahi Dawat</div>
+                            <div class="package-subtitle">Paneer wali party ka asli maza</div>
+                            <div class="price-highlight">
+                                <span class="price-val">₹3,999</span>
+                                <span class="per-head">(₹400 / head)</span>
+                                <div class="pax-label">For 10 Guests</div>
+                            </div>
+                            <div class="package-menu">
+                                <div class="menu-header">Menu Includes (Per 10 Pax)</div>
+                                <ul>
+                                    <li><span class="qty-badge">1.5 full</span> Shahi Paneer</li>
+                                    <li><span class="qty-badge">1.5 full</span> Dal Makhani</li>
+                                    <li><span class="qty-badge">1 full</span> Mix Veg / Aloo Gobhi (choice)</li>
+                                    <li><span class="qty-badge">12 pcs</span> Butter Naan</li>
+                                    <li><span class="qty-badge">10 pcs</span> Lachha Parantha</li>
+                                    <li><span class="qty-badge">1.5 full</span> Jeera Rice</li>
+                                    <li><span class="qty-badge">1 bowl</span> Boondi Raita + Green Salad</li>
+                                    <li><span class="qty-badge">Sweet</span> Gulab Jamun (2 pcs/person)</li>
+                                </ul>
+                            </div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Shahi%20Dawat."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Shahi Dawat</a>
+                            </div>
+                            <div class="flip-hint">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="package-card-back best-seller-face">
+                            <div class="package-name">Shahi Dawat</div>
+                            <div class="package-subtitle">Pricing for larger groups</div>
+                            <table class="package-pricing">
+                                <tr>
+                                    <th>Guests</th>
+                                    <th>Price</th>
+                                    <th>Per Head</th>
+                                </tr>
+                                <tr>
+                                    <td>10 pax</td>
+                                    <td class="price-val">₹3,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                                <tr>
+                                    <td>15 pax</td>
+                                    <td class="price-val">₹5,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                                <tr>
+                                    <td>20 pax</td>
+                                    <td class="price-val">₹7,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                                <tr>
+                                    <td>25 pax</td>
+                                    <td class="price-val">₹9,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                            </table>
+                            <div style="flex-grow: 1;"></div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Shahi%20Dawat."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Shahi Dawat</a>
+                            </div>
+                            <div class="flip-hint" style="margin-top: 20px;">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see menu
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Package 3 -->
+
+                <!-- Grand Buffet Bhai -->
                 <div class="package-card">
-                    <div class="package-name">Shahi Veg Spread</div>
-                    <div class="package-price">₹2,299<span>/person</span></div>
-                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 15 guests</div>
-                    <ul class="package-menu">
-                        <li>Full 8-course veg menu</li>
-                        <li>Assorted Starters (3)</li>
-                        <li>Premium Mains (4)</li>
-                        <li>Assorted Breads & Rice</li>
-                        <li>Desserts (2)</li>
-                    </ul>
-                    <div class="package-ctas">
-                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Shahi%20Veg%20Spread." class="btn btn-primary" target="_blank">Order Karo</a>
+                    <div class="package-card-inner">
+                        <!-- Front -->
+                        <div class="package-card-front">
+                            <div class="package-name">Grand Buffet Bhai</div>
+                            <div class="package-subtitle">Full spread, full dhamaal</div>
+                            <div class="price-highlight">
+                                <span class="price-val">₹5,499</span>
+                                <span class="per-head">(₹550 / head)</span>
+                                <div class="pax-label">For 10 Guests</div>
+                            </div>
+                            <div class="package-menu">
+                                <div class="menu-header">Menu Includes (Per 10 Pax)</div>
+                                <ul>
+                                    <li><span class="qty-badge">1.5 full</span> Paneer Butter Masala</li>
+                                    <li><span class="qty-badge">1.5 full</span> Kadai Paneer</li>
+                                    <li><span class="qty-badge">1.5 full</span> Dal Makhani</li>
+                                    <li><span class="qty-badge">1 full</span> Chole / Rajma (choice)</li>
+                                    <li><span class="qty-badge">12 pcs</span> Butter Naan</li>
+                                    <li><span class="qty-badge">12 pcs</span> Lachha Parantha</li>
+                                    <li><span class="qty-badge">1.5 full</span> Jeera Rice + Veg Biryani</li>
+                                    <li><span class="qty-badge">full</span> Raita + Green Salad</li>
+                                    <li><span class="qty-badge">Sweet</span> Gulab Jamun (2 pcs/person)</li>
+                                </ul>
+                            </div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Grand%20Buffet%20Bhai."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Grand Buffet Bhai</a>
+                            </div>
+                            <div class="flip-hint">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="package-card-back">
+                            <div class="package-name">Grand Buffet Bhai</div>
+                            <div class="package-subtitle">Pricing for larger groups</div>
+                            <table class="package-pricing">
+                                <tr>
+                                    <th>Guests</th>
+                                    <th>Price</th>
+                                    <th>Per Head</th>
+                                </tr>
+                                <tr>
+                                    <td>10 pax</td>
+                                    <td class="price-val">₹5,499</td>
+                                    <td>₹550</td>
+                                </tr>
+                                <tr>
+                                    <td>15 pax</td>
+                                    <td class="price-val">₹8,249</td>
+                                    <td>₹550</td>
+                                </tr>
+                                <tr>
+                                    <td>20 pax</td>
+                                    <td class="price-val">₹10,999</td>
+                                    <td>₹550</td>
+                                </tr>
+                                <tr>
+                                    <td>25 pax</td>
+                                    <td class="price-val">₹13,749</td>
+                                    <td>₹550</td>
+                                </tr>
+                            </table>
+                            <div style="flex-grow: 1;"></div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Grand%20Buffet%20Bhai."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Grand Buffet Bhai</a>
+                            </div>
+                            <div class="flip-hint" style="margin-top: 20px;">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see menu
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Non-Veg Tab -->
             <div class="tab-content" id="tab-non-veg">
-                <!-- Package 1 -->
+                <!-- Murgh Mela -->
                 <div class="package-card">
-                    <div class="package-name">Non-Veg Essential</div>
-                    <div class="package-price">₹1,999<span>/person</span></div>
-                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 10 guests</div>
-                    <ul class="package-menu">
-                        <li>Butter Chicken</li>
-                        <li>Mutton Curry</li>
-                        <li>Dal Fry</li>
-                        <li>Biryani & Roti</li>
-                        <li>Salad & Raita</li>
-                    </ul>
-                    <div class="package-ctas">
-                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Non-Veg%20Essential." class="btn btn-primary" target="_blank">Order Karo</a>
+                    <div class="package-card-inner">
+                        <!-- Front -->
+                        <div class="package-card-front">
+                            <div class="package-name">Murgh Mela</div>
+                            <div class="package-subtitle">Asli butter chicken ki daastan</div>
+                            <div class="price-highlight">
+                                <span class="price-val">₹3,999</span>
+                                <span class="per-head">(₹400 / head)</span>
+                                <div class="pax-label">For 10 Guests</div>
+                            </div>
+                            <div class="package-menu">
+                                <div class="menu-header">Menu Includes (Per 10 Pax)</div>
+                                <ul>
+                                    <li><span class="qty-badge">1.5 full</span> Butter Chicken</li>
+                                    <li><span class="qty-badge">1.5 full</span> Paneer Butter Masala</li>
+                                    <li><span class="qty-badge">1.5 full</span> Dal Makhani</li>
+                                    <li><span class="qty-badge">12 pcs</span> Butter Naan</li>
+                                    <li><span class="qty-badge">8 pcs</span> Lachha Parantha</li>
+                                    <li><span class="qty-badge">1 full</span> Jeera Rice</li>
+                                    <li><span class="qty-badge">1 bowl</span> Boondi Raita + Salad</li>
+                                    <li><span class="qty-badge">Sweet</span> Gulab Jamun (2 pcs/person)</li>
+                                </ul>
+                            </div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Murgh%20Mela."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Murgh Mela</a>
+                            </div>
+                            <div class="flip-hint">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="package-card-back">
+                            <div class="package-name">Murgh Mela</div>
+                            <div class="package-subtitle">Pricing for larger groups</div>
+                            <table class="package-pricing">
+                                <tr>
+                                    <th>Guests</th>
+                                    <th>Price</th>
+                                    <th>Per Head</th>
+                                </tr>
+                                <tr>
+                                    <td>10 pax</td>
+                                    <td class="price-val">₹3,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                                <tr>
+                                    <td>15 pax</td>
+                                    <td class="price-val">₹5,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                                <tr>
+                                    <td>20 pax</td>
+                                    <td class="price-val">₹7,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                                <tr>
+                                    <td>25 pax</td>
+                                    <td class="price-val">₹9,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                            </table>
+                            <div style="flex-grow: 1;"></div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Murgh%20Mela."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Murgh Mela</a>
+                            </div>
+                            <div class="flip-hint" style="margin-top: 20px;">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see menu
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Package 2 -->
-                <div class="package-card" style="border-top-color: var(--primary); transform: scale(1.05); z-index: 2;">
-                    <div class="package-tag">Staff Favorite</div>
-                    <div class="package-name">Mughlai Feast</div>
-                    <div class="package-price">₹2,499<span>/person</span></div>
-                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 15 guests</div>
-                    <ul class="package-menu">
-                        <li>Seekh Kebab & Chicken Tikka</li>
-                        <li>Butter Chicken & Fish Curry</li>
-                        <li>Shahi Korma</li>
-                        <li>Mutton Biryani</li>
-                        <li>Rich Desserts</li>
-                    </ul>
-                    <div class="package-ctas">
-                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Mughlai%20Feast." class="btn btn-primary btn-pulse" target="_blank">Order Karo</a>
+
+                <!-- Sher-e-Punjab -->
+                <div class="package-card best-seller-container">
+                    <div class="package-card-inner">
+                        <!-- Front -->
+                        <div class="package-card-front best-seller-face">
+                            <div class="package-tag">Best Seller</div>
+                            <div class="package-name">Sher-e-Punjab</div>
+                            <div class="package-subtitle">Chicken + biryani — full value</div>
+                            <div class="price-highlight">
+                                <span class="price-val">₹5,999</span>
+                                <span class="per-head">(₹600 / head)</span>
+                                <div class="pax-label">For 10 Guests</div>
+                            </div>
+                            <div class="package-menu">
+                                <div class="menu-header">Menu Includes (Per 10 Pax)</div>
+                                <ul>
+                                    <li><span class="qty-badge">1.5 full</span> Butter Chicken</li>
+                                    <li><span class="qty-badge">1.5 full</span> Kadai Chicken</li>
+                                    <li><span class="qty-badge">1.5 full</span> Dal Makhani</li>
+                                    <li><span class="qty-badge">12 pcs</span> Butter Naan</li>
+                                    <li><span class="qty-badge">10 pcs</span> Lachha Parantha</li>
+                                    <li><span class="qty-badge">1 full</span> Chicken Biryani</li>
+                                    <li><span class="qty-badge">full</span> Raita + Salad</li>
+                                    <li><span class="qty-badge">Sweet</span> Gulab Jamun (2 pcs/person)</li>
+                                </ul>
+                            </div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Sher-e-Punjab."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Sher-e-Punjab</a>
+                            </div>
+                            <div class="flip-hint">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="package-card-back best-seller-face">
+                            <div class="package-name">Sher-e-Punjab</div>
+                            <div class="package-subtitle">Pricing for larger groups</div>
+                            <table class="package-pricing">
+                                <tr>
+                                    <th>Guests</th>
+                                    <th>Price</th>
+                                    <th>Per Head</th>
+                                </tr>
+                                <tr>
+                                    <td>10 pax</td>
+                                    <td class="price-val">₹5,999</td>
+                                    <td>₹600</td>
+                                </tr>
+                                <tr>
+                                    <td>15 pax</td>
+                                    <td class="price-val">₹8,999</td>
+                                    <td>₹600</td>
+                                </tr>
+                                <tr>
+                                    <td>20 pax</td>
+                                    <td class="price-val">₹11,999</td>
+                                    <td>₹600</td>
+                                </tr>
+                                <tr>
+                                    <td>25 pax</td>
+                                    <td class="price-val">₹14,999</td>
+                                    <td>₹600</td>
+                                </tr>
+                            </table>
+                            <div style="flex-grow: 1;"></div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Sher-e-Punjab."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Sher-e-Punjab</a>
+                            </div>
+                            <div class="flip-hint" style="margin-top: 20px;">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see menu
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Package 3 -->
+
+                <!-- Nawabi Grand -->
                 <div class="package-card">
-                    <div class="package-name">Royal Non-Veg</div>
-                    <div class="package-price">₹3,299<span>/person</span></div>
-                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 20 guests</div>
-                    <ul class="package-menu">
-                        <li>Full 9-course feast</li>
-                        <li>Premium Mutton Cuts</li>
-                        <li>Live carving station add-on</li>
-                        <li>Unlimited Starters</li>
-                        <li>Gourmet Desserts</li>
-                    </ul>
-                    <div class="package-ctas">
-                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Royal%20Non-Veg%20Spread." class="btn btn-primary" target="_blank">Order Karo</a>
+                    <div class="package-card-inner">
+                        <!-- Front -->
+                        <div class="package-card-front">
+                            <div class="package-name">Nawabi Grand</div>
+                            <div class="package-subtitle">Chicken + mutton — full nawabi</div>
+                            <div class="price-highlight">
+                                <span class="price-val">₹8,499</span>
+                                <span class="per-head">(₹850 / head)</span>
+                                <div class="pax-label">For 10 Guests</div>
+                            </div>
+                            <div class="package-menu">
+                                <div class="menu-header">Menu Includes (Per 10 Pax)</div>
+                                <ul>
+                                    <li><span class="qty-badge">1.5 full</span> Butter Chicken</li>
+                                    <li><span class="qty-badge">1.5 full</span> Kadai Chicken</li>
+                                    <li><span class="qty-badge">1.5 full</span> Mutton Curry</li>
+                                    <li><span class="qty-badge">1.5 full</span> Dal Makhani</li>
+                                    <li><span class="qty-badge">12 pcs</span> Butter Naan</li>
+                                    <li><span class="qty-badge">12 pcs</span> Lachha Parantha</li>
+                                    <li><span class="qty-badge">1.5 full</span> Chicken Biryani</li>
+                                    <li><span class="qty-badge">full</span> Raita + Salad</li>
+                                    <li><span class="qty-badge">Sweet</span> Gulab Jamun (2 pcs/person)</li>
+                                </ul>
+                            </div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Nawabi%20Grand."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Nawabi Grand</a>
+                            </div>
+                            <div class="flip-hint">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="package-card-back">
+                            <div class="package-name">Nawabi Grand</div>
+                            <div class="package-subtitle">Pricing for larger groups</div>
+                            <table class="package-pricing">
+                                <tr>
+                                    <th>Guests</th>
+                                    <th>Price</th>
+                                    <th>Per Head</th>
+                                </tr>
+                                <tr>
+                                    <td>10 pax</td>
+                                    <td class="price-val">₹8,499</td>
+                                    <td>₹850</td>
+                                </tr>
+                                <tr>
+                                    <td>15 pax</td>
+                                    <td class="price-val">₹12,749</td>
+                                    <td>₹850</td>
+                                </tr>
+                                <tr>
+                                    <td>20 pax</td>
+                                    <td class="price-val">₹16,999</td>
+                                    <td>₹850</td>
+                                </tr>
+                                <tr>
+                                    <td>25 pax</td>
+                                    <td class="price-val">₹21,249</td>
+                                    <td>₹850</td>
+                                </tr>
+                            </table>
+                            <div style="flex-grow: 1;"></div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Nawabi%20Grand."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Nawabi Grand</a>
+                            </div>
+                            <div class="flip-hint" style="margin-top: 20px;">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see menu
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Premium Tab -->
-            <div class="tab-content" id="tab-premium">
-                 <!-- Package 1 -->
-                 <div class="package-card">
-                    <div class="package-name">Office Party Pack</div>
-                    <div class="package-price">₹1,299<span>/person</span></div>
-                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 20 guests</div>
-                    <ul class="package-menu">
-                        <li>Assorted Finger Foods</li>
-                        <li>Mix Starters (Veg/Non-Veg)</li>
-                        <li>Easy to eat Mains</li>
-                        <li>Live counter optional</li>
-                        <li>Beverages</li>
-                    </ul>
-                    <div class="package-ctas">
-                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Office%20Party%20Pack." class="btn btn-primary" target="_blank">Order Karo</a>
+            <!-- Snacks & Extras Tab -->
+            <div class="tab-content" id="tab-extras">
+                <style>
+                    .snack-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                        gap: 15px;
+                        margin-bottom: 40px;
+                    }
+
+                    .snack-item-card {
+                        background: #fff;
+                        border: 1px solid rgba(0, 0, 0, 0.08);
+                        border-radius: 12px;
+                        padding: 20px 15px;
+                        text-align: center;
+                        font-weight: 600;
+                        color: #444;
+                        transition: all 0.3s ease;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        min-height: 85px;
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+                        font-family: var(--font-body);
+                        font-size: 1.05rem;
+                        position: relative;
+                        overflow: hidden;
+                    }
+
+                    .snack-item-card::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 4px;
+                        background: transparent;
+                        transition: all 0.3s ease;
+                    }
+
+                    .snack-item-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+                        color: #111;
+                    }
+
+                    .snack-item-card.veg:hover::before {
+                        background: #00a651;
+                    }
+
+                    .snack-item-card.non-veg:hover::before {
+                        background: #d12229;
+                    }
+
+                    .section-title-wrapper {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-bottom: 25px;
+                        flex-wrap: wrap;
+                        gap: 15px;
+                    }
+
+                    .snack-category-title {
+                        font-family: var(--font-display);
+                        font-size: 2rem;
+                        margin: 0;
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                    }
+
+                    .price-badge {
+                        font-size: 1.1rem;
+                        font-family: var(--font-body);
+                        font-weight: 700;
+                        padding: 6px 15px;
+                        border-radius: 30px;
+                        display: inline-block;
+                    }
+
+                    .veg-badge {
+                        background: #eaf5ea;
+                        color: #1e5a1e;
+                        border: 1px solid #c2e0be;
+                    }
+
+                    .non-veg-badge {
+                        background: #faeded;
+                        color: #873030;
+                        border: 1px solid #f0caca;
+                    }
+                </style>
+                <div class="extras-section" style="max-width: 950px; margin: 0 auto; width: 100%;">
+
+                    <!-- Header -->
+                    <div style="display: flex; align-items: center; margin-bottom: 30px;">
+                        <h3
+                            style="font-family: var(--font-display); color: #a66f42; font-size: 2rem; border: 2px solid #e2bc91; padding: 12px 24px; margin: 0; white-space: nowrap; border-radius: 6px; background-color: #fdfaf5;">
+                            Add-on Snacks & Extras</h3>
+                        <div style="height: 1px; background-color: #e2bc91; flex-grow: 1; margin-left: 20px;"></div>
                     </div>
-                </div>
-                <!-- Package 2 -->
-                <div class="package-card">
-                    <div class="package-name">Puja Prasad Thali</div>
-                    <div class="package-price">₹999<span>/person</span></div>
-                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 15 guests</div>
-                    <ul class="package-menu">
-                        <li>Saatvik Menu (No Onion/Garlic)</li>
-                        <li>Puri, Chole, Aloo Sabzi</li>
-                        <li>Kheer / Halwa</li>
-                        <li>Traditional Setup</li>
-                        <li>100% Pure Preparation</li>
-                    </ul>
-                    <div class="package-ctas">
-                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Puja%20Prasad%20Thali." class="btn btn-primary" target="_blank">Order Karo</a>
+
+                    <p style="margin-bottom: 40px; font-size: 1.15rem; color: #555; line-height: 1.6;">Mix and match
+                        your favorite starters! Add as many snacks as you want to your chosen buffet package.</p>
+
+                    <!-- Veg Snacks -->
+                    <div class="section-title-wrapper">
+                        <h4 class="snack-category-title" style="color: #1e5a1e;">
+                            <div
+                                style="width: 20px; height: 20px; border-radius: 50%; background-color: #00a651; border: 3px solid #eaf5ea; outline: 1px solid #00a651;">
+                            </div>
+                            Vegetarian Snacks
+                        </h4>
+                        <div class="price-badge veg-badge">+ ₹50 / person per item</div>
                     </div>
-                </div>
-                <!-- Package 3 -->
-                <div class="package-card" style="border-top-color: var(--primary);">
-                    <div class="package-tag">Custom</div>
-                    <div class="package-name">Daawat-e-Khas</div>
-                    <div class="package-price">Quote<span>/custom</span></div>
-                    <div class="package-guests"><i data-lucide="users" size="18"></i> Min 50 guests</div>
-                    <ul class="package-menu">
-                        <li>Full wedding-style home setup</li>
-                        <li>Fully custom menu planning</li>
-                        <li>Dedicated serving staff</li>
-                        <li>Premium Crockery</li>
-                        <li>Live Counters</li>
-                    </ul>
-                    <div class="package-ctas">
-                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20inquire%20about%20Daawat-e-Khas." class="btn btn-primary" target="_blank">Get Custom Quote</a>
+
+                    <div class="snack-grid">
+                        <div class="snack-item-card veg">Veg Momos</div>
+                        <div class="snack-item-card veg">Paneer Momos</div>
+                        <div class="snack-item-card veg">Spring Roll</div>
+                        <div class="snack-item-card veg">Veg Chowmein</div>
+                        <div class="snack-item-card veg">Paneer Tikka</div>
+                        <div class="snack-item-card veg">French Fries</div>
+                        <div class="snack-item-card veg">Tandoori Chaap</div>
+                    </div>
+
+                    <!-- Non-Veg Snacks -->
+                    <div class="section-title-wrapper" style="margin-top: 50px;">
+                        <h4 class="snack-category-title" style="color: #7c2424;">
+                            <div
+                                style="width: 20px; height: 20px; border-radius: 50%; background-color: #d12229; border: 3px solid #faeded; outline: 1px solid #d12229;">
+                            </div>
+                            Non-Vegetarian Snacks
+                        </h4>
+                        <div class="price-badge non-veg-badge">+ ₹100 / person per item</div>
+                    </div>
+
+                    <div class="snack-grid">
+                        <div class="snack-item-card non-veg">Chicken Momos</div>
+                        <div class="snack-item-card non-veg">Chicken Tikka</div>
+                        <div class="snack-item-card non-veg">Afghani Tikka</div>
+                        <div class="snack-item-card non-veg">Chicken Tandoori</div>
+                        <div class="snack-item-card non-veg">Afghani Chicken</div>
+                        <div class="snack-item-card non-veg">Seekh Kebab</div>
+                        <div class="snack-item-card non-veg">Chicken Chowmein</div>
+                        <div class="snack-item-card non-veg">Chilly Chicken</div>
+                    </div>
+
+                    <!-- Simplified Pricing Explanation -->
+                    <div
+                        style="background-color: #fdfaf5; border-left: 4px solid var(--primary); padding: 25px; border-radius: 0 12px 12px 0; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+                        <p style="margin: 0; font-size: 1.15rem; color: #444; line-height: 1.6;">
+                            <strong
+                                style="color: #111; font-family: var(--font-display); font-size: 1.3rem; display: block; margin-bottom: 8px;">How
+                                Pricing Works</strong>
+                            Choose any combination of snacks. Each Veg snack adds <strong>₹50/person</strong> and each
+                            Non-Veg snack adds <strong>₹100/person</strong>.<br>
+                            <span style="color: #666; font-size: 1.05rem; display: inline-block; margin-top: 5px;"><em>Example:
+                                    For 20 guests, adding Veg Momos (₹50) and Chicken Tikka (₹100) will add ₹150/person
+                                    → 20 × ₹150 = ₹3,000 extra.</em></span>
+                        </p>
+                    </div>
+
+                    <div style="margin-top: 60px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 30px;">
+                            <h3
+                                style="font-family: var(--font-display); color: #a66f42; font-size: 2rem; border: 2px solid #e2bc91; padding: 12px 24px; margin: 0; white-space: nowrap; border-radius: 6px; background-color: #fdfaf5;">
+                                Other Extras</h3>
+                            <div style="height: 1px; background-color: #e2bc91; flex-grow: 1; margin-left: 20px;"></div>
+                        </div>
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+
+                            <div
+                                style="border: 2px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 25px; background: #fff; display: flex; flex-direction: column;">
+                                <div
+                                    style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 15px;">
+                                    <h4
+                                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--secondary); margin: 0; max-width: 70%;">
+                                        Disposable Plates & Cutlery</h4>
+                                    <div
+                                        style="background: rgba(245, 200, 66, 0.15); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 1.1rem;">
+                                        ₹25</div>
+                                </div>
+                                <div style="font-size: 0.95rem; font-weight: 600; color: #888; margin-bottom: 10px;">per
+                                    person</div>
+                                <p style="font-size: 1.05rem; color: #666; margin: 0; flex-grow: 1;">Paper plates,
+                                    spoons, tissues and basic plastic glasses included.</p>
+                            </div>
+
+                            <div
+                                style="border: 2px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 25px; background: #fff; display: flex; flex-direction: column;">
+                                <div
+                                    style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 15px;">
+                                    <h4
+                                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--secondary); margin: 0; max-width: 70%;">
+                                        Drinking Water (20L Jar)</h4>
+                                    <div
+                                        style="background: rgba(245, 200, 66, 0.15); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 1.1rem;">
+                                        ₹80</div>
+                                </div>
+                                <div style="font-size: 0.95rem; font-weight: 600; color: #888; margin-bottom: 10px;">per
+                                    jar</div>
+                                <p style="font-size: 1.05rem; color: #666; margin: 0; flex-grow: 1;">20 Litre Bisleri
+                                    jar. (Includes paper glasses).</p>
+                            </div>
+
+                            <div
+                                style="border: 2px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 25px; background: #fff; display: flex; flex-direction: column;">
+                                <div
+                                    style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 15px;">
+                                    <h4
+                                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--secondary); margin: 0; max-width: 70%;">
+                                        Cold Drinks (2.25L Bottle)</h4>
+                                    <div
+                                        style="background: rgba(245, 200, 66, 0.15); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 1.1rem;">
+                                        ₹120</div>
+                                </div>
+                                <div style="font-size: 0.95rem; font-weight: 600; color: #888; margin-bottom: 10px;">per
+                                    bottle</div>
+                                <p style="font-size: 1.05rem; color: #666; margin: 0; flex-grow: 1;">Coke / Pepsi /
+                                    Sprite (Includes paper glasses).</p>
+                            </div>
+
+                            <div
+                                style="border: 2px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 25px; background: #fff; display: flex; flex-direction: column;">
+                                <div
+                                    style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 15px;">
+                                    <h4
+                                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--secondary); margin: 0; max-width: 70%;">
+                                        Service Helpers (4-5 Hrs)</h4>
+                                    <div
+                                        style="background: rgba(245, 200, 66, 0.15); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 1.1rem;">
+                                        ₹800</div>
+                                </div>
+                                <div style="font-size: 0.95rem; font-weight: 600; color: #888; margin-bottom: 10px;">per
+                                    helper</div>
+                                <p style="font-size: 1.05rem; color: #666; margin: 0; flex-grow: 1;">Professional staff
+                                    to help with serving and clearing.</p>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
     </section>
 
@@ -1503,39 +2357,30 @@
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <h2 class="text-white">This is What a <span class="text-primary">Real Daawat Looks Like</span></h2>
-                <p class="text-light">Follow us on Instagram @TheBuffetBhai for behind-the-scenes, new dishes, and daawat inspo.</p>
+                <p class="text-light">Follow us on Instagram @TheBuffetBhai for behind-the-scenes, new dishes, and
+                    daawat inspo.</p>
             </div>
 
-            <div class="insta-grid animate-on-scroll">
-                <!-- Using high quality Unsplash placeholders for food styling -->
-                <div class="insta-item">
-                    <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Indian Food Spread">
-                    <div class="insta-overlay"><i data-lucide="instagram" size="40"></i></div>
-                </div>
-                <div class="insta-item">
-                    <img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Biryani">
-                    <div class="insta-overlay"><i data-lucide="instagram" size="40"></i></div>
-                </div>
-                <div class="insta-item">
-                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Samosa">
-                    <div class="insta-overlay"><i data-lucide="instagram" size="40"></i></div>
-                </div>
-                <div class="insta-item">
-                    <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tikka">
-                    <div class="insta-overlay"><i data-lucide="instagram" size="40"></i></div>
-                </div>
-                <div class="insta-item">
-                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bowl">
-                    <div class="insta-overlay"><i data-lucide="instagram" size="40"></i></div>
-                </div>
-                <div class="insta-item">
-                    <img src="https://images.unsplash.com/photo-1626779843666-6415bf306917?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dessert">
-                    <div class="insta-overlay"><i data-lucide="instagram" size="40"></i></div>
-                </div>
+            <div class="insta-embed-container animate-on-scroll"
+                style="max-width: 500px; margin: 0 auto 40px; width: 100%;">
+                <!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
+                <script src="https://elfsightcdn.com/platform.js" async></script>
+                <div class="elfsight-app-163ee9a7-ed86-4627-ab25-a23e8c21367b" data-elfsight-app-lazy></div>
             </div>
 
-            <div class="text-center mt-4">
-                <a href="https://www.instagram.com/thebuffetbhai?igsh=ZXVrdWxpbHFnMGV6&utm_source=qr" target="_blank" class="btn btn-outline-light"><i data-lucide="instagram"></i> Follow @TheBuffetBhai</a>
+            <div class="text-center animate-on-scroll"
+                style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://www.instagram.com/thebuffetbhai?igsh=ZXVrdWxpbHFnMGV6&utm_source=qr" target="_blank"
+                    class="btn"
+                    style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; border: none;">
+                    <img src="images/social logos/instagram-svgrepo-com.svg"
+                        style="width: 20px; height: 20px; filter: invert(1); margin-right: 8px;"> Follow on Instagram
+                </a>
+                <a href="https://www.facebook.com/share/18NHys7xiu/?mibextid=wwXIfr" target="_blank" class="btn"
+                    style="background: #1877F2; color: white; border: none;">
+                    <img src="images/social logos/facebook-svgrepo-com.svg"
+                        style="width: 20px; height: 20px; filter: invert(1); margin-right: 8px;"> Follow on Facebook
+                </a>
             </div>
         </div>
     </section>
@@ -1544,15 +2389,15 @@
     <section class="trust-section section-light clip-diagonal-bottom">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <h2>Trusted by 15,000+ Families. <span>Why Not You?</span></h2>
+                <h2>Why Choose <span>Buffet Bhai?</span></h2>
             </div>
 
             <div class="trust-grid">
                 <div class="trust-item animate-on-scroll">
                     <div class="trust-icon">🏆</div>
                     <div class="trust-content">
-                        <h4>Delhi NCR's Most Trusted</h4>
-                        <p>7+ years of delivering unforgettable dawaats across the NCR.</p>
+                        <h4>Serving Delhi NCR</h4>
+                        <p>Delivering unforgettable dawaats and premium catering experiences across the NCR.</p>
                     </div>
                 </div>
                 <div class="trust-item animate-on-scroll" style="transition-delay: 0.1s">
@@ -1606,7 +2451,8 @@
                     <div class="step-number">01<span>1</span></div>
                     <div class="step-content">
                         <h3>Tell Us Your Needs</h3>
-                        <p>Tell us your guest count, date, and whether you want veg or non-veg. Takes 2 minutes on WhatsApp.</p>
+                        <p>Tell us your guest count, date, and whether you want veg or non-veg. Takes 2 minutes on
+                            WhatsApp.</p>
                     </div>
                 </div>
                 <div class="step animate-on-scroll">
@@ -1637,7 +2483,8 @@
             <div class="testimonials-carousel animate-on-scroll">
                 <div class="testimonial-card section-dark">
                     <i data-lucide="quote" class="quote-icon"></i>
-                    <p class="testimonial-text">"Bete ki birthday pe 40 log aaye. Buffet Bhai ne poora setup bhi karwa diya, khana toh lajawab tha. Mummy ne pucha kaun sa restaurant tha!"</p>
+                    <p class="testimonial-text">"Bete ki birthday pe 40 log aaye. Buffet Bhai ne poora setup bhi karwa
+                        diya, khana toh lajawab tha. Mummy ne pucha kaun sa restaurant tha!"</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">R</div>
                         <div class="author-info">
@@ -1646,10 +2493,11 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="testimonial-card section-dark">
                     <i data-lucide="quote" class="quote-icon"></i>
-                    <p class="testimonial-text">"Office farewell tha, 60 log. Finger foods se leke biryani tak sab kuch perfect. Delivery bhi time pe. Recommend karna toh banega hi."</p>
+                    <p class="testimonial-text">"Office farewell tha, 60 log. Finger foods se leke biryani tak sab kuch
+                        perfect. Delivery bhi time pe. Recommend karna toh banega hi."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">S</div>
                         <div class="author-info">
@@ -1661,7 +2509,8 @@
 
                 <div class="testimonial-card section-dark">
                     <i data-lucide="quote" class="quote-icon"></i>
-                    <p class="testimonial-text">"Puja ke liye no-onion-garlic package liya. Halwa, kheer, paneer, dal — sab saatvik aur delicious. Panditji bhi impressed ho gaye!"</p>
+                    <p class="testimonial-text">"Puja ke liye no-onion-garlic package liya. Halwa, kheer, paneer, dal —
+                        sab saatvik aur delicious. Panditji bhi impressed ho gaye!"</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">S</div>
                         <div class="author-info">
@@ -1673,7 +2522,8 @@
 
                 <div class="testimonial-card section-dark">
                     <i data-lucide="quote" class="quote-icon"></i>
-                    <p class="testimonial-text">"Meri anniversary ka surprise plan kiya tha. Buffet Bhai ne itna perfect khana diya, biwi khush, sas khush, main khush."</p>
+                    <p class="testimonial-text">"Meri anniversary ka surprise plan kiya tha. Buffet Bhai ne itna perfect
+                        khana diya, biwi khush, sas khush, main khush."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">R</div>
                         <div class="author-info">
@@ -1685,7 +2535,8 @@
 
                 <div class="testimonial-card section-dark">
                     <i data-lucide="quote" class="quote-icon"></i>
-                    <p class="testimonial-text">"Tried 3 caterers before finding these guys. Koi mukaabla nahi. Taste, quantity, packaging — sab best."</p>
+                    <p class="testimonial-text">"Tried 3 caterers before finding these guys. Koi mukaabla nahi. Taste,
+                        quantity, packaging — sab best."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">T</div>
                         <div class="author-info">
@@ -1696,11 +2547,6 @@
                 </div>
             </div>
 
-            <div class="text-center animate-on-scroll">
-                <div class="google-badge">
-                    <i data-lucide="star" fill="#F5C842" color="#F5C842"></i> 4.8/5 | 8,000+ Google Reviews
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1727,7 +2573,8 @@
                         <i data-lucide="plus" class="faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        Absolutely. Veg, non-veg, saatvik, jain, no-onion-garlic — everything is possible. Just let us know.
+                        Absolutely. Veg, non-veg, saatvik, jain, no-onion-garlic — everything is possible. Just let us
+                        know.
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1736,7 +2583,8 @@
                         <i data-lucide="plus" class="faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        24 hours advance preferred, but same-day orders are also possible (subject to availability). Contact us on WhatsApp.
+                        24 hours advance preferred, but same-day orders are also possible (subject to availability).
+                        Contact us on WhatsApp.
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1745,7 +2593,8 @@
                         <i data-lucide="plus" class="faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        Delivery charges are clearly mentioned in the quote based on your location. There are no hidden charges.
+                        Delivery charges are clearly mentioned in the quote based on your location. There are no hidden
+                        charges.
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1794,21 +2643,27 @@
             <div class="cta-container animate-on-scroll">
                 <div class="cta-content">
                     <h2>Is Weekend Ki Dawaat <span class="text-primary">Confirm Kar Lo</span></h2>
-                    <p>Slots fill up fast, especially on weekends. Ek WhatsApp message bhejo — hum baaki sambhal lete hain.</p>
+                    <p>Slots fill up fast, especially on weekends. Ek WhatsApp message bhejo — hum baaki sambhal lete
+                        hain.</p>
                     <div class="cta-buttons">
-                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering." class="btn btn-primary btn-pulse" target="_blank" style="font-size: 1.3rem; padding: 1.2rem 2rem;">
-                            <i data-lucide="message-circle" size="24"></i> Bhai Ko Bulao
+                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
+                            class="btn btn-whatsapp btn-pulse" target="_blank"
+                            style="font-size: 1.3rem; padding: 1.2rem 2rem;">
+                            <img src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg" alt="WhatsApp"
+                                style="width: 24px; height: 24px;"> Book Now
                         </a>
                         <a href="tel:+919643968546" class="btn btn-outline-light">
                             <i data-lucide="phone"></i> Call: +91 9643968546
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="inquiry-form">
                     <h3 style="margin-bottom: 20px; color: var(--secondary);">Quick Inquiry</h3>
                     <div id="formSuccess" class="form-success">
-                        <i data-lucide="check-circle" style="display:inline; vertical-align:middle; margin-right:5px;"></i> Thanks! Bhai will contact you shortly.
+                        <i data-lucide="check-circle"
+                            style="display:inline; vertical-align:middle; margin-right:5px;"></i> Thanks! Bhai will
+                        contact you shortly.
                     </div>
                     <form id="contactForm">
                         <div class="form-group">
@@ -1828,7 +2683,7 @@
                         <div class="form-group">
                             <textarea class="form-control" placeholder="Any special requests?" rows="2"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Details</button>
+                        <button type="submit" class="btn btn-primary btn-pulse">Send Details</button>
                     </form>
                 </div>
             </div>
@@ -1849,18 +2704,25 @@
         <div class="container">
             <div class="footer-logo">The Buffet Bhai</div>
             <div class="footer-tagline">"Apka Buffet, Apki Shaan."</div>
-            
+
             <div class="footer-links">
                 <a href="#packages">Packages</a>
                 <a href="#how-it-works">How It Works</a>
                 <a href="#faq">FAQ</a>
-                <a href="#">Privacy Policy</a>
+                <a href="#reviews">Reviews</a>
             </div>
 
             <div class="social-icons">
-                <a href="https://www.instagram.com/thebuffetbhai?igsh=ZXVrdWxpbHFnMGV6&utm_source=qr" class="social-icon" target="_blank"><i data-lucide="instagram"></i></a>
-                <a href="#" class="social-icon"><i data-lucide="facebook"></i></a>
-                <a href="https://wa.me/919643968546" class="social-icon" target="_blank"><i data-lucide="message-circle"></i></a>
+                <a href="https://www.instagram.com/thebuffetbhai?igsh=ZXVrdWxpbHFnMGV6&utm_source=qr"
+                    class="social-icon" target="_blank"><img src="images/social logos/instagram-svgrepo-com.svg"
+                        style="width: 24px; height: 24px; filter: invert(1);"></a>
+                <a href="https://www.facebook.com/share/18NHys7xiu/?mibextid=wwXIfr" class="social-icon"
+                    target="_blank"><img src="images/social logos/facebook-svgrepo-com.svg"
+                        style="width: 24px; height: 24px;"></a>
+                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
+                    class="social-icon" target="_blank"><img
+                        src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg"
+                        style="width: 24px; height: 24px;"></a>
             </div>
 
             <div class="footer-bottom">
@@ -1870,16 +2732,19 @@
     </footer>
 
     <!-- Floating Elements -->
-    <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering." class="fab-whatsapp" target="_blank" aria-label="WhatsApp Us">
-        <i data-lucide="message-circle"></i>
+    <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
+        class="fab-whatsapp" target="_blank" aria-label="WhatsApp Us">
+        <img src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg" alt="WhatsApp"
+            style="width: 30px; height: 30px;">
     </a>
 
-    <div class="mobile-sticky-bar">
+    <!-- <div class="mobile-sticky-bar">
         <div style="display: flex; gap: 10px;">
             <a href="#packages" class="btn btn-secondary" style="flex: 1;">Order Karo</a>
-            <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering." class="btn btn-primary btn-pulse" style="flex: 1;" target="_blank">Bhai Ko Bulao</a>
+            <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
+                class="btn btn-whatsapp btn-pulse" style="flex: 1;" target="_blank"><img src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg" alt="WhatsApp" style="width: 18px; height: 18px;"> Book Now</a>
         </div>
-    </div>
+    </div> -->
 
     <!-- Scripts -->
     <script>
@@ -1918,7 +2783,7 @@
         window.addEventListener('scroll', () => {
             handleScrollAnimation();
         });
-        
+
         // Trigger once on load
         handleScrollAnimation();
 
@@ -1954,6 +2819,16 @@
             });
         });
 
+        // Package Card Flip Logic for Mobile
+        const packageCards = document.querySelectorAll('.package-card');
+        packageCards.forEach(card => {
+            card.addEventListener('click', () => {
+                if (window.innerWidth <= 770) {
+                    card.classList.toggle('flipped');
+                }
+            });
+        });
+
         // FAQ Accordion Logic
         const faqItems = document.querySelectorAll('.faq-item');
 
@@ -1961,10 +2836,10 @@
             const question = item.querySelector('.faq-question');
             question.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
-                
+
                 // Close all other items
                 faqItems.forEach(faq => faq.classList.remove('active'));
-                
+
                 // Toggle current item
                 if (!isActive) {
                     item.classList.add('active');
@@ -1976,7 +2851,7 @@
         const contactForm = document.getElementById('contactForm');
         const formSuccess = document.getElementById('formSuccess');
 
-        if(contactForm) {
+        if (contactForm) {
             contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 // Simulate form sending
@@ -1989,4 +2864,5 @@
         }
     </script>
 </body>
+
 </html>
