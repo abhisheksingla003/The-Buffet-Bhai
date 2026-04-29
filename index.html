@@ -1,1402 +1,2853 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AI-Assisted HVAC System — Smart Control Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --bg:#0a0f0d;--bg2:#111a15;--bg3:#162019;--bg4:#1c2a20;
-  --border:#2a3d30;--border2:#3a5040;
-  --green:#22c97a;--green2:#16a060;--green3:#0d6e44;--green-glow:rgba(34,201,122,0.15);
-  --red:#ff5c5c;--red2:#cc3a3a;--amber:#f0a830;--blue:#4db3ff;
-  --text:#e8f2ec;--text2:#8aab96;--text3:#4a6655;
-  --font:'DM Sans',sans-serif;--mono:'DM Mono',monospace;--display:'Syne',sans-serif;
-}
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.5;overflow-x:hidden;}
-::-webkit-scrollbar{width:4px;height:4px;}
-::-webkit-scrollbar-track{background:var(--bg2);}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Buffet Bhai | Premium Home Catering in Delhi NCR</title>
+    <meta name="description"
+        content="Premium buffet catering for 10-100 guests in Delhi NCR. Hot food, complete setup, zero kitchen stress. Ghar Pe Dawaat Ka Scene? Chhod Do Hamare Pe.">
 
-.shell{display:grid;grid-template-rows:auto 1fr;min-height:100vh;}
-.header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;}
-.header-left{display:flex;align-items:center;gap:14px;}
-.logo-mark{width:36px;height:36px;background:var(--green3);border:1px solid var(--green2);border-radius:8px;display:flex;align-items:center;justify-content:center;}
-.logo-mark svg{width:20px;height:20px;stroke:var(--green);fill:none;stroke-width:2;stroke-linecap:round;}
-.brand-name{font-family:var(--display);font-size:18px;font-weight:700;color:var(--green);letter-spacing:-0.02em;}
-.brand-sub{font-size:11px;color:var(--text3);font-family:var(--mono);}
-.header-right{display:flex;align-items:center;gap:16px;}
-.live-badge{display:flex;align-items:center;gap:6px;background:rgba(34,201,122,0.08);border:1px solid var(--green3);border-radius:20px;padding:4px 12px;}
-.live-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:blink 1.4s infinite;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
-.live-txt{font-size:11px;font-family:var(--mono);color:var(--green);}
-.dtu-tag{font-size:11px;color:var(--text3);font-family:var(--mono);border:1px solid var(--border);padding:3px 10px;border-radius:4px;}
-.time-display{font-size:12px;font-family:var(--mono);color:var(--text2);}
-.mode-toggle{display:flex;background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden;padding:3px;gap:3px;}
-.mode-btn{padding:6px 18px;font-size:12px;font-family:var(--font);font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--text2);border-radius:5px;transition:all 0.25s;white-space:nowrap;}
-.mode-btn.active-ai{background:var(--green3);color:var(--green);border:1px solid var(--green2);}
-.mode-btn.active-trad{background:rgba(255,92,92,0.15);color:var(--red);border:1px solid rgba(255,92,92,0.4);}
-.mode-btn:hover:not(.active-ai):not(.active-trad){background:var(--bg4);color:var(--text);}
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
 
-.main{display:grid;grid-template-columns:340px 1fr;grid-template-rows:auto auto auto auto auto;gap:1px;background:var(--border);}
-.panel{background:var(--bg2);padding:1.25rem;}
-.panel-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;font-family:var(--mono);}
-.panel-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px;}
-.panel-sub{font-size:11px;color:var(--text3);}
-.sidebar{grid-column:1;grid-row:1 / 6;display:flex;flex-direction:column;gap:1px;background:var(--border);}
-.side-block{background:var(--bg2);padding:1.25rem;}
-.room-wrap{position:relative;margin-bottom:1rem;}
-.room-svg{width:100%;border:1px solid var(--border);border-radius:8px;background:var(--bg3);display:block;}
-.sensor-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1rem;}
-.sensor-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;}
-.s-label{font-size:10px;font-family:var(--mono);color:var(--text3);margin-bottom:4px;}
-.s-val{font-size:20px;font-weight:500;font-family:var(--mono);color:var(--green);line-height:1;}
-.s-unit{font-size:11px;color:var(--text3);margin-left:2px;}
-.s-bar{height:3px;background:var(--bg4);border-radius:2px;margin-top:8px;overflow:hidden;}
-.s-bar-fill{height:100%;border-radius:2px;transition:width 0.6s ease;}
-.ctrl-row{margin-bottom:14px;}
-.ctrl-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
-.ctrl-name{font-size:12px;color:var(--text2);}
-.ctrl-val-disp{font-size:12px;font-family:var(--mono);color:var(--green);}
-input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:4px;background:var(--bg4);border-radius:2px;outline:none;cursor:pointer;}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:var(--green);border-radius:50%;cursor:pointer;transition:transform 0.1s;}
-input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2);}
-.occ-row{display:flex;gap:6px;flex-wrap:wrap;}
-.occ-btn{padding:5px 12px;font-size:11px;font-family:var(--mono);cursor:pointer;border:1px solid var(--border);border-radius:4px;background:var(--bg3);color:var(--text2);transition:all 0.2s;}
-.occ-btn:hover{border-color:var(--green3);color:var(--green);}
-.occ-btn.occ-active{background:var(--green3);color:var(--green);border-color:var(--green2);}
-.setpoint-row{display:flex;align-items:center;gap:10px;margin-top:10px;}
-.setpoint-row label{font-size:12px;color:var(--text2);flex:1;}
-.setpoint-row input[type=number]{width:60px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--green);font-family:var(--mono);font-size:14px;padding:5px 8px;text-align:center;outline:none;}
-.setpoint-row input[type=number]:focus{border-color:var(--green2);}
-.metrics-strip{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
-.m-card{background:var(--bg2);padding:1.25rem 1.25rem 1rem;}
-.m-label{font-size:10px;font-family:var(--mono);color:var(--text3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;}
-.m-val{font-size:28px;font-weight:500;font-family:var(--mono);line-height:1;color:var(--green);}
-.m-val.warn{color:var(--amber);}
-.m-val.danger{color:var(--red);}
-.m-sub{font-size:11px;color:var(--text3);margin-top:6px;}
-.m-sub.good{color:var(--green);}
-.m-sub.bad{color:var(--red);}
-.charts-area{grid-column:2;grid-row:2;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);}
-.chart-panel{background:var(--bg2);padding:1.25rem;}
-.arch-area{grid-column:2;grid-row:5;display:grid;grid-template-columns:1fr;gap:1px;background:var(--border);}
-.arch-block{background:var(--bg2);padding:1.25rem;}
-.arch-flow{display:flex;align-items:center;justify-content:space-between;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:20px;margin-top:10px;overflow-x:auto;}
-.arch-node{background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:12px;text-align:center;min-width:110px;position:relative;z-index:2;}
-.arch-node.ai-node{border-color:var(--green3);box-shadow:0 0 10px rgba(34,201,122,0.15);}
-.arch-node-title{font-size:11px;font-weight:600;color:var(--text);margin-bottom:4px;}
-.arch-node-sub{font-size:9px;font-family:var(--mono);color:var(--text3);}
-.arch-arrow{flex:1;height:2px;background:var(--border2);position:relative;margin:0 10px;min-width:30px;z-index:1;}
-.arch-arrow::after{content:'';position:absolute;right:0;top:-4px;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:5px solid var(--border2);}
-.arch-arrow-flow{position:absolute;top:-1px;left:0;height:4px;width:10px;background:var(--green);border-radius:2px;box-shadow:0 0 5px var(--green);animation:flowAnim 2s infinite linear;}
-@keyframes flowAnim{0%{left:0;opacity:0;}10%{opacity:1;}90%{opacity:1;}100%{left:calc(100% - 10px);opacity:0;}}
-.perf-score-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
-.perf-score-label{font-size:11px;color:var(--text2);}
-.perf-score-val{font-size:12px;font-family:var(--mono);font-weight:500;}
-.perf-bar-bg{height:4px;background:var(--bg4);border-radius:2px;margin-bottom:12px;}
-.perf-bar-fill{height:100%;border-radius:2px;transition:width 0.6s ease;}
-/* ME PANEL: refrigeration cycle + heat load */
-.me-area{grid-column:2;grid-row:3;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);}
-.me-block{background:var(--bg2);padding:1.25rem;}
-.energy-area{grid-column:2;grid-row:4;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);}
-.energy-block{background:var(--bg2);padding:1.25rem;}
-.e-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
-.saving-pill{background:rgba(34,201,122,0.1);border:1px solid var(--green3);color:var(--green);font-size:11px;font-family:var(--mono);padding:3px 10px;border-radius:20px;}
-.big-bar-wrap{margin-bottom:10px;}
-.big-bar-label{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-bottom:5px;}
-.big-bar-bg{height:10px;background:var(--bg3);border-radius:5px;overflow:hidden;}
-.big-bar-fill{height:100%;border-radius:5px;transition:width 0.8s ease;}
-.legend{display:flex;gap:14px;margin-bottom:10px;}
-.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text3);}
-.leg-sq{width:10px;height:3px;border-radius:1px;}
-.ai-pred-box{background:var(--bg3);border:1px solid var(--green3);border-radius:8px;padding:10px 14px;margin-bottom:12px;}
-.ai-pred-label{font-size:10px;font-family:var(--mono);color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.1em;}
-.ai-pred-txt{font-size:12px;color:var(--green);font-weight:500;}
-.ai-brain{display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:12px;}
-.ai-orb{width:32px;height:32px;border-radius:50%;background:var(--green3);border:1.5px solid var(--green2);display:flex;align-items:center;justify-content:center;animation:orbit 3s infinite linear;flex-shrink:0;}
-@keyframes orbit{0%{box-shadow:0 0 0 0 rgba(34,201,122,0.4);}50%{box-shadow:0 0 12px 4px rgba(34,201,122,0.15);}100%{box-shadow:0 0 0 0 rgba(34,201,122,0.4);}}
-.ai-orb svg{width:16px;height:16px;stroke:var(--green);fill:none;stroke-width:2;}
-.ai-brain-info{flex:1;}
-.ai-brain-status{font-size:12px;color:var(--text);font-weight:500;}
-.ai-brain-sub{font-size:10px;color:var(--text3);font-family:var(--mono);}
-.comfort-meter{margin-bottom:12px;}
-.comfort-track{height:12px;border-radius:6px;background:linear-gradient(to right,#4db3ff,#22c97a,#22c97a,#f0a830,#ff5c5c);position:relative;margin:8px 0;}
-.comfort-needle{position:absolute;top:-4px;width:4px;height:20px;background:var(--text);border-radius:2px;transform:translateX(-50%);transition:left 0.6s ease;}
-.comfort-labels{display:flex;justify-content:space-between;font-size:9px;font-family:var(--mono);color:var(--text3);}
-.iot-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-.iot-node{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px;display:flex;align-items:center;gap:8px;}
-.iot-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.iot-info{flex:1;}
-.iot-name{font-size:10px;color:var(--text2);font-family:var(--mono);}
-.iot-status{font-size:9px;color:var(--text3);}
-.canvas-wrap{position:relative;}
-/* ME-specific styles */
-.cop-dial{text-align:center;padding:8px 0;}
-.cop-val{font-size:32px;font-weight:500;font-family:var(--mono);color:var(--green);}
-.cop-label{font-size:10px;font-family:var(--mono);color:var(--text3);text-transform:uppercase;letter-spacing:.1em;}
-.vcr-row{display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid var(--border);}
-.vcr-row:last-child{border-bottom:none;}
-.vcr-key{color:var(--text3);font-family:var(--mono);}
-.vcr-val{color:var(--text);font-family:var(--mono);}
-.vcr-val.g{color:var(--green);}
-.vcr-val.a{color:var(--amber);}
-.err-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;padding:4px 0;border-bottom:1px solid var(--border);}
-.err-row:last-child{border-bottom:none;}
-.err-key{color:var(--text3);font-family:var(--mono);font-size:10px;}
-.err-val{color:var(--text);font-family:var(--mono);}
-.err-ci{color:var(--text3);font-size:9px;font-family:var(--mono);}
-.heat-load-bar{height:8px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-top:4px;margin-bottom:8px;}
-.heat-load-fill{height:100%;border-radius:4px;}
-.badge-scope{background:rgba(77,179,255,0.1);border:1px solid rgba(77,179,255,0.3);color:var(--blue);font-size:9px;font-family:var(--mono);padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:8px;}
-.badge-warn{background:rgba(240,168,48,0.1);border:1px solid rgba(240,168,48,0.3);color:var(--amber);font-size:9px;font-family:var(--mono);padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:8px;}
-.footer{background:var(--bg2);border-top:1px solid var(--border);padding:10px 2rem;display:flex;align-items:center;justify-content:space-between;font-size:10px;color:var(--text3);font-family:var(--mono);}
-.log-list{display:flex;flex-direction:column;gap:0;}
-.log-entry{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-size:11px;}
-.log-entry:last-child{border-bottom:none;}
-.log-time{font-family:var(--mono);color:var(--text3);flex-shrink:0;width:58px;}
-.log-tag{padding:2px 7px;border-radius:3px;font-family:var(--mono);font-size:9px;font-weight:600;flex-shrink:0;letter-spacing:.05em;}
-.tag-ai{background:rgba(34,201,122,0.12);color:var(--green);border:1px solid var(--green3);}
-.tag-sys{background:rgba(77,179,255,0.1);color:var(--blue);border:1px solid rgba(77,179,255,0.2);}
-.tag-warn{background:rgba(240,168,48,0.1);color:var(--amber);border:1px solid rgba(240,168,48,0.2);}
-.log-msg{color:var(--text2);line-height:1.4;}
-@media(max-width:900px){
-  .main{grid-template-columns:1fr;}
-  .sidebar{grid-column:1;grid-row:auto;}
-  .metrics-strip,.charts-area,.me-area,.energy-area,.arch-area{grid-column:1;}
-  .metrics-strip{grid-template-columns:1fr 1fr;}
-  .charts-area{grid-template-columns:1fr;}
-  .me-area{grid-template-columns:1fr;}
-  .energy-area{grid-template-columns:1fr;}
-  .arch-area{grid-template-columns:1fr;}
-}
-</style>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            /* Color System */
+            --primary: #E8681A;
+            /* Deep Saffron */
+            --secondary: #7C1D2E;
+            /* Rich Burgundy */
+            --accent: #F5C842;
+            /* Turmeric Gold */
+            --background-base: #FFFFFF;
+            --background-alt: #FDFCF9;
+            --text-main: #1F1A17;
+            --text-muted: #5A524C;
+            --dark: var(--text-main);
+            /* Legacy compatibility */
+            --light: var(--background-alt);
+            /* Legacy compatibility */
+            --white: #FFFFFF;
+
+            /* Typography */
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --font-hinglish: 'Baloo 2', cursive;
+
+            /* Layout */
+            --section-padding: 50px 5%;
+            --container-max: 1200px;
+            --border-radius: 16px;
+
+            /* Shadows */
+            --shadow-warm: 0 10px 30px rgba(124, 29, 46, 0.1);
+            --shadow-glow: 0 0 20px rgba(232, 104, 26, 0.3);
+
+            /* Backgrounds */
+            --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            --pattern: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 3.33331C20 3.33331 23.3333 13.3333 30 16.6666C36.6667 20 40 20 40 20C40 20 30 23.3333 23.3333 30C16.6667 36.6666 20 40 20 40C20 40 16.6667 30 10 23.3333C3.33333 16.6666 0 20 0 20C0 20 10 16.6666 16.6667 10C23.3333 3.33331 20 3.33331 20 3.33331Z' fill='%23F5C842' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-display);
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 900;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+        }
+
+        h3 {
+            font-family: var(--font-body);
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.125rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hinglish {
+            font-family: var(--font-hinglish);
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Typography Colors */
+        .text-primary {
+            color: var(--primary);
+        }
+
+        .text-secondary {
+            color: var(--secondary);
+        }
+
+        .text-accent {
+            color: var(--accent);
+        }
+
+        .text-light {
+            color: var(--light);
+        }
+
+        .text-white {
+            color: var(--white);
+        }
+
+        /* Utility Classes */
+        .section-dark {
+            background-color: var(--background-alt);
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .section-dark>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-light {
+            background-color: var(--background-base);
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .section-light>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            padding: var(--section-padding);
+        }
+
+
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--dark);
+            box-shadow: 0 4px 15px rgba(232, 104, 26, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+            background-color: #ff7b2b;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(232, 104, 26, 0.1);
+        }
+
+        .btn-outline-light {
+            background-color: transparent;
+            color: var(--light);
+            border: 2px solid var(--light);
+        }
+
+        .btn-outline-light:hover {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        .btn-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(232, 104, 26, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(232, 104, 26, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(232, 104, 26, 0);
+            }
+        }
+
+        /* 1. Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(26, 18, 8, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--container-max);
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1.05rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: var(--light);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 2. Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 120px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(26, 18, 8, 1) 0%, rgba(15, 10, 5, 1) 100%);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: var(--grain);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 30px;
+            position: relative;
+            z-index: 2;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(232, 104, 26, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(232, 104, 26, 0.3) 0%, rgba(124, 29, 46, 0.15) 40%, rgba(0, 0, 0, 0) 70%);
+            z-index: 1;
+            filter: blur(50px);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse-glow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse-glow {
+            0% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.95); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(245, 200, 66, 0.15);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-family: var(--font-hinglish);
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 i {
+            color: var(--primary);
+            font-style: italic;
+            display: block;
+        }
+
+        .hero p.lead {
+            color: var(--light);
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .social-proof-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(250, 245, 236, 0.1);
+        }
+
+        .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--light);
+            font-family: var(--font-hinglish);
+            font-size: 1.1rem;
+        }
+
+        .proof-item i {
+            color: var(--accent);
+        }
+
+        /* 3. Problem Section */
+        .problem-section {
+            text-align: center;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 span {
+            color: var(--primary);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background-color: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-warm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(124, 29, 46, 0.15);
+            border-top-color: var(--primary);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(232, 104, 26, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 1.5rem;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+            font-family: var(--font-display);
+        }
+
+        .transition-line {
+            font-size: 1.5rem;
+            font-family: var(--font-hinglish);
+            color: var(--secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        /* 4. Solution Section */
+        .solution-section {
+            text-align: center;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .solution-card {
+            padding: 20px;
+        }
+
+        .solution-card .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--white);
+            transform: rotate(-5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .solution-card:hover .icon-wrapper {
+            transform: rotate(0);
+        }
+
+        .solution-card h3 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-family: var(--font-display);
+        }
+
+        .solution-card p {
+            color: rgba(26, 18, 8, 0.8);
+        }
+
+        /* 5. Packages Section */
+        .packages-section {
+            background-color: var(--light);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border-radius: 30px;
+            border: 2px solid var(--secondary);
+            background: transparent;
+            color: var(--secondary);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            background-color: var(--secondary);
+            color: var(--white);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .package-card {
+            background-color: transparent;
+            perspective: 1000px;
+            padding: 0;
+            border: none;
+            box-shadow: none;
+            position: relative;
+            /* Allow it to grow naturally */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            cursor: pointer;
+            display: grid;
+            grid-template-areas: "card";
+        }
+
+        /* Trigger flip on hover for desktop, or touch */
+        @media (min-width: 771px) {
+            .package-card:hover .package-card-inner {
+                transform: rotateY(180deg);
+            }
+        }
+
+        .package-card.flipped .package-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .package-card-front,
+        .package-card-back {
+            grid-area: card;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-warm);
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(124, 29, 46, 0.05);
+            border-top: 4px solid transparent;
+        }
+
+        .package-card-back {
+            transform: rotateY(180deg);
+            justify-content: center;
+        }
+
+        .best-seller-face {
+            border-top-color: var(--primary);
+        }
+
+        @media (min-width: 1024px) {
+            .best-seller-container {
+                transform: scale(1.02);
+                z-index: 2;
+            }
+        }
+
+        .price-highlight {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 25px;
+            background: rgba(245, 200, 66, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px dashed var(--accent);
+            align-items: center;
+            text-align: center;
+        }
+
+        .price-highlight .price-val {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.1;
+        }
+
+        .price-highlight .per-head {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .price-highlight .pax-label {
+            font-size: 0.95rem;
+            color: #666;
+            margin-top: 5px;
+            font-family: var(--font-hinglish);
+        }
+
+        .package-subtitle {
+            font-size: 1.05rem;
+            color: #666;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .package-pricing {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .package-pricing th,
+        .package-pricing td {
+            padding: 15px 10px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .package-pricing th {
+            font-family: var(--font-display);
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .package-pricing .price-val {
+            font-weight: 800;
+            color: var(--dark);
+            font-size: 1.2rem;
+        }
+
+        .flip-hint {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-style: italic;
+        }
+
+        .package-menu .qty-badge {
+            background: rgba(232, 104, 26, 0.1);
+            color: var(--primary);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        .package-tag {
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            background-color: var(--primary);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-family: var(--font-hinglish);
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .package-name {
+            font-family: var(--font-display);
+            color: var(--secondary);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .package-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .package-price span {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .package-guests {
+            color: var(--primary);
+            font-family: var(--font-hinglish);
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .package-menu {
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .package-menu li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        .package-menu li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .package-ctas {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .package-ctas .btn {
+            width: 100%;
+        }
+
+        /* 6. Instagram Section */
+        .instagram-section {
+            padding: var(--section-padding);
+        }
+
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .insta-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+
+        .insta-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .insta-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(124, 29, 46, 0.8), rgba(232, 104, 26, 0.4));
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+            color: var(--white);
+        }
+
+        .insta-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .insta-item:hover .insta-overlay {
+            opacity: 1;
+        }
+
+        /* 7. Why Choose Us */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .trust-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .trust-icon {
+            font-size: 2.5rem;
+            background: rgba(245, 200, 66, 0.1);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            flex-shrink: 0;
+        }
+
+        .trust-content h4 {
+            font-family: var(--font-body);
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .trust-content p {
+            color: #555555;
+            font-size: 1rem;
+        }
+
+        /* 8. How It Works */
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 30px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-warm);
+            align-items: center;
+            color: var(--dark);
+        }
+
+        .step-number {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(232, 104, 26, 0.2);
+            line-height: 1;
+            position: relative;
+        }
+
+        .step-number span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: var(--font-body);
+        }
+
+        .step-content h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        /* 9. Testimonials */
+        .testimonials-carousel {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 0 10px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            /* Firefox */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .testimonials-carousel::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera */
+        }
+
+        .testimonial-card {
+            min-width: 300px;
+            background: var(--background-base);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            scroll-snap-align: start;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--accent);
+            opacity: 0.2;
+            width: 60px;
+            height: 60px;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .author-info h4 {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .google-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--white);
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: var(--dark);
+            margin-top: 30px;
+            font-weight: 600;
+        }
+
+        /* 10. FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--background-base);
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--background-alt);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+            color: var(--primary);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: #555;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 25px 20px;
+            max-height: 200px;
+        }
+
+        /* 11. Final CTA */
+        .final-cta {
+            text-align: center;
+        }
+
+        .cta-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            background: var(--background-alt);
+            padding: 60px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.02);
+        }
+
+        .cta-container::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: var(--grain);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            text-align: left;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-content h2 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            color: var(--text-muted);
+            opacity: 0.9;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .areas-served {
+            margin-top: 40px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .area-tag {
+            color: var(--primary);
+            font-family: var(--font-hinglish);
+            font-weight: 600;
+        }
+
+        /* 12. Footer */
+        footer {
+            background: var(--background-base);
+            color: rgba(26, 18, 8, 0.8);
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .footer-tagline {
+            font-family: var(--font-hinglish);
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(232, 104, 26, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            transition: background 0.3s;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(26, 18, 8, 0.1);
+            padding-top: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* Floating Elements */
+        .fab-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: transform 0.3s;
+            animation: pulse-wa 2s infinite;
+        }
+
+        .fab-whatsapp i {
+            width: 30px;
+            height: 30px;
+        }
+
+        .fab-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse-wa {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        .mobile-sticky-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            padding: 15px 5%;
+            padding-bottom: calc(15px + env(safe-area-inset-bottom));
+        }
+
+        .mobile-sticky-bar .btn {
+            width: 100%;
+            padding: 12px;
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 50px;
+                padding-bottom: 60px;
+            }
+
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-ctas, .social-proof-bar {
+                justify-content: center;
+            }
+
+            .hero p.lead {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .solution-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta-container {
+                grid-template-columns: 1fr;
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 60px 5%;
+            }
+
+            .nav-links,
+            .nav-btn {
+                display: none !important;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-active .nav-links {
+                display: flex !important;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--dark);
+                padding: 20px 5%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-active .nav-btn {
+                display: inline-flex;
+                margin-top: 20px;
+                width: 100%;
+            }
+
+            .solution-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .insta-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .mobile-sticky-bar {
+                display: block;
+            }
+
+            .fab-whatsapp {
+                bottom: 80px;
+                /* Above mobile bar */
+            }
+
+            footer {
+                padding-bottom: 100px;
+                /* Space for sticky bar */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .insta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        .offer-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+        }
+    </style>
 </head>
+
 <body>
-<div class="shell">
 
-<header class="header">
-  <div class="header-left">
-    <div class="logo-mark">
-      <svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9c0 5.5 7 13 7 13s7-7.5 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-    </div>
-    <div>
-      <div class="brand-name">SmartHVAC.ai</div>
-      <div class="brand-sub">AI-Assisted HVAC System — B.Tech Major Project</div>
-    </div>
-  </div>
-  <div class="header-right">
-    <div class="live-badge"><div class="live-dot"></div><span class="live-txt">LIVE SIM</span></div>
-    <div class="dtu-tag">DTU · ME Dept · 2025–26</div>
-    <div class="time-display" id="clock">--:--:--</div>
-    <div class="mode-toggle">
-      <button class="mode-btn active-ai" id="btn-ai" onclick="setMode('ai')">⬡ AI Predictive</button>
-      <button class="mode-btn" id="btn-trad" onclick="setMode('traditional')">◎ Traditional</button>
-    </div>
-  </div>
-</header>
-
-<div class="main">
-
-  <!-- ======= SIDEBAR ======= -->
-  <div class="sidebar">
-
-    <div class="side-block">
-      <div class="panel-label">System intelligence</div>
-      <div class="ai-brain" id="ai-brain-wrap">
-        <div class="ai-orb">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+    <!-- 1. Navigation -->
+    <header id="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="images/brand logo/logo.png" alt="The Buffet Bhai Logo" style="height: 65px; width: auto;">
+                The Buffet Bhai
+            </a>
+            <nav class="nav-links">
+                <a href="#offers" style="color: var(--accent); font-weight: 700;">Offers</a>
+                <a href="#packages">Packages</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
+                class="btn btn-whatsapp nav-btn btn-pulse" target="_blank">
+                <img src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg" alt="WhatsApp"
+                    style="width: 20px; height: 20px;"> Book Now
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i data-lucide="menu"></i>
+            </button>
         </div>
-        <div class="ai-brain-info">
-          <div class="ai-brain-status" id="ai-brain-status">AI Predictive Control</div>
-          <div class="ai-brain-sub" id="ai-brain-sub">LSTM · ASHRAE 55 validated</div>
+    </header>
+
+    <!-- 2. Hero Section -->
+    <section class="hero section-dark clip-diagonal-bottom">
+        <div class="container hero-grid animate-on-scroll">
+            <div class="hero-content">
+                <div class="badge">
+                    <i data-lucide="star"></i> Delhi NCR ka #1 House Party Caterer
+                </div>
+                <h1>Ghar Pe Dawaat Ka Scene? <i>Chhod Do Hamare Pe.</i></h1>
+                <p class="lead">Premium buffet catering for 10–100 guests. Hot food, complete setup, zero kitchen stress —
+                    delivered to your door.</p>
+
+                <div class="hero-ctas">
+                    <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
+                        class="btn btn-whatsapp btn-pulse" target="_blank">
+                        <img src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg" alt="WhatsApp"
+                            style="width: 20px; height: 20px;"> Book Now
+                    </a>
+                    <a href="#packages" class="btn btn-outline-light">View Packages</a>
+                </div>
+
+                <div class="social-proof-bar">
+                    <div class="proof-item">
+                        <i data-lucide="utensils"></i> Premium Buffet Setup
+                    </div>
+                    <div class="proof-item">
+                        <i data-lucide="flame"></i> Hot & Fresh Delivery
+                    </div>
+                    <div class="proof-item">
+                        <i data-lucide="tag"></i> ₹300 per person starting
+                    </div>
+                    <div class="proof-item">
+                        <i data-lucide="check-circle"></i> Fully Customizable Menu
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper animate-on-scroll" style="transition-delay: 0.2s;">
+                <div class="hero-glow"></div>
+                <img src="images/real%20images/hero.png" alt="Premium Buffet Catering" class="hero-image">
+            </div>
         </div>
-      </div>
-      <!-- AI Decision Breakdown (XAI) -->
-      <div class="panel-label" style="margin-top:12px;">AI Decision Breakdown</div>
-      <div class="ai-pred-box" id="pred-box" style="margin-bottom:0;">
-        <div class="ai-pred-label">Current Action</div>
-        <div class="ai-pred-txt" id="pred-txt" style="margin-bottom:8px;">Temp stable → 24.3°C — pre-cooling at 40% duty</div>
-        <div class="ai-pred-label">Reasoning</div>
-        <div style="font-size:11px;color:var(--text2);margin-top:4px;" id="ai-reasons-list">
-          • Solar gain increasing (+120W)<br/>
-          • Predicted temp +0.8°C
+    </section>
+
+    <!-- Offers Section -->
+    <section id="offers" class="offers-section"
+        style="padding: 60px 5%; background: var(--background-alt); position: relative; overflow: hidden;">
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="section-header animate-on-scroll" style="margin-bottom: 40px;">
+                <h2 style="color: var(--dark); font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin: 0;">
+                    Special <span style="color: var(--accent);">Offers</span></h2>
+                <p style="color: var(--secondary); text-align: center; margin-top: 10px;">Grab these exclusive
+                    deals before they're gone!</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <!-- Offer 1 -->
+                <div class="offer-card animate-on-scroll"
+                    style="background: var(--background-base); border: 1px solid rgba(0,0,0,0.05); border-radius: 20px; padding: 40px 30px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.4s ease; cursor: pointer;">
+                    <div
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--accent);">
+                    </div>
+                    <div
+                        style="width: 70px; height: 70px; background: rgba(245, 200, 66, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <img src="images/social logos/instagram-svgrepo-com.svg" alt="Instagram"
+                            style="width: 35px; height: 35px; filter: invert(80%) sepia(30%) saturate(1000%) hue-rotate(350deg) brightness(110%);">
+                    </div>
+                    <h3
+                        style="color: var(--dark); font-size: 1.6rem; margin-bottom: 15px; font-family: var(--font-display);">
+                        5% Cashback</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">Upload an Instagram
+                        Story of our food & tag us! Show it to our team to get an instant 5% cashback on your order.</p>
+                </div>
+
+                <!-- Offer 2 -->
+                <div class="offer-card animate-on-scroll"
+                    style="transition-delay: 0.1s; background: var(--background-base); border: 1px solid rgba(0,0,0,0.05); border-radius: 20px; padding: 40px 30px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.4s ease; cursor: pointer;">
+                    <div
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--primary);">
+                    </div>
+                    <div
+                        style="width: 70px; height: 70px; background: rgba(232, 104, 26, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <i data-lucide="cake" style="color: var(--primary); width: 35px; height: 35px;"></i>
+                    </div>
+                    <h3
+                        style="color: var(--dark); font-size: 1.6rem; margin-bottom: 15px; font-family: var(--font-display);">
+                        Free Birthday Cake</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">Celebrating a
+                        birthday with us? Get a complimentary 1/2 KG Cake on the house! (Valid ID proof required).</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="side-block">
-      <div class="panel-label">Room 101 — live view <span id="room-dim-label">5 m × 4 m × 3 m</span></div>
-      <svg class="room-svg" viewBox="0 0 300 200" id="room-svg">
-        <rect x="2" y="2" width="296" height="196" rx="10" fill="#111a15" stroke="#2a3d30" stroke-width="1"/>
-        <rect id="room-bg-color" x="2" y="2" width="296" height="196" rx="10" fill="#22c97a" opacity="0.04"/>
-        <rect x="90" y="2" width="120" height="28" rx="6" fill="#162019" stroke="#22c97a" stroke-width="1" opacity="0.9"/>
-        <text x="150" y="20" text-anchor="middle" font-size="9" font-family="DM Mono" fill="#22c97a">■ HVAC UNIT ■</text>
-        <g id="airflow-lines" opacity="0.6">
-          <line x1="120" y1="30" x2="120" y2="55" stroke="#22c97a" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <line x1="150" y1="30" x2="150" y2="55" stroke="#22c97a" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <line x1="180" y1="30" x2="180" y2="55" stroke="#22c97a" stroke-width="1.5" stroke-dasharray="4,3"/>
-        </g>
-        <rect x="240" y="30" width="30" height="50" rx="3" fill="none" stroke="#2a3d30" stroke-width="1"/>
-        <line x1="255" y1="30" x2="255" y2="80" stroke="#2a3d30" stroke-width="0.5"/>
-        <line x1="240" y1="55" x2="270" y2="55" stroke="#2a3d30" stroke-width="0.5"/>
-        <text id="solar-icon" x="255" y="100" text-anchor="middle" font-size="9" font-family="DM Mono" fill="#f0a830" opacity="0.7">☀ solar</text>
-        <g id="sensor-temp-node" transform="translate(14,55)">
-          <rect width="58" height="44" rx="5" fill="#162019" stroke="#2a3d30" stroke-width="1"/>
-          <text x="29" y="16" text-anchor="middle" font-size="8" font-family="DM Mono" fill="#4a6655">TEMP</text>
-          <text id="svg-temp" x="29" y="34" text-anchor="middle" font-size="15" font-family="DM Mono" fill="#22c97a" font-weight="500">24.1</text>
-          <text x="50" y="34" text-anchor="middle" font-size="8" font-family="DM Mono" fill="#4a6655">°C</text>
-        </g>
-        <g id="sensor-hum-node" transform="translate(14,108)">
-          <rect width="58" height="44" rx="5" fill="#162019" stroke="#2a3d30" stroke-width="1"/>
-          <text x="29" y="16" text-anchor="middle" font-size="8" font-family="DM Mono" fill="#4a6655">HUMID</text>
-          <text id="svg-hum" x="29" y="34" text-anchor="middle" font-size="15" font-family="DM Mono" fill="#4db3ff" font-weight="500">52</text>
-          <text x="50" y="34" text-anchor="middle" font-size="8" font-family="DM Mono" fill="#4a6655">%</text>
-        </g>
-        <g transform="translate(82,55)">
-          <rect width="58" height="44" rx="5" fill="#162019" stroke="#2a3d30" stroke-width="1"/>
-          <text x="29" y="16" text-anchor="middle" font-size="8" font-family="DM Mono" fill="#4a6655">CO₂</text>
-          <text id="svg-co2" x="29" y="34" text-anchor="middle" font-size="14" font-family="DM Mono" fill="#f0a830" font-weight="500">620</text>
-          <text x="51" y="34" text-anchor="middle" font-size="7" font-family="DM Mono" fill="#4a6655">ppm</text>
-        </g>
-        <g id="occ-svg-group"></g>
-        <rect x="2" y="170" width="296" height="28" rx="0" fill="#111a15" stroke="none"/>
-        <rect id="status-bar-color" x="2" y="170" width="296" height="28" fill="#22c97a" opacity="0.08"/>
-        <text id="svg-status-txt" x="150" y="188" text-anchor="middle" font-size="9" font-family="DM Mono" fill="#22c97a">AI: Monitoring — conditions optimal</text>
-      </svg>
-    </div>
-
-    <div class="side-block">
-      <div class="panel-label">Live sensor readings</div>
-      <div class="sensor-grid">
-        <div class="sensor-card">
-          <div class="s-label">TEMPERATURE</div>
-          <div><span class="s-val" id="s-temp">24.1</span><span class="s-unit">°C</span></div>
-          <div class="s-bar"><div class="s-bar-fill" id="sb-temp" style="background:#22c97a;width:48%;"></div></div>
+        <!-- Background decorative elements -->
+        <div
+            style="position: absolute; top: -100px; right: -50px; width: 300px; height: 300px; background: rgba(245, 200, 66, 0.05); border-radius: 50%; filter: blur(50px); pointer-events: none;">
         </div>
-        <div class="sensor-card">
-          <div class="s-label">HUMIDITY</div>
-          <div><span class="s-val" id="s-hum" style="color:#4db3ff;">52</span><span class="s-unit">%</span></div>
-          <div class="s-bar"><div class="s-bar-fill" id="sb-hum" style="background:#4db3ff;width:52%;"></div></div>
+        <div
+            style="position: absolute; bottom: -100px; left: -50px; width: 300px; height: 300px; background: rgba(232, 104, 26, 0.05); border-radius: 50%; filter: blur(50px); pointer-events: none;">
         </div>
-        <div class="sensor-card">
-          <div class="s-label">CO₂ LEVEL</div>
-          <div><span class="s-val" id="s-co2" style="color:#f0a830;">620</span><span class="s-unit">ppm</span></div>
-          <div class="s-bar"><div class="s-bar-fill" id="sb-co2" style="background:#f0a830;width:32%;"></div></div>
+    </section>
+
+    <!-- 3. Problem-Agitation Section -->
+    <section class="problem-section section-light clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Jab Ghar Mein Party Ho, <span>Toh Tension Kyun?</span></h2>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card animate-on-scroll">
+                    <div class="card-icon"><i data-lucide="flame"></i></div>
+                    <h3>Kitchen ka Mela</h3>
+                    <p>"30 log ke liye khana banana, wo bhi properly? Dal, chawal, sabzi, dessert — aur phir cleaning
+                        bhi? Nahi bhai, nahi."</p>
+                </div>
+                <div class="card animate-on-scroll" style="transition-delay: 0.1s">
+                    <div class="card-icon"><i data-lucide="clock-4"></i></div>
+                    <h3>Time Toh Hai Hi Nahi</h3>
+                    <p>"Decoration, shopping, guests ka jugaad — aur upar se cooking? Ek hi haath mein itna sambhalna
+                        possible nahi."</p>
+                </div>
+                <div class="card animate-on-scroll" style="transition-delay: 0.2s">
+                    <div class="card-icon"><i data-lucide="frown"></i></div>
+                    <h3>Kya Sochenge Log?</h3>
+                    <p>"Mehman aaye aur khana dum wala na ho? Woh moment sabse important hai. Isme gamble mat karo."</p>
+                </div>
+            </div>
+
+            <div class="transition-line animate-on-scroll">
+                "Isliye The Buffet Bhai hai. Aap host bano, baaki hum dekhte hain."
+            </div>
         </div>
-        <div class="sensor-card">
-          <div class="s-label">OCCUPANTS</div>
-          <div><span class="s-val" id="s-occ" style="color:#c084fc;">2</span><span class="s-unit">ppl</span></div>
-          <div class="s-bar"><div class="s-bar-fill" id="sb-occ" style="background:#c084fc;width:10%;"></div></div>
+    </section>
+
+    <!-- 4. Solution / What We Do -->
+    <section class="solution-section section-dark clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="text-dark">Aapki Dawaat, <span class="text-primary">Hamari Zimmedari</span></h2>
+            </div>
+
+            <div class="solution-grid">
+                <div class="solution-card animate-on-scroll">
+                    <div class="icon-wrapper"><i data-lucide="truck" size="40"></i></div>
+                    <h3>Hot & Fresh Delivery</h3>
+                    <p>Restaurant-quality food, packed in heat-retaining containers, delivered right before your guests
+                        arrive.</p>
+                </div>
+                <div class="solution-card animate-on-scroll" style="transition-delay: 0.1s">
+                    <div class="icon-wrapper"><i data-lucide="utensils" size="40"></i></div>
+                    <h3>Complete Buffet Setup</h3>
+                    <p>Premium disposables, serving spoons, napkins, chafing dishes — everything. You literally just
+                        open the box.</p>
+                </div>
+                <div class="solution-card animate-on-scroll" style="transition-delay: 0.2s">
+                    <div class="icon-wrapper"><i data-lucide="smartphone" size="40"></i></div>
+                    <h3>Book in Minutes</h3>
+                    <p>WhatsApp us your date, guest count, and menu preference. Confirm in under an hour.</p>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="comfort-meter">
-        <div class="panel-label" style="margin-bottom:4px;">PMV comfort index (ASHRAE 55)</div>
-        <div class="comfort-track">
-          <div class="comfort-needle" id="comfort-needle" style="left:50%;"></div>
+    </section>
+
+    <!-- 5. Packages Section -->
+    <section id="packages" class="packages-section section-light clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Choose Your <span>Package</span></h2>
+                <p class="text-secondary">Every package is priced per person, fully customizable, and built for real
+                    Delhi appetites.</p>
+            </div>
+
+            <div class="tabs animate-on-scroll">
+                <button class="tab-btn active" data-tab="veg">🌿 Pure Veg</button>
+                <button class="tab-btn" data-tab="non-veg">🍗 Non-Veg</button>
+                <button class="tab-btn" data-tab="extras">🍟 Snacks & Extras</button>
+            </div>
+
+            <!-- Veg Tab -->
+            <div class="tab-content active" id="tab-veg">
+                <!-- Desi Dawat -->
+                <div class="package-card">
+                    <div class="package-card-inner">
+                        <!-- Front -->
+                        <div class="package-card-front">
+                            <div class="package-name">Desi Dawat</div>
+                            <div class="package-subtitle">Simple, desi, satisfying</div>
+                            <div class="price-highlight">
+                                <span class="price-val">₹2,999</span>
+                                <span class="per-head">(₹300 / head)</span>
+                                <div class="pax-label">For 10 Guests</div>
+                            </div>
+                            <div class="package-menu">
+                                <div class="menu-header">Menu Includes (Per 10 Pax)</div>
+                                <ul>
+                                    <li><span class="qty-badge">1.5 full</span> Kadai Paneer</li>
+                                    <li><span class="qty-badge">1.5 full</span> Dal Makhani</li>
+                                    <li><span class="qty-badge">1.5 full</span> Rajma / Chole (choice)</li>
+                                    <li><span class="qty-badge">12 pcs</span> Butter Naan</li>
+                                    <li><span class="qty-badge">8 pcs</span> Lachha Parantha</li>
+                                    <li><span class="qty-badge">1 full</span> Jeera Rice</li>
+                                    <li><span class="qty-badge">1 bowl</span> Boondi Raita + Green Salad + Papad</li>
+                                    <li><span class="qty-badge">Sweet</span> Gulab Jamun (2 pcs/person)</li>
+                                </ul>
+                            </div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Desi%20Dawat."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Desi Dawat</a>
+                            </div>
+                            <div class="flip-hint">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="package-card-back">
+                            <div class="package-name">Desi Dawat</div>
+                            <div class="package-subtitle">Pricing for larger groups</div>
+                            <table class="package-pricing">
+                                <tr>
+                                    <th>Guests</th>
+                                    <th>Price</th>
+                                    <th>Per Head</th>
+                                </tr>
+                                <tr>
+                                    <td>10 pax</td>
+                                    <td class="price-val">₹2,999</td>
+                                    <td>₹300</td>
+                                </tr>
+                                <tr>
+                                    <td>15 pax</td>
+                                    <td class="price-val">₹4,499</td>
+                                    <td>₹300</td>
+                                </tr>
+                                <tr>
+                                    <td>20 pax</td>
+                                    <td class="price-val">₹5,999</td>
+                                    <td>₹300</td>
+                                </tr>
+                                <tr>
+                                    <td>25 pax</td>
+                                    <td class="price-val">₹7,499</td>
+                                    <td>₹300</td>
+                                </tr>
+                            </table>
+                            <div style="flex-grow: 1;"></div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Desi%20Dawat."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Desi Dawat</a>
+                            </div>
+                            <div class="flip-hint" style="margin-top: 20px;">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see menu
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shahi Dawat -->
+                <div class="package-card best-seller-container">
+                    <div class="package-card-inner">
+                        <!-- Front -->
+                        <div class="package-card-front best-seller-face">
+                            <div class="package-tag">Best Seller</div>
+                            <div class="package-name">Shahi Dawat</div>
+                            <div class="package-subtitle">Paneer wali party ka asli maza</div>
+                            <div class="price-highlight">
+                                <span class="price-val">₹3,999</span>
+                                <span class="per-head">(₹400 / head)</span>
+                                <div class="pax-label">For 10 Guests</div>
+                            </div>
+                            <div class="package-menu">
+                                <div class="menu-header">Menu Includes (Per 10 Pax)</div>
+                                <ul>
+                                    <li><span class="qty-badge">1.5 full</span> Shahi Paneer</li>
+                                    <li><span class="qty-badge">1.5 full</span> Dal Makhani</li>
+                                    <li><span class="qty-badge">1 full</span> Mix Veg / Aloo Gobhi (choice)</li>
+                                    <li><span class="qty-badge">12 pcs</span> Butter Naan</li>
+                                    <li><span class="qty-badge">10 pcs</span> Lachha Parantha</li>
+                                    <li><span class="qty-badge">1.5 full</span> Jeera Rice</li>
+                                    <li><span class="qty-badge">1 bowl</span> Boondi Raita + Green Salad</li>
+                                    <li><span class="qty-badge">Sweet</span> Gulab Jamun (2 pcs/person)</li>
+                                </ul>
+                            </div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Shahi%20Dawat."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Shahi Dawat</a>
+                            </div>
+                            <div class="flip-hint">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="package-card-back best-seller-face">
+                            <div class="package-name">Shahi Dawat</div>
+                            <div class="package-subtitle">Pricing for larger groups</div>
+                            <table class="package-pricing">
+                                <tr>
+                                    <th>Guests</th>
+                                    <th>Price</th>
+                                    <th>Per Head</th>
+                                </tr>
+                                <tr>
+                                    <td>10 pax</td>
+                                    <td class="price-val">₹3,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                                <tr>
+                                    <td>15 pax</td>
+                                    <td class="price-val">₹5,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                                <tr>
+                                    <td>20 pax</td>
+                                    <td class="price-val">₹7,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                                <tr>
+                                    <td>25 pax</td>
+                                    <td class="price-val">₹9,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                            </table>
+                            <div style="flex-grow: 1;"></div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Shahi%20Dawat."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Shahi Dawat</a>
+                            </div>
+                            <div class="flip-hint" style="margin-top: 20px;">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see menu
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grand Buffet Bhai -->
+                <div class="package-card">
+                    <div class="package-card-inner">
+                        <!-- Front -->
+                        <div class="package-card-front">
+                            <div class="package-name">Grand Buffet Bhai</div>
+                            <div class="package-subtitle">Full spread, full dhamaal</div>
+                            <div class="price-highlight">
+                                <span class="price-val">₹5,499</span>
+                                <span class="per-head">(₹550 / head)</span>
+                                <div class="pax-label">For 10 Guests</div>
+                            </div>
+                            <div class="package-menu">
+                                <div class="menu-header">Menu Includes (Per 10 Pax)</div>
+                                <ul>
+                                    <li><span class="qty-badge">1.5 full</span> Paneer Butter Masala</li>
+                                    <li><span class="qty-badge">1.5 full</span> Kadai Paneer</li>
+                                    <li><span class="qty-badge">1.5 full</span> Dal Makhani</li>
+                                    <li><span class="qty-badge">1 full</span> Chole / Rajma (choice)</li>
+                                    <li><span class="qty-badge">12 pcs</span> Butter Naan</li>
+                                    <li><span class="qty-badge">12 pcs</span> Lachha Parantha</li>
+                                    <li><span class="qty-badge">1.5 full</span> Jeera Rice + Veg Biryani</li>
+                                    <li><span class="qty-badge">full</span> Raita + Green Salad</li>
+                                    <li><span class="qty-badge">Sweet</span> Gulab Jamun (2 pcs/person)</li>
+                                </ul>
+                            </div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Grand%20Buffet%20Bhai."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Grand Buffet Bhai</a>
+                            </div>
+                            <div class="flip-hint">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="package-card-back">
+                            <div class="package-name">Grand Buffet Bhai</div>
+                            <div class="package-subtitle">Pricing for larger groups</div>
+                            <table class="package-pricing">
+                                <tr>
+                                    <th>Guests</th>
+                                    <th>Price</th>
+                                    <th>Per Head</th>
+                                </tr>
+                                <tr>
+                                    <td>10 pax</td>
+                                    <td class="price-val">₹5,499</td>
+                                    <td>₹550</td>
+                                </tr>
+                                <tr>
+                                    <td>15 pax</td>
+                                    <td class="price-val">₹8,249</td>
+                                    <td>₹550</td>
+                                </tr>
+                                <tr>
+                                    <td>20 pax</td>
+                                    <td class="price-val">₹10,999</td>
+                                    <td>₹550</td>
+                                </tr>
+                                <tr>
+                                    <td>25 pax</td>
+                                    <td class="price-val">₹13,749</td>
+                                    <td>₹550</td>
+                                </tr>
+                            </table>
+                            <div style="flex-grow: 1;"></div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Grand%20Buffet%20Bhai."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Grand Buffet Bhai</a>
+                            </div>
+                            <div class="flip-hint" style="margin-top: 20px;">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see menu
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Non-Veg Tab -->
+            <div class="tab-content" id="tab-non-veg">
+                <!-- Murgh Mela -->
+                <div class="package-card">
+                    <div class="package-card-inner">
+                        <!-- Front -->
+                        <div class="package-card-front">
+                            <div class="package-name">Murgh Mela</div>
+                            <div class="package-subtitle">Asli butter chicken ki daastan</div>
+                            <div class="price-highlight">
+                                <span class="price-val">₹3,999</span>
+                                <span class="per-head">(₹400 / head)</span>
+                                <div class="pax-label">For 10 Guests</div>
+                            </div>
+                            <div class="package-menu">
+                                <div class="menu-header">Menu Includes (Per 10 Pax)</div>
+                                <ul>
+                                    <li><span class="qty-badge">1.5 full</span> Butter Chicken</li>
+                                    <li><span class="qty-badge">1.5 full</span> Paneer Butter Masala</li>
+                                    <li><span class="qty-badge">1.5 full</span> Dal Makhani</li>
+                                    <li><span class="qty-badge">12 pcs</span> Butter Naan</li>
+                                    <li><span class="qty-badge">8 pcs</span> Lachha Parantha</li>
+                                    <li><span class="qty-badge">1 full</span> Jeera Rice</li>
+                                    <li><span class="qty-badge">1 bowl</span> Boondi Raita + Salad</li>
+                                    <li><span class="qty-badge">Sweet</span> Gulab Jamun (2 pcs/person)</li>
+                                </ul>
+                            </div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Murgh%20Mela."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Murgh Mela</a>
+                            </div>
+                            <div class="flip-hint">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="package-card-back">
+                            <div class="package-name">Murgh Mela</div>
+                            <div class="package-subtitle">Pricing for larger groups</div>
+                            <table class="package-pricing">
+                                <tr>
+                                    <th>Guests</th>
+                                    <th>Price</th>
+                                    <th>Per Head</th>
+                                </tr>
+                                <tr>
+                                    <td>10 pax</td>
+                                    <td class="price-val">₹3,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                                <tr>
+                                    <td>15 pax</td>
+                                    <td class="price-val">₹5,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                                <tr>
+                                    <td>20 pax</td>
+                                    <td class="price-val">₹7,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                                <tr>
+                                    <td>25 pax</td>
+                                    <td class="price-val">₹9,999</td>
+                                    <td>₹400</td>
+                                </tr>
+                            </table>
+                            <div style="flex-grow: 1;"></div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Murgh%20Mela."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Murgh Mela</a>
+                            </div>
+                            <div class="flip-hint" style="margin-top: 20px;">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see menu
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sher-e-Punjab -->
+                <div class="package-card best-seller-container">
+                    <div class="package-card-inner">
+                        <!-- Front -->
+                        <div class="package-card-front best-seller-face">
+                            <div class="package-tag">Best Seller</div>
+                            <div class="package-name">Sher-e-Punjab</div>
+                            <div class="package-subtitle">Chicken + biryani — full value</div>
+                            <div class="price-highlight">
+                                <span class="price-val">₹5,999</span>
+                                <span class="per-head">(₹600 / head)</span>
+                                <div class="pax-label">For 10 Guests</div>
+                            </div>
+                            <div class="package-menu">
+                                <div class="menu-header">Menu Includes (Per 10 Pax)</div>
+                                <ul>
+                                    <li><span class="qty-badge">1.5 full</span> Butter Chicken</li>
+                                    <li><span class="qty-badge">1.5 full</span> Kadai Chicken</li>
+                                    <li><span class="qty-badge">1.5 full</span> Dal Makhani</li>
+                                    <li><span class="qty-badge">12 pcs</span> Butter Naan</li>
+                                    <li><span class="qty-badge">10 pcs</span> Lachha Parantha</li>
+                                    <li><span class="qty-badge">1 full</span> Chicken Biryani</li>
+                                    <li><span class="qty-badge">full</span> Raita + Salad</li>
+                                    <li><span class="qty-badge">Sweet</span> Gulab Jamun (2 pcs/person)</li>
+                                </ul>
+                            </div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Sher-e-Punjab."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Sher-e-Punjab</a>
+                            </div>
+                            <div class="flip-hint">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="package-card-back best-seller-face">
+                            <div class="package-name">Sher-e-Punjab</div>
+                            <div class="package-subtitle">Pricing for larger groups</div>
+                            <table class="package-pricing">
+                                <tr>
+                                    <th>Guests</th>
+                                    <th>Price</th>
+                                    <th>Per Head</th>
+                                </tr>
+                                <tr>
+                                    <td>10 pax</td>
+                                    <td class="price-val">₹5,999</td>
+                                    <td>₹600</td>
+                                </tr>
+                                <tr>
+                                    <td>15 pax</td>
+                                    <td class="price-val">₹8,999</td>
+                                    <td>₹600</td>
+                                </tr>
+                                <tr>
+                                    <td>20 pax</td>
+                                    <td class="price-val">₹11,999</td>
+                                    <td>₹600</td>
+                                </tr>
+                                <tr>
+                                    <td>25 pax</td>
+                                    <td class="price-val">₹14,999</td>
+                                    <td>₹600</td>
+                                </tr>
+                            </table>
+                            <div style="flex-grow: 1;"></div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Sher-e-Punjab."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Sher-e-Punjab</a>
+                            </div>
+                            <div class="flip-hint" style="margin-top: 20px;">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see menu
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nawabi Grand -->
+                <div class="package-card">
+                    <div class="package-card-inner">
+                        <!-- Front -->
+                        <div class="package-card-front">
+                            <div class="package-name">Nawabi Grand</div>
+                            <div class="package-subtitle">Chicken + mutton — full nawabi</div>
+                            <div class="price-highlight">
+                                <span class="price-val">₹8,499</span>
+                                <span class="per-head">(₹850 / head)</span>
+                                <div class="pax-label">For 10 Guests</div>
+                            </div>
+                            <div class="package-menu">
+                                <div class="menu-header">Menu Includes (Per 10 Pax)</div>
+                                <ul>
+                                    <li><span class="qty-badge">1.5 full</span> Butter Chicken</li>
+                                    <li><span class="qty-badge">1.5 full</span> Kadai Chicken</li>
+                                    <li><span class="qty-badge">1.5 full</span> Mutton Curry</li>
+                                    <li><span class="qty-badge">1.5 full</span> Dal Makhani</li>
+                                    <li><span class="qty-badge">12 pcs</span> Butter Naan</li>
+                                    <li><span class="qty-badge">12 pcs</span> Lachha Parantha</li>
+                                    <li><span class="qty-badge">1.5 full</span> Chicken Biryani</li>
+                                    <li><span class="qty-badge">full</span> Raita + Salad</li>
+                                    <li><span class="qty-badge">Sweet</span> Gulab Jamun (2 pcs/person)</li>
+                                </ul>
+                            </div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Nawabi%20Grand."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Nawabi Grand</a>
+                            </div>
+                            <div class="flip-hint">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="package-card-back">
+                            <div class="package-name">Nawabi Grand</div>
+                            <div class="package-subtitle">Pricing for larger groups</div>
+                            <table class="package-pricing">
+                                <tr>
+                                    <th>Guests</th>
+                                    <th>Price</th>
+                                    <th>Per Head</th>
+                                </tr>
+                                <tr>
+                                    <td>10 pax</td>
+                                    <td class="price-val">₹8,499</td>
+                                    <td>₹850</td>
+                                </tr>
+                                <tr>
+                                    <td>15 pax</td>
+                                    <td class="price-val">₹12,749</td>
+                                    <td>₹850</td>
+                                </tr>
+                                <tr>
+                                    <td>20 pax</td>
+                                    <td class="price-val">₹16,999</td>
+                                    <td>₹850</td>
+                                </tr>
+                                <tr>
+                                    <td>25 pax</td>
+                                    <td class="price-val">₹21,249</td>
+                                    <td>₹850</td>
+                                </tr>
+                            </table>
+                            <div style="flex-grow: 1;"></div>
+                            <div class="package-ctas">
+                                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20the%20Nawabi%20Grand."
+                                    class="btn btn-primary btn-pulse" target="_blank">Order Nawabi Grand</a>
+                            </div>
+                            <div class="flip-hint" style="margin-top: 20px;">
+                                <i data-lucide="rotate-cw"></i> Tap/Hover to see menu
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snacks & Extras Tab -->
+            <div class="tab-content" id="tab-extras">
+                <style>
+                    .snack-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                        gap: 15px;
+                        margin-bottom: 40px;
+                    }
+
+                    .snack-item-card {
+                        background: #fff;
+                        border: 1px solid rgba(0, 0, 0, 0.08);
+                        border-radius: 12px;
+                        padding: 20px 15px;
+                        text-align: center;
+                        font-weight: 600;
+                        color: #444;
+                        transition: all 0.3s ease;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        min-height: 85px;
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+                        font-family: var(--font-body);
+                        font-size: 1.05rem;
+                        position: relative;
+                        overflow: hidden;
+                    }
+
+                    .snack-item-card::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 4px;
+                        background: transparent;
+                        transition: all 0.3s ease;
+                    }
+
+                    .snack-item-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+                        color: #111;
+                    }
+
+                    .snack-item-card.veg:hover::before {
+                        background: #00a651;
+                    }
+
+                    .snack-item-card.non-veg:hover::before {
+                        background: #d12229;
+                    }
+
+                    .section-title-wrapper {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-bottom: 25px;
+                        flex-wrap: wrap;
+                        gap: 15px;
+                    }
+
+                    .snack-category-title {
+                        font-family: var(--font-display);
+                        font-size: 2rem;
+                        margin: 0;
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                    }
+
+                    .price-badge {
+                        font-size: 1.1rem;
+                        font-family: var(--font-body);
+                        font-weight: 700;
+                        padding: 6px 15px;
+                        border-radius: 30px;
+                        display: inline-block;
+                    }
+
+                    .veg-badge {
+                        background: #eaf5ea;
+                        color: #1e5a1e;
+                        border: 1px solid #c2e0be;
+                    }
+
+                    .non-veg-badge {
+                        background: #faeded;
+                        color: #873030;
+                        border: 1px solid #f0caca;
+                    }
+                </style>
+                <div class="extras-section" style="max-width: 950px; margin: 0 auto; width: 100%;">
+
+                    <!-- Header -->
+                    <!-- <div style="display: flex; align-items: center; margin-bottom: 30px;">
+                        <h3
+                            style="font-family: var(--font-display); color: #a66f42; font-size: 2rem; border: 2px solid #e2bc91; padding: 12px 24px; margin: 0; white-space: nowrap; border-radius: 6px; background-color: #fdfaf5;">
+                            Add-on Snacks & Extras</h3>
+                        <div style="height: 1px; background-color: #e2bc91; flex-grow: 1; margin-left: 20px;"></div>
+                    </div> -->
+
+                    <p style="margin-bottom: 40px; font-size: 1.15rem; color: #555; line-height: 1.6;">Mix and match
+                        your favorite starters! Add as many snacks as you want to your chosen buffet package.</p>
+
+                    <!-- Veg Snacks -->
+                    <div class="section-title-wrapper">
+                        <h4 class="snack-category-title" style="color: #1e5a1e;">
+                            <div
+                                style="width: 20px; height: 20px; border-radius: 50%; background-color: #00a651; border: 3px solid #eaf5ea; outline: 1px solid #00a651;">
+                            </div>
+                            Vegetarian Snacks
+                        </h4>
+                        <div class="price-badge veg-badge">+ ₹50 / person per item</div>
+                    </div>
+
+                    <div class="snack-grid">
+                        <div class="snack-item-card veg">Veg Momos</div>
+                        <div class="snack-item-card veg">Paneer Momos</div>
+                        <div class="snack-item-card veg">Spring Roll</div>
+                        <div class="snack-item-card veg">Veg Chowmein</div>
+                        <div class="snack-item-card veg">Paneer Tikka</div>
+                        <div class="snack-item-card veg">French Fries</div>
+                        <div class="snack-item-card veg">Tandoori Chaap</div>
+                    </div>
+
+                    <!-- Non-Veg Snacks -->
+                    <div class="section-title-wrapper" style="margin-top: 50px;">
+                        <h4 class="snack-category-title" style="color: #7c2424;">
+                            <div
+                                style="width: 20px; height: 20px; border-radius: 50%; background-color: #d12229; border: 3px solid #faeded; outline: 1px solid #d12229;">
+                            </div>
+                            Non-Vegetarian Snacks
+                        </h4>
+                        <div class="price-badge non-veg-badge">+ ₹100 / person per item</div>
+                    </div>
+
+                    <div class="snack-grid">
+                        <div class="snack-item-card non-veg">Chicken Momos</div>
+                        <div class="snack-item-card non-veg">Chicken Tikka</div>
+                        <div class="snack-item-card non-veg">Afghani Tikka</div>
+                        <div class="snack-item-card non-veg">Chicken Tandoori</div>
+                        <div class="snack-item-card non-veg">Afghani Chicken</div>
+                        <div class="snack-item-card non-veg">Seekh Kebab</div>
+                        <div class="snack-item-card non-veg">Chicken Chowmein</div>
+                        <div class="snack-item-card non-veg">Chilly Chicken</div>
+                    </div>
+
+                    <!-- Simplified Pricing Explanation -->
+                    <div
+                        style="background-color: #fdfaf5; border-left: 4px solid var(--primary); padding: 25px; border-radius: 0 12px 12px 0; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+                        <p style="margin: 0; font-size: 1.15rem; color: #444; line-height: 1.6;">
+                            <strong
+                                style="color: #111; font-family: var(--font-display); font-size: 1.3rem; display: block; margin-bottom: 8px;">How
+                                Pricing Works</strong>
+                            Choose any combination of snacks. Each Veg snack adds <strong>₹50/person</strong> and each
+                            Non-Veg snack adds <strong>₹100/person</strong>.<br>
+                            <span style="color: #666; font-size: 1.05rem; display: inline-block; margin-top: 5px;"><em>Example:
+                                    For 20 guests, adding Veg Momos (₹50) and Chicken Tikka (₹100) will add ₹150/person
+                                    → 20 × ₹150 = ₹3,000 extra.</em></span>
+                        </p>
+                    </div>
+
+                    <div style="margin-top: 60px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 30px;">
+                            <h3
+                                style="font-family: var(--font-display); color: #a66f42; font-size: 2rem; border: 2px solid #e2bc91; padding: 12px 24px; margin: 0; white-space: nowrap; border-radius: 6px; background-color: #fdfaf5;">
+                                Other Extras</h3>
+                            <div style="height: 1px; background-color: #e2bc91; flex-grow: 1; margin-left: 20px;"></div>
+                        </div>
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+
+                            <div
+                                style="border: 2px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 25px; background: #fff; display: flex; flex-direction: column;">
+                                <div
+                                    style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 15px;">
+                                    <h4
+                                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--secondary); margin: 0; max-width: 70%;">
+                                        Disposable Plates & Cutlery</h4>
+                                    <div
+                                        style="background: rgba(245, 200, 66, 0.15); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 1.1rem;">
+                                        ₹25</div>
+                                </div>
+                                <div style="font-size: 0.95rem; font-weight: 600; color: #888; margin-bottom: 10px;">per
+                                    person</div>
+                                <p style="font-size: 1.05rem; color: #666; margin: 0; flex-grow: 1;">Paper plates,
+                                    spoons, tissues and basic plastic glasses included.</p>
+                            </div>
+
+                            <div
+                                style="border: 2px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 25px; background: #fff; display: flex; flex-direction: column;">
+                                <div
+                                    style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 15px;">
+                                    <h4
+                                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--secondary); margin: 0; max-width: 70%;">
+                                        Drinking Water (20L Jar)</h4>
+                                    <div
+                                        style="background: rgba(245, 200, 66, 0.15); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 1.1rem;">
+                                        ₹80</div>
+                                </div>
+                                <div style="font-size: 0.95rem; font-weight: 600; color: #888; margin-bottom: 10px;">per
+                                    jar</div>
+                                <p style="font-size: 1.05rem; color: #666; margin: 0; flex-grow: 1;">20 Litre Bisleri
+                                    jar. (Includes paper glasses).</p>
+                            </div>
+
+                            <div
+                                style="border: 2px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 25px; background: #fff; display: flex; flex-direction: column;">
+                                <div
+                                    style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 15px;">
+                                    <h4
+                                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--secondary); margin: 0; max-width: 70%;">
+                                        Cold Drinks (2.25L Bottle)</h4>
+                                    <div
+                                        style="background: rgba(245, 200, 66, 0.15); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 1.1rem;">
+                                        ₹120</div>
+                                </div>
+                                <div style="font-size: 0.95rem; font-weight: 600; color: #888; margin-bottom: 10px;">per
+                                    bottle</div>
+                                <p style="font-size: 1.05rem; color: #666; margin: 0; flex-grow: 1;">Coke / Pepsi /
+                                    Sprite (Includes paper glasses).</p>
+                            </div>
+
+                            <div
+                                style="border: 2px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 25px; background: #fff; display: flex; flex-direction: column;">
+                                <div
+                                    style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 15px;">
+                                    <h4
+                                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--secondary); margin: 0; max-width: 70%;">
+                                        Service Helpers (4-5 Hrs)</h4>
+                                    <div
+                                        style="background: rgba(245, 200, 66, 0.15); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 1.1rem;">
+                                        ₹800</div>
+                                </div>
+                                <div style="font-size: 0.95rem; font-weight: 600; color: #888; margin-bottom: 10px;">per
+                                    helper</div>
+                                <p style="font-size: 1.05rem; color: #666; margin: 0; flex-grow: 1;">Professional staff
+                                    to help with serving and clearing.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-        <div class="comfort-labels">
-          <span>−3 cold</span><span>−1</span><span>0 neutral</span><span>+1</span><span>+3 hot</span>
+    </section>
+
+    <!-- 6. Instagram Section -->
+    <section class="instagram-section section-dark clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="text-dark">This is What a <span class="text-primary">Real Daawat Looks Like</span></h2>
+                <p class="text-secondary">Follow us on Instagram @TheBuffetBhai for behind-the-scenes, new dishes, and
+                    daawat inspo.</p>
+            </div>
+
+            <div class="insta-embed-container animate-on-scroll"
+                style="max-width: 500px; margin: 0 auto 40px; width: 100%;">
+                <!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
+                <script src="https://elfsightcdn.com/platform.js" async></script>
+                <div class="elfsight-app-163ee9a7-ed86-4627-ab25-a23e8c21367b" data-elfsight-app-lazy></div>
+            </div>
+
+            <div class="text-center animate-on-scroll"
+                style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://www.instagram.com/thebuffetbhai?igsh=ZXVrdWxpbHFnMGV6&utm_source=qr" target="_blank"
+                    class="btn"
+                    style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; border: none;">
+                    <img src="images/social logos/instagram-svgrepo-com.svg"
+                        style="width: 20px; height: 20px; filter: invert(1); margin-right: 8px;"> Follow on Instagram
+                </a>
+                <a href="https://www.facebook.com/share/18NHys7xiu/?mibextid=wwXIfr" target="_blank" class="btn"
+                    style="background: #1877F2; color: white; border: none;">
+                    <img src="images/social logos/facebook-svgrepo-com.svg"
+                        style="width: 20px; height: 20px; filter: invert(1); margin-right: 8px;"> Follow on Facebook
+                </a>
+            </div>
         </div>
-        <div style="text-align:center;font-size:11px;font-family:DM Mono;color:var(--green);margin-top:4px;" id="pmv-txt">PMV: 0.12 — Neutral ✓</div>
-      </div>
-      <div class="panel-label">IoT node status</div>
-      <div class="iot-grid">
-        <div class="iot-node"><div class="iot-dot" style="background:#22c97a;animation:blink 1.4s infinite;"></div><div class="iot-info"><div class="iot-name">Temp/Hum</div><div class="iot-status">DHT22 · ±0.5°C</div></div></div>
-        <div class="iot-node"><div class="iot-dot" style="background:#22c97a;animation:blink 1.8s infinite;"></div><div class="iot-info"><div class="iot-name">CO₂ sensor</div><div class="iot-status">MH-Z19B · ±50 ppm</div></div></div>
-        <div class="iot-node"><div class="iot-dot" style="background:#4db3ff;animation:blink 2.2s infinite;"></div><div class="iot-info"><div class="iot-name">PIR occupancy</div><div class="iot-status">HC-SR501 · active</div></div></div>
-        <div class="iot-node"><div class="iot-dot" style="background:#22c97a;animation:blink 2.6s infinite;"></div><div class="iot-info"><div class="iot-name">AI controller</div><div class="iot-status" id="iot-ai-status">RPi 4B · LSTM</div></div></div>
-      </div>
-    </div>
+    </section>
 
-    <div class="side-block">
-      <div class="panel-label">Room dimensions</div>
-      <div class="ctrl-row">
-        <div class="ctrl-head">
-          <span class="ctrl-name">Length</span>
-          <span class="ctrl-val-disp" id="lbl-len">5 m</span>
+    <!-- 7. Why Choose Us -->
+    <section class="trust-section section-light clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Why Choose <span>Buffet Bhai?</span></h2>
+            </div>
+
+            <div class="trust-grid">
+                <div class="trust-item animate-on-scroll">
+                    <div class="trust-icon">🏆</div>
+                    <div class="trust-content">
+                        <h4>Serving Delhi NCR</h4>
+                        <p>Delivering unforgettable dawaats and premium catering experiences across the NCR.</p>
+                    </div>
+                </div>
+                <div class="trust-item animate-on-scroll" style="transition-delay: 0.1s">
+                    <div class="trust-icon">⏱️</div>
+                    <div class="trust-content">
+                        <h4>On-Time, Every Time</h4>
+                        <p>Your food arrives hot before your first guest. Guaranteed.</p>
+                    </div>
+                </div>
+                <div class="trust-item animate-on-scroll" style="transition-delay: 0.2s">
+                    <div class="trust-icon">🌶️</div>
+                    <div class="trust-content">
+                        <h4>Authentic Delhi Flavors</h4>
+                        <p>Recipes perfected over decades. Ghee ka tadka included.</p>
+                    </div>
+                </div>
+                <div class="trust-item animate-on-scroll">
+                    <div class="trust-icon">💸</div>
+                    <div class="trust-content">
+                        <h4>100% Transparency</h4>
+                        <p>No hidden charges. Full transparency from quote to delivery.</p>
+                    </div>
+                </div>
+                <div class="trust-item animate-on-scroll" style="transition-delay: 0.1s">
+                    <div class="trust-icon">🎁</div>
+                    <div class="trust-content">
+                        <h4>Everything Included</h4>
+                        <p>Disposables, containers, cutlery — nothing extra to arrange.</p>
+                    </div>
+                </div>
+                <div class="trust-item animate-on-scroll" style="transition-delay: 0.2s">
+                    <div class="trust-icon">📱</div>
+                    <div class="trust-content">
+                        <h4>Direct on WhatsApp</h4>
+                        <p>Order, track, inquire — all on WhatsApp. No app downloads.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <input type="range" min="3" max="15" value="5" step="0.5" id="sl-len" oninput="handleRoom()"/>
-      </div>
-      <div class="ctrl-row">
-        <div class="ctrl-head">
-          <span class="ctrl-name">Width</span>
-          <span class="ctrl-val-disp" id="lbl-wid">4 m</span>
+    </section>
+
+    <!-- 8. How It Works -->
+    <section id="how-it-works" class="steps-section section-dark clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Three Steps. <span class="text-primary">One Amazing Daawat.</span></h2>
+            </div>
+
+            <div class="steps-container">
+                <div class="step animate-on-scroll">
+                    <div class="step-number">01<span>1</span></div>
+                    <div class="step-content">
+                        <h3>Tell Us Your Needs</h3>
+                        <p>Tell us your guest count, date, and whether you want veg or non-veg. Takes 2 minutes on
+                            WhatsApp.</p>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-number">02<span>2</span></div>
+                    <div class="step-content">
+                        <h3>Finalize Your Menu</h3>
+                        <p>We send you a customized menu + quote within 1 hour. Confirm with 50% advance.</p>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-number">03<span>3</span></div>
+                    <div class="step-content">
+                        <h3>Be the Host, Just Relax</h3>
+                        <p>We deliver piping hot food. You greet guests, take compliments, and enjoy the party.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <input type="range" min="3" max="12" value="4" step="0.5" id="sl-wid" oninput="handleRoom()"/>
-      </div>
-      <div class="ctrl-row">
-        <div class="ctrl-head">
-          <span class="ctrl-name">Ceiling height</span>
-          <span class="ctrl-val-disp" id="lbl-ht">3 m</span>
+    </section>
+
+    <!-- 9. Testimonials Section -->
+    <section id="reviews" class="testimonials-section section-light clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>What Our <span>Clients Say</span></h2>
+            </div>
+
+            <div class="testimonials-carousel animate-on-scroll">
+                <div class="testimonial-card section-dark">
+                    <i data-lucide="quote" class="quote-icon"></i>
+                    <p class="testimonial-text">"Bete ki birthday pe 40 log aaye. Buffet Bhai ne poora setup bhi karwa
+                        diya, khana toh lajawab tha. Mummy ne pucha kaun sa restaurant tha!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div class="author-info">
+                            <h4>Ritu Aggarwal</h4>
+                            <p>Dwarka, Delhi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card section-dark">
+                    <i data-lucide="quote" class="quote-icon"></i>
+                    <p class="testimonial-text">"Office farewell tha, 60 log. Finger foods se leke biryani tak sab kuch
+                        perfect. Delivery bhi time pe. Recommend karna toh banega hi."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <h4>Siddharth Kapoor</h4>
+                            <p>Gurugram</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card section-dark">
+                    <i data-lucide="quote" class="quote-icon"></i>
+                    <p class="testimonial-text">"Puja ke liye no-onion-garlic package liya. Halwa, kheer, paneer, dal —
+                        sab saatvik aur delicious. Panditji bhi impressed ho gaye!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <h4>Savita Nair</h4>
+                            <p>Noida Sector 50</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card section-dark">
+                    <i data-lucide="quote" class="quote-icon"></i>
+                    <p class="testimonial-text">"Meri anniversary ka surprise plan kiya tha. Buffet Bhai ne itna perfect
+                        khana diya, biwi khush, sas khush, main khush."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div class="author-info">
+                            <h4>Rahul Mehta</h4>
+                            <p>Greater Noida</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card section-dark">
+                    <i data-lucide="quote" class="quote-icon"></i>
+                    <p class="testimonial-text">"Tried 3 caterers before finding these guys. Koi mukaabla nahi. Taste,
+                        quantity, packaging — sab best."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">T</div>
+                        <div class="author-info">
+                            <h4>Tanvi Suri</h4>
+                            <p>Vasant Kunj, Delhi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <input type="range" min="2.4" max="5" value="3" step="0.1" id="sl-ht" oninput="handleRoom()"/>
-      </div>
-      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 10px;font-size:10px;font-family:var(--mono);color:var(--text3);line-height:1.8;margin-bottom:4px;">
-        <div>Floor area: <span style="color:var(--green);" id="lbl-area">20.0 m²</span></div>
-        <div>Wall area: <span style="color:var(--text2);" id="lbl-walla">50.0 m²</span> (net of window)</div>
-        <div>Volume: <span style="color:var(--text2);" id="lbl-vol">60.0 m³</span></div>
-      </div>
-    </div>
+    </section>
 
-    <div class="side-block">
-      <div class="panel-label">Environment controls</div>
-      <div class="ctrl-row">
-        <div class="ctrl-head">
-          <span class="ctrl-name">Outdoor temperature</span>
-          <span class="ctrl-val-disp" id="lbl-out">38°C</span>
+    <!-- 10. FAQ Section -->
+    <section id="faq" class="faq-section section-light clip-diagonal-bottom">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Have Some <span>Questions?</span></h2>
+            </div>
+
+            <div class="faq-container animate-on-scroll">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is your minimum guest requirement?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Minimum 10 guests. Maximum? We cater for up to 300+ guests at home events.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can the menu be customized?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely. Veg, non-veg, saatvik, jain, no-onion-garlic — everything is possible. Just let us
+                        know.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How far in advance should I book?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        24 hours advance preferred, but same-day orders are also possible (subject to availability).
+                        Contact us on WhatsApp.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Are there separate delivery charges?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Delivery charges are clearly mentioned in the quote based on your location. There are no hidden
+                        charges.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Will the food arrive hot?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes. We use heat-retentive premium packaging, so your food arrives oven-fresh.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Are plates, spoons, and napkins included?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes. Premium eco-friendly disposables are included in all packages.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is tasting possible?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! You can order a sample thali or contact us on WhatsApp to arrange a tasting.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is the advance payment for booking?
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        50% advance at booking, the rest on delivery. UPI, bank transfer, and cash are accepted.
+                    </div>
+                </div>
+            </div>
         </div>
-        <input type="range" min="20" max="48" value="38" step="1" id="sl-out" oninput="handleCtrl()"/>
-      </div>
-      <div class="ctrl-row">
-        <div class="ctrl-head">
-          <span class="ctrl-name">Solar radiation</span>
-          <span class="ctrl-val-disp" id="lbl-solar">High (700 W/m²)</span>
+    </section>
+
+    <!-- 11. Final CTA Section -->
+    <section class="final-cta section-light clip-diagonal-top">
+        <div class="container">
+            <div class="cta-container animate-on-scroll" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px;">
+                <div class="cta-content" style="text-align: center; max-width: 800px; width: 100%;">
+                    <h2>Is Weekend Ki Dawaat <span class="text-primary">Confirm Kar Lo</span></h2>
+                    <p>Slots fill up fast, especially on weekends. Ek WhatsApp message bhejo — hum baaki sambhal lete
+                        hain.</p>
+                    <div class="cta-buttons" style="flex-direction: row; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                        <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
+                            class="btn btn-whatsapp btn-pulse" target="_blank"
+                            style="font-size: 1.3rem; padding: 1.2rem 2rem;">
+                            <img src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg" alt="WhatsApp"
+                                style="width: 24px; height: 24px;"> Book Now
+                        </a>
+                        <a href="tel:+919643968546" class="btn btn-pulse"
+                            style="font-size: 1.3rem; padding: 1.2rem 2rem; background-color: #28a745; color: white; border: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-weight: 600; border-radius: 50px;">
+                            <i data-lucide="phone"></i> Call Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="areas-served animate-on-scroll">
+                <span class="area-tag">Delhi</span> •
+                <span class="area-tag">Gurugram</span> •
+                <span class="area-tag">Noida</span> •
+                <span class="area-tag">Greater Noida</span> •
+                <span class="area-tag">Ghaziabad</span> •
+                <span class="area-tag">Faridabad</span>
+            </div>
         </div>
-        <input type="range" min="0" max="1000" value="700" step="10" id="sl-solar" oninput="handleCtrl()"/>
-      </div>
-      <div class="ctrl-row">
-        <div class="ctrl-head">
-          <span class="ctrl-name">Occupants in room</span>
-          <span class="ctrl-val-disp" id="lbl-occ">2 people</span>
+    </section>
+
+    <!-- 12. Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo" style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+                <img src="images/brand logo/logo.png" alt="The Buffet Bhai Logo" style="height: 80px; width: auto;">
+                The Buffet Bhai
+            </div>
+            <div class="footer-tagline">"Apka Buffet, Apki Shaan."</div>
+
+            <div class="footer-links">
+                <a href="#packages">Packages</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#faq">FAQ</a>
+                <a href="#reviews">Reviews</a>
+            </div>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com/thebuffetbhai?igsh=ZXVrdWxpbHFnMGV6&utm_source=qr"
+                    class="social-icon" target="_blank"><img src="images/social logos/instagram-svgrepo-com.svg"
+                        style="width: 24px; height: 24px;"></a>
+                <a href="https://www.facebook.com/share/18NHys7xiu/?mibextid=wwXIfr" class="social-icon"
+                    target="_blank"><img src="images/social logos/facebook-svgrepo-com.svg"
+                        style="width: 24px; height: 24px;"></a>
+                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
+                    class="social-icon" target="_blank"><img
+                        src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg"
+                        style="width: 24px; height: 24px;"></a>
+            </div>
+
+            <div class="footer-bottom">
+                &copy; 2026 The Buffet Bhai. All rights reserved. Serving Delhi NCR since 2026.
+            </div>
         </div>
-        <div class="occ-row">
-          <button class="occ-btn" onclick="setOcc(0)">0</button>
-          <button class="occ-btn occ-active" onclick="setOcc(2)">2</button>
-          <button class="occ-btn" onclick="setOcc(5)">5</button>
-          <button class="occ-btn" onclick="setOcc(10)">10</button>
-          <button class="occ-btn" onclick="setOcc(20)">20</button>
+    </footer>
+
+    <!-- Floating Elements -->
+    <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
+        class="fab-whatsapp" target="_blank" aria-label="WhatsApp Us">
+        <img src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg" alt="WhatsApp"
+            style="width: 30px; height: 30px;">
+    </a>
+
+    <!-- <div class="mobile-sticky-bar">
+        <div style="display: flex; gap: 10px;">
+            <a href="#packages" class="btn btn-secondary" style="flex: 1;">Order Karo</a>
+            <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
+                class="btn btn-whatsapp btn-pulse" style="flex: 1;" target="_blank"><img src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg" alt="WhatsApp" style="width: 18px; height: 18px;"> Book Now</a>
         </div>
-      </div>
-      <div class="setpoint-row">
-        <label>Target setpoint (°C)</label>
-        <input type="number" id="inp-setpoint" value="24" min="18" max="30" oninput="handleCtrl()"/>
-      </div>
-      
-      <div class="panel-label" style="margin-top:16px;">Experiment Mode</div>
-      <div style="display:flex;flex-direction:column;gap:6px;">
-        <div style="display:flex;gap:6px;">
-          <button class="occ-btn" style="flex:1;" onclick="setScenario('high_occ')">High occupancy</button>
-          <button class="occ-btn" style="flex:1;" onclick="setScenario('extreme_heat')">Extreme heat</button>
-        </div>
-        <div style="display:flex;gap:6px;">
-          <button class="occ-btn" style="flex:1;" onclick="setScenario('night')">Night mode</button>
-          <button class="occ-btn occ-active" style="flex:1;" onclick="setScenario('reset')" id="btn-scen-reset">Live Sim</button>
-        </div>
-      </div>
-    </div>
+    </div> -->
 
-    <div class="side-block">
-      <div class="panel-label">System Performance Score</div>
-      <div class="perf-score-row">
-        <span class="perf-score-label">Energy Efficiency</span>
-        <span class="perf-score-val" id="score-energy" style="color:var(--green);">87%</span>
-      </div>
-      <div class="perf-bar-bg"><div class="perf-bar-fill" id="sbar-energy" style="width:87%;background:var(--green);"></div></div>
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
 
-      <div class="perf-score-row">
-        <span class="perf-score-label">Comfort Stability</span>
-        <span class="perf-score-val" id="score-comfort" style="color:var(--green);">92%</span>
-      </div>
-      <div class="perf-bar-bg"><div class="perf-bar-fill" id="sbar-comfort" style="width:92%;background:var(--green);"></div></div>
+        // Sticky Nav & Scroll Animations
+        const header = document.getElementById('header');
+        const scrollElements = document.querySelectorAll('.animate-on-scroll');
 
-      <div class="perf-score-row">
-        <span class="perf-score-label">Air Quality</span>
-        <span class="perf-score-val" id="score-iaq" style="color:var(--green);">89%</span>
-      </div>
-      <div class="perf-bar-bg"><div class="perf-bar-fill" id="sbar-iaq" style="width:89%;background:var(--green);"></div></div>
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend);
+        };
 
-      <div style="height:1px;background:var(--border);margin:10px 0;"></div>
-      <div class="perf-score-row" style="margin-bottom:0;">
-        <span class="perf-score-label" style="font-weight:600;color:var(--text);">OVERALL RATING</span>
-        <span class="perf-score-val" id="score-overall" style="color:var(--green);font-size:16px;">89/100</span>
-      </div>
-    </div>
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
 
-  </div><!-- end sidebar -->
+        const handleScrollAnimation = () => {
+            // Sticky Header
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
 
-  <!-- ======= RIGHT: METRICS STRIP ======= -->
-  <div class="metrics-strip">
-    <div class="m-card">
-      <div class="m-label">Indoor temp</div>
-      <div class="m-val" id="m-temp">24.1°C</div>
-      <div class="m-sub" id="m-temp-sub">Setpoint: 24°C · dev. ±0.1°</div>
-    </div>
-    <div class="m-card">
-      <div class="m-label">COP (live)</div>
-      <div class="m-val" id="m-cop">3.2</div>
-      <div class="m-sub" id="m-cop-sub">Carnot COP: 5.1 · η 63%</div>
-    </div>
-    <div class="m-card">
-      <div class="m-label">Current power draw</div>
-      <div class="m-val" id="m-power">1.8 kW</div>
-      <div class="m-sub" id="m-pow-sub">Duty cycle: 60%</div>
-    </div>
-    <div class="m-card">
-      <div class="m-label">Energy saved today</div>
-      <div class="m-val good" id="m-saved">1.46 kWh</div>
-      <div class="m-sub good" id="m-sav-sub">vs traditional · simulation baseline</div>
-    </div>
-  </div>
+            // Fade in elements
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.1)) {
+                    displayScrollElement(el);
+                }
+            })
+        }
 
-  <!-- ======= CHARTS ======= -->
-  <div class="charts-area">
-    <div class="chart-panel">
-      <div class="panel-title">Temperature trend — 30-minute window</div>
-      <div class="panel-sub" style="margin-bottom:10px;">AI prediction vs actual vs traditional thermostat (simulation)</div>
-      <div class="legend">
-        <div class="leg-item"><div class="leg-sq" style="background:none;width:16px;border-top:2px dashed #22c97a;"></div> AI prediction</div>
-        <div class="leg-item"><div class="leg-sq" style="background:#4db3ff;"></div> AI actual</div>
-        <div class="leg-item"><div class="leg-sq" style="background:#ff5c5c;"></div> Traditional sim</div>
-      </div>
-      <div class="canvas-wrap" style="height:210px;">
-        <canvas id="chartTemp" role="img" aria-label="Temperature trend chart"></canvas>
-      </div>
-    </div>
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
 
-    <div class="chart-panel">
-      <div class="panel-title">Indoor air quality — CO₂ & humidity</div>
-      <div class="panel-sub" style="margin-bottom:10px;">AI dynamic ventilation vs traditional fixed schedule</div>
-      <div class="legend">
-        <div class="leg-item"><div class="leg-sq" style="background:#22c97a;"></div> CO₂ AI-ctrl</div>
-        <div class="leg-item"><div class="leg-sq" style="background:#ff5c5c;"></div> CO₂ traditional</div>
-        <div class="leg-item"><div class="leg-sq" style="background:#4db3ff;"></div> Humidity (%)</div>
-      </div>
-      <div class="canvas-wrap" style="height:210px;">
-        <canvas id="chartIAQ" role="img" aria-label="CO2 and humidity chart"></canvas>
-      </div>
-    </div>
+        // Trigger once on load
+        handleScrollAnimation();
 
-    <div class="chart-panel">
-      <div class="panel-title">Model Validation & Error Bound</div>
-      <div class="panel-sub" style="margin-bottom:10px;">Predicted vs Actual with ±RMSE shaded region</div>
-      <div class="legend">
-        <div class="leg-item"><div class="leg-sq" style="background:#22c97a;"></div> Predicted</div>
-        <div class="leg-item"><div class="leg-sq" style="background:#fff;border-top:1px solid #4a6655;"></div> Actual</div>
-        <div class="leg-item"><div class="leg-sq" style="background:rgba(34,201,122,0.15);height:10px;"></div> ±0.38°C RMSE</div>
-      </div>
-      <div class="canvas-wrap" style="height:210px;">
-        <canvas id="chartValidation" role="img" aria-label="Validation chart"></canvas>
-      </div>
-    </div>
-  </div>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        mobileMenuBtn.addEventListener('click', () => {
+            header.classList.toggle('nav-active');
+        });
 
-  <!-- ======= ME ENGINEERING PANEL ======= -->
-  <div class="me-area">
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                header.classList.remove('nav-active');
+            });
+        });
 
-    <!-- Block 1: VCR Cycle + COP -->
-    <div class="me-block">
-      <div class="panel-label">Refrigeration cycle analysis</div>
-      <span class="badge-scope">Vapour-Compression (R-410A)</span>
-      <div class="cop-dial">
-        <div class="cop-label">Coefficient of Performance</div>
-        <div class="cop-val" id="me-cop">3.2</div>
-        <div style="font-size:10px;font-family:var(--mono);color:var(--text3);">COP = Q<sub>L</sub> / W<sub>net</sub></div>
-      </div>
-      <div style="margin-bottom:8px;">
-        <div class="vcr-row"><span class="vcr-key">Evap. temp (T_L)</span><span class="vcr-val g" id="me-tevap">7.0°C</span></div>
-        <div class="vcr-row"><span class="vcr-key">Cond. temp (T_H)</span><span class="vcr-val a" id="me-tcond">50.0°C</span></div>
-        <div class="vcr-row"><span class="vcr-key">Carnot COP</span><span class="vcr-val" id="me-carnot">5.1</span></div>
-        <div class="vcr-row"><span class="vcr-key">Isentropic eff. η</span><span class="vcr-val" id="me-eta">63%</span></div>
-        <div class="vcr-row"><span class="vcr-key">Cooling capacity Q_L</span><span class="vcr-val g" id="me-ql">5.1 kW</span></div>
-        <div class="vcr-row"><span class="vcr-key">Compressor work W</span><span class="vcr-val" id="me-work">1.6 kW</span></div>
-        <div class="vcr-row"><span class="vcr-key">Condenser reject Q_H</span><span class="vcr-val a" id="me-qh">6.7 kW</span></div>
-      </div>
-      <div style="font-size:9px;font-family:var(--mono);color:var(--text3);">Ref: Cengel & Boles — Thermodynamics, 8th ed.</div>
-    </div>
+        // Tabs Logic
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
 
-    <!-- Block 2: Psychrometrics + Heat Load -->
-    <div class="me-block">
-      <div class="panel-label">Heat load & psychrometrics</div>
-      <span class="badge-scope">ASHRAE Fundamentals 2021</span>
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active classes
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
 
-      <div style="margin-bottom:12px;">
-        <div style="font-size:11px;color:var(--text2);margin-bottom:6px;font-weight:500;">Room heat load breakdown</div>
-        <div id="hl-rows"></div>
-        <div style="border-top:1px solid var(--border);margin-top:6px;padding-top:6px;display:flex;justify-content:space-between;font-size:12px;">
-          <span style="color:var(--text2);font-family:var(--mono);">Total Q_total</span>
-          <span style="color:var(--green);font-family:var(--mono);font-weight:500;" id="hl-total">0 W</span>
-        </div>
-      </div>
+                // Add active class to clicked button
+                btn.classList.add('active');
 
-      <div style="font-size:11px;color:var(--text2);margin-bottom:6px;font-weight:500;">Psychrometric state</div>
-      <div class="vcr-row"><span class="vcr-key">Dry-bulb (T_db)</span><span class="vcr-val g" id="ps-tdb">24.1°C</span></div>
-      <div class="vcr-row"><span class="vcr-key">Wet-bulb (T_wb)</span><span class="vcr-val" id="ps-twb">17.8°C</span></div>
-      <div class="vcr-row"><span class="vcr-key">Specific humidity (ω)</span><span class="vcr-val" id="ps-omega">9.4 g/kg</span></div>
-      <div class="vcr-row"><span class="vcr-key">Enthalpy (h)</span><span class="vcr-val" id="ps-enthalpy">48.1 kJ/kg</span></div>
-      <div class="vcr-row"><span class="vcr-key">Dew point (T_dp)</span><span class="vcr-val" id="ps-tdp">13.5°C</span></div>
-    </div>
+                // Show corresponding content
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById('tab-' + tabId).classList.add('active');
+            });
+        });
 
-    <!-- Block 3: Uncertainty + Error Analysis -->
-    <div class="me-block">
-      <div class="panel-label">Uncertainty & error analysis</div>
-      <span class="badge-warn">Prototype scope — single zone</span>
+        // Package Card Flip Logic for Mobile
+        const packageCards = document.querySelectorAll('.package-card');
+        packageCards.forEach(card => {
+            card.addEventListener('click', () => {
+                if (window.innerWidth <= 770) {
+                    card.classList.toggle('flipped');
+                }
+            });
+        });
 
-      <div style="font-size:11px;color:var(--text2);margin-bottom:8px;font-weight:500;">Sensor uncertainty (95% CI)</div>
-      <div class="err-row">
-        <span class="err-key">Temperature (DHT22)</span>
-        <div style="text-align:right;">
-          <div class="err-val" id="u-temp">24.1°C</div>
-          <div class="err-ci">± 0.5°C (k=2)</div>
-        </div>
-      </div>
-      <div class="err-row">
-        <span class="err-key">Humidity (DHT22)</span>
-        <div style="text-align:right;">
-          <div class="err-val" id="u-hum">52%</div>
-          <div class="err-ci">± 2% RH (k=2)</div>
-        </div>
-      </div>
-      <div class="err-row">
-        <span class="err-key">CO₂ (MH-Z19B)</span>
-        <div style="text-align:right;">
-          <div class="err-val" id="u-co2">620 ppm</div>
-          <div class="err-ci">± 50 ppm (k=2)</div>
-        </div>
-      </div>
+        // FAQ Accordion Logic
+        const faqItems = document.querySelectorAll('.faq-item');
 
-      <div style="font-size:11px;color:var(--text2);margin:10px 0 8px;font-weight:500;">Data Transparency & Provenance</div>
-      <div class="err-row">
-        <span class="err-key">Dataset Source</span>
-        <span class="err-val" style="color:var(--text2);font-size:10px;">EnergyPlus 8760 h</span>
-      </div>
-      <div class="err-row">
-        <span class="err-key">Weather Data</span>
-        <div style="text-align:right;">
-          <div class="err-val">Delhi TMY</div>
-        </div>
-      </div>
-      <div class="err-row">
-        <span class="err-key">Validation</span>
-        <div style="text-align:right;">
-          <div class="err-val">5-fold cross-val</div>
-        </div>
-      </div>
-      
-      <div style="font-size:11px;color:var(--text2);margin:10px 0 8px;font-weight:500;">Model Validation</div>
-      <div class="err-row">
-        <span class="err-key">RMSE</span>
-        <div style="text-align:right;">
-          <div class="err-val">0.38°C</div>
-          <div class="err-ci">95% CI: [0.31, 0.45]°C</div>
-        </div>
-      </div>
-      <div class="err-row">
-        <span class="err-key">R² score</span>
-        <div style="text-align:right;">
-          <div class="err-val" id="r2-score">0.943</div>
-        </div>
-      </div>
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
 
-      <div style="margin-top:10px;font-size:9px;font-family:var(--mono);color:var(--text3);line-height:1.6;border:1px solid rgba(240,168,48,0.3);padding:6px;border-radius:4px;background:rgba(240,168,48,0.05);">
-        <strong style="color:var(--amber);">Limitations:</strong><br/>
-        • Single-zone model only.<br/>
-        • Simplified heat transfer assumptions.<br/>
-        • AI trained on simulated data, not live field data.
-      </div>
-    </div>
+                // Close all other items
+                faqItems.forEach(faq => faq.classList.remove('active'));
 
-  </div><!-- end me-area -->
-
-  <!-- ======= ENERGY ======= -->
-  <div class="energy-area">
-    <div class="energy-block">
-      <div class="e-header">
-        <div>
-          <div class="panel-title">AI-Assisted HVAC</div>
-          <div class="panel-sub">8-hour operation (simulated)</div>
-        </div>
-        <div class="saving-pill" id="saving-pill">−15–21% energy</div>
-      </div>
-      <div class="big-bar-wrap">
-        <div class="big-bar-label"><span>Energy consumed</span><span id="e-ai-kwh" style="color:#22c97a;">6.5 kWh</span></div>
-        <div class="big-bar-bg"><div class="big-bar-fill" id="bar-ai" style="width:65%;background:#22c97a;"></div></div>
-      </div>
-      <div class="big-bar-wrap">
-        <div class="big-bar-label"><span>Compressor runtime</span><span style="color:#22c97a;" id="e-ai-runtime">5.2 hrs</span></div>
-        <div class="big-bar-bg"><div class="big-bar-fill" id="bar-ai-rt" style="width:65%;background:#22c97a;opacity:0.5;"></div></div>
-      </div>
-      <div style="margin-top:10px;">
-        <div class="canvas-wrap" style="height:90px;">
-          <canvas id="chartEnergy" role="img" aria-label="Hourly energy consumption comparison"></canvas>
-        </div>
-      </div>
-    </div>
-
-    <div class="energy-block">
-      <div class="e-header">
-        <div>
-          <div class="panel-title">Traditional Thermostat</div>
-          <div class="panel-sub">8-hour operation (simulated)</div>
-        </div>
-      </div>
-      <div class="big-bar-wrap">
-        <div class="big-bar-label"><span>Energy consumed</span><span id="e-trad-kwh" style="color:#ff5c5c;">7.96 kWh</span></div>
-        <div class="big-bar-bg"><div class="big-bar-fill" id="bar-trad" style="width:80%;background:#ff5c5c;"></div></div>
-      </div>
-      <div class="big-bar-wrap">
-        <div class="big-bar-label"><span>Compressor runtime</span><span style="color:#ff5c5c;" id="e-trad-runtime">7.1 hrs</span></div>
-        <div class="big-bar-bg"><div class="big-bar-fill" id="bar-trad-rt" style="width:89%;background:#ff5c5c;opacity:0.5;"></div></div>
-      </div>
-      <div style="margin-top:14px;font-size:11px;color:var(--text3);font-family:var(--mono);line-height:1.8;">
-        <div>Compressor cycles: <span style="color:#ff5c5c;" id="e-trad-cyc">9 / hr</span></div>
-        <div>Temp deviation: <span style="color:#ff5c5c;" id="e-trad-dev">±1.8°C</span></div>
-        <div>Humidity control: <span style="color:#ff5c5c;">None</span></div>
-        <div>Baseline type: <span style="color:var(--amber);">EnergyPlus simulation</span></div>
-      </div>
-    </div>
-
-    <div class="energy-block">
-      <div class="panel-title">Cost & ROI Analysis</div>
-      <div class="panel-sub" style="margin-bottom:14px;">Annual projection · ₹7/kWh commercial · simulated baseline</div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div style="display:flex;justify-content:space-between;font-size:12px;">
-          <span style="color:var(--text3);">Annual AI energy cost</span>
-          <span style="font-family:var(--mono);color:#22c97a;" id="roi-ai">₹16,606</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;">
-          <span style="color:var(--text3);">Annual traditional cost</span>
-          <span style="font-family:var(--mono);color:#ff5c5c;" id="roi-trad">₹20,337</span>
-        </div>
-        <div style="height:1px;background:var(--border);margin:4px 0;"></div>
-        <div style="display:flex;justify-content:space-between;font-size:13px;">
-          <span style="color:var(--text2);font-weight:500;">Annual savings</span>
-          <span style="font-family:var(--mono);color:#22c97a;font-weight:500;" id="roi-save">₹3,731</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;">
-          <span style="color:var(--text3);">Payback period</span>
-          <span style="font-family:var(--mono);color:#f0a830;" id="roi-payback">~8 months</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;">
-          <span style="color:var(--text3);">CO₂ emissions saved</span>
-          <span style="font-family:var(--mono);color:#22c97a;" id="roi-co2">547 kg/yr</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;">
-          <span style="color:var(--text3);">Emission factor</span>
-          <span style="font-family:var(--mono);color:var(--text2);">0.82 kgCO₂/kWh (CEA 2023)</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;">
-          <span style="color:var(--text3);">PMV improvement</span>
-          <span style="font-family:var(--mono);color:#22c97a;" id="roi-pmv">+68% stability</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======= ARCHITECTURE & CONTROL STRATEGY ======= -->
-  <div class="arch-area">
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:1px;">
-      <div class="arch-block">
-        <div class="panel-title">System Architecture</div>
-        <div class="panel-sub">Animated flow of AI pipeline</div>
-        <div class="arch-flow">
-          <div class="arch-node"><div class="arch-node-title">Sensors</div><div class="arch-node-sub">DHT22, MH-Z19B</div></div>
-          <div class="arch-arrow"><div class="arch-arrow-flow"></div></div>
-          <div class="arch-node"><div class="arch-node-title">Processing</div><div class="arch-node-sub">Noise filter, Normalize</div></div>
-          <div class="arch-arrow"><div class="arch-arrow-flow" style="animation-delay:0.5s;"></div></div>
-          <div class="arch-node ai-node"><div class="arch-node-title" style="color:var(--green);">LSTM Model</div><div class="arch-node-sub">Predict & Optmize</div></div>
-          <div class="arch-arrow"><div class="arch-arrow-flow" style="animation-delay:1s;"></div></div>
-          <div class="arch-node"><div class="arch-node-title">Controller</div><div class="arch-node-sub">RPi GPIO, PWM</div></div>
-          <div class="arch-arrow"><div class="arch-arrow-flow" style="animation-delay:1.5s;"></div></div>
-          <div class="arch-node"><div class="arch-node-title">HVAC Unit</div><div class="arch-node-sub">VCR & Damper</div></div>
-        </div>
-      </div>
-      
-      <div class="arch-block">
-        <div class="panel-title">Control Strategy</div>
-        <div class="panel-sub">AI vs Traditional</div>
-        <div style="background:var(--bg3);border:1px solid var(--green3);border-radius:6px;padding:12px;margin-top:10px;">
-          <div style="font-size:11px;color:var(--green);font-weight:600;margin-bottom:4px;">AI Mode:</div>
-          <div style="font-size:11px;font-family:var(--mono);color:var(--text);display:flex;align-items:center;gap:6px;">
-            Predict <span style="color:var(--text3);">→</span> Adjust <span style="color:var(--text3);">→</span> Stabilize
-          </div>
-        </div>
-        <div style="background:var(--bg3);border:1px solid rgba(255,92,92,0.3);border-radius:6px;padding:12px;margin-top:8px;">
-          <div style="font-size:11px;color:var(--red);font-weight:600;margin-bottom:4px;">Traditional:</div>
-          <div style="font-size:11px;font-family:var(--mono);color:var(--text);display:flex;align-items:center;gap:6px;">
-            Overshoot <span style="color:var(--text3);">→</span> React <span style="color:var(--text3);">→</span> Oscillate
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div><!-- end main grid -->
-
-<!-- AI Decision Log -->
-<div style="background:var(--bg2);border-top:1px solid var(--border);padding:1rem 1.5rem;">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-    <div class="panel-label" style="margin-bottom:0;">AI decision log</div>
-    <div style="font-size:10px;font-family:var(--mono);color:var(--text3);" id="log-count">0 events</div>
-  </div>
-  <div class="log-list" id="log-list" style="max-height:120px;overflow-y:auto;"></div>
-</div>
-
-<footer class="footer">
-  <span>SmartHVAC.ai · AI-Assisted HVAC System · B.Tech Major Project · Delhi Technological University · Dept. of Mechanical Engineering · 2025–26</span>
-  <span>Aakash Kumar (2K22/ME/02) · Abhinav Rewalia (2K22/ME/08) · Abhishek Singla (2K22/ME/11) · Supervisor: Prof. Subhashish Maji</span>
-</footer>
-
-</div><!-- end shell -->
-
-<script>
-let mode='ai', occ=2, tick=0, logs=[];
-let chartTemp, chartIAQ, chartEnergy, chartValidation;
-const MAX_LOGS=40;
-
-/* ── ASHRAE 55 / CIBSE constants ── */
-const MET=1.2, CLO=0.5;
-
-/* ── HEAT LOAD CONSTANTS (Delhi climate, NBC 2016 / ASHRAE 90.1) ── */
-const WALL_U=0.45; // W/m²K brick+plaster
-const ROOF_U=0.40;
-const WIN_U=2.8;   // single glaze
-const WIN_SHGC=0.65;
-const WIN_A=4;     // fixed window area m²
-const ROOM_H=3;    // default ceiling height m
-const PERSON_SENSIBLE=75; // W/person ASHRAE Fundamentals Table 1
-const PERSON_LATENT=55;
-const LIGHTING_DENSITY=8;  // W/m²
-const EQUIP_DENSITY=6;     // W/m²
-
-/* ── LOG MESSAGES ── */
-const AI_MSGS=[
-  'Occupancy rise detected — pre-cooling initiated 10 min early',
-  'CO₂ trend: +14 ppm/min — ventilation damper opened 30%',
-  'Solar gain peak predicted at 14:30 — load forecast updated',
-  'Compressor duty cycle reduced to 55% — temperature stable',
-  'LSTM confidence: 94.2% on validation set — monitoring',
-  'Outdoor temp drop predicted — reducing cooling load proactively',
-  'Humidity within range — dehumidifier bypassed, saving 0.3 kWh',
-  'Peak load window 15:00–16:30 — pre-cool cycle scheduled',
-  'Fan modulated: 1200 → 900 RPM — comfort index maintained',
-  'Occupancy pattern learned — ETA 09:00 start time predicted',
-  'Thermal mass model updated — wall temperature factored in',
-  'CO₂ below threshold — fresh-air intake reduced to save energy',
-];
-const TRAD_MSGS=[
-  'Thermostat: 25°C exceeded — compressor switched ON',
-  'Thermostat: below 23°C — compressor switched OFF',
-  'Short-cycle event: ON→OFF in 3 min (compressor stress)',
-  'High humidity undetected — no ventilation adjustment made',
-  'CO₂ at 1080 ppm — no response (no IAQ sensor)',
-  'Thermostat cycling: 11 ON/OFF events this hour',
-  'Temperature overshoot: 26.4°C before compressor engaged',
-];
-
-/* ── CLOCK ── */
-function updateClock(){
-  const n=new Date();
-  document.getElementById('clock').textContent=
-    String(n.getHours()).padStart(2,'0')+':'+
-    String(n.getMinutes()).padStart(2,'0')+':'+
-    String(n.getSeconds()).padStart(2,'0');
-}
-setInterval(updateClock,1000); updateClock();
-
-/* ── PARAMS ── */
-function getParams(){
-  const len=+document.getElementById('sl-len').value||5;
-  const wid=+document.getElementById('sl-wid').value||4;
-  const ht=+document.getElementById('sl-ht').value||3;
-  const floorA=+(len*wid).toFixed(2);
-  const wallA=+(2*(len+wid)*ht - WIN_A).toFixed(2);
-  return{
-    out:+document.getElementById('sl-out').value,
-    solar:+document.getElementById('sl-solar').value,
-    sp:+document.getElementById('inp-setpoint').value||24,
-    occ, len, wid, ht, floorA, wallA
-  };
-}
-
-/* ── PSYCHROMETRICS (ASHRAE Fundamentals Ch. 1) ── */
-function psychro(tdb, rh){
-  const pws=0.6108*Math.exp(17.27*tdb/(tdb+237.3)); // kPa Antoine
-  const pw=rh/100*pws;
-  const omega=0.622*pw/(101.325-pw)*1000; // g/kg
-  const h=1.006*tdb+omega/1000*(2501+1.86*tdb); // kJ/kg
-  const twb=tdb*Math.atan(0.151977*Math.sqrt(rh+8.313659))
-           +Math.atan(tdb+rh)-Math.atan(rh-1.676331)
-           +0.00391838*Math.pow(rh,1.5)*Math.atan(0.023101*rh)-4.686035;
-  const tdp=243.04*(Math.log(rh/100)+17.625*tdb/(243.04+tdb))
-           /(17.625-Math.log(rh/100)-17.625*tdb/(243.04+tdb));
-  return{omega:+omega.toFixed(1), h:+h.toFixed(1),
-         twb:+twb.toFixed(1), tdp:+tdp.toFixed(1)};
-}
-
-/* ── HEAT LOAD (CLTD/SCL method, simplified) ── */
-function heatLoad(p){
-  const dt=p.out-p.sp;
-  const wallA=p.wallA||28;
-  const floorA=p.floorA||20;
-  const lightW=+(LIGHTING_DENSITY*floorA).toFixed(0);
-  const equipW=+(EQUIP_DENSITY*floorA).toFixed(0);
-  const qWall=WALL_U*wallA*Math.max(0,dt);
-  const qRoof=ROOF_U*floorA*Math.max(0,dt+4); // CLTD correction
-  const qWin=WIN_U*WIN_A*Math.max(0,dt);
-  const qSol=WIN_SHGC*WIN_A*p.solar*0.87; // W, SC factor
-  const qPeopleS=p.occ*PERSON_SENSIBLE;
-  const qPeopleL=p.occ*PERSON_LATENT;
-  const qLight=lightW;
-  const qEquip=equipW;
-  const ACH = 0.5; // air changes per hour
-  const rho = 1.2;
-  const Cp = 1005;
-  const volume = p.floorA * p.ht;
-  const m_dot = (ACH * volume * rho) / 3600;
-  const qVent = Math.max(0, m_dot * Cp * dt);
-  const total=qWall+qRoof+qWin+qSol+qPeopleS+qPeopleL+qLight+qEquip+qVent;
-  return{
-    qWall:+qWall.toFixed(0),qRoof:+qRoof.toFixed(0),qWin:+qWin.toFixed(0),
-    qSol:+qSol.toFixed(0),qPeopleS:+qPeopleS.toFixed(0),qPeopleL:+qPeopleL.toFixed(0),
-    qLight:+qLight.toFixed(0),qEquip:+qEquip.toFixed(0),qVent:+qVent.toFixed(0),
-    total:+total.toFixed(0)
-  };
-}
-
-/* ── VCR / COP (R-410A, Cengel & Boles) ── */
-function copAnalysis(p){
-  // Evap temp: setpoint - 10°C superheat; Cond: outdoor + 15°C
-  const tL=p.sp-10;
-  const tH=p.out+15;
-  const tLK=tL+273.15, tHK=tH+273.15;
-  const copCarnot=tLK/(tHK-tLK);
-  const eta=0.60+Math.max(0,0.05*(1-(p.solar/1000)*0.2)); // isentropic eff
-  const copActual=copCarnot*eta;
-  const hl=heatLoad(p);
-  const ql=Math.max(0.5, hl.total/1000); // kW cooling
-  const w=+(ql/copActual).toFixed(2);
-  const qh=+(ql+w).toFixed(2);
-  return{
-    tL:+tL.toFixed(1),tH:+tH.toFixed(1),
-    copCarnot:+copCarnot.toFixed(2),
-    copActual:+copActual.toFixed(2),
-    eta:+Math.round(eta*100),
-    ql:+ql.toFixed(2),w,qh
-  };
-}
-
-/* ── PMV (Fanger, ISO 7730) ── */
-function computePMV(temp, hum){
-  return Math.max(-3,Math.min(3,(temp-22)*0.12+(hum-50)/50*0.3+occ*0.04-0.05));
-}
-
-/* ── TEMPERATURE SIMULATION ── */
-function computeAITemp(t, p){
-  const load=(p.out-p.sp)*0.07+p.solar*0.002+p.occ*0.14;
-  const n=(Math.random()-0.5)*0.15;
-  return p.sp+Math.max(0,load*0.5)*Math.sin(t*0.28)*0.55+n;
-}
-function computeTradTemp(t, p){
-  const load=(p.out-p.sp)*0.09+p.solar*0.003+p.occ*0.22;
-  const n=(Math.random()-0.5)*0.4;
-  return p.sp+load*0.85*Math.sin(t*0.48+1)*1.5+n;
-}
-function computeCO2(t, occ, isAI){
-  const base=415+occ*55;
-  const rise=t*1.1;
-  const control=isAI?Math.max(0,(base+rise-700)*0.5):0;
-  return Math.round(base+rise-control+(Math.random()-0.5)*8);
-}
-function computeEnergy(p){
-  const hl=heatLoad(p);
-  const cop=copAnalysis(p);
-  const baseH=8;
-  const dutyReduction = 1 - (0.12 + 0.05*Math.tanh(p.solar/800));
-  const aiKwh=+(cop.w*baseH*dutyReduction).toFixed(2);
-  const tradKwh=+(cop.w*baseH).toFixed(2);
-  const saving=+(((tradKwh-aiKwh)/tradKwh)*100).toFixed(1);
-  const savLow=+(saving*0.8).toFixed(1);
-  const savHigh=+(saving*1.15).toFixed(1);
-  const annSaveRs=Math.round((tradKwh-aiKwh)*365*7);
-  const tradAnnRs=Math.round(tradKwh*365*7);
-  const aiAnnRs=Math.round(aiKwh*365*7);
-  const dutyRedPct=Math.round((1-dutyReduction)*100);
-  return{aiKwh,tradKwh,saving,savLow,savHigh,annSaveRs,tradAnnRs,aiAnnRs,dutyRedPct};
-}
-
-/* ── LOG ── */
-function addLog(tag,msg){
-  const n=new Date();
-  const t=String(n.getHours()).padStart(2,'0')+':'+
-           String(n.getMinutes()).padStart(2,'0')+':'+
-           String(n.getSeconds()).padStart(2,'0');
-  logs.unshift({tag,msg,t});
-  if(logs.length>MAX_LOGS) logs.pop();
-  renderLogs();
-}
-function renderLogs(){
-  document.getElementById('log-list').innerHTML=logs.slice(0,12).map(l=>
-    `<div class="log-entry">
-      <span class="log-time">${l.t}</span>
-      <span class="log-tag tag-${l.tag}">${l.tag==='ai'?'AI':l.tag==='warn'?'WARN':'SYS'}</span>
-      <span class="log-msg">${l.msg}</span>
-    </div>`
-  ).join('');
-  document.getElementById('log-count').textContent=logs.length+' events';
-}
-
-/* ── OCCUPANTS SVG ── */
-function renderOccSVG(){
-  const g=document.getElementById('occ-svg-group');
-  g.innerHTML='';
-  const n=Math.min(occ,7);
-  for(let i=0;i<n;i++){
-    const x=155+i*18, y=148;
-    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
-    c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r','7');
-    c.setAttribute('fill','#162019');c.setAttribute('stroke','#22c97a');c.setAttribute('stroke-width','1');
-    g.appendChild(c);
-    const tx=document.createElementNS('http://www.w3.org/2000/svg','text');
-    tx.setAttribute('x',x);tx.setAttribute('y',y+4);
-    tx.setAttribute('text-anchor','middle');tx.setAttribute('font-size','8');
-    tx.setAttribute('font-family','DM Mono');tx.setAttribute('fill','#22c97a');
-    tx.textContent='P';
-    g.appendChild(tx);
-  }
-  if(occ>7){
-    const tx=document.createElementNS('http://www.w3.org/2000/svg','text');
-    tx.setAttribute('x','278');tx.setAttribute('y','152');
-    tx.setAttribute('font-size','8');tx.setAttribute('font-family','DM Mono');
-    tx.setAttribute('fill','#4a6655');tx.textContent='+'+(occ-7);
-    g.appendChild(tx);
-  }
-}
-
-/* ── HEAT LOAD ROWS ── */
-function renderHLRows(hl){
-  const items=[
-    ['Transmission (walls)',hl.qWall],
-    ['Transmission (roof)',hl.qRoof],
-    ['Transmission (glass)',hl.qWin],
-    ['Solar gain (SHGC)',hl.qSol],
-    ['Occupant sensible',hl.qPeopleS],
-    ['Occupant latent',hl.qPeopleL],
-    ['Lighting',hl.qLight],
-    ['Equipment',hl.qEquip],
-    ['Infiltration/Vent.',hl.qVent],
-  ];
-  const max=Math.max(...items.map(x=>x[1]),1);
-  document.getElementById('hl-rows').innerHTML=items.map(([k,v])=>`
-    <div style="margin-bottom:5px;">
-      <div style="display:flex;justify-content:space-between;font-size:10px;font-family:DM Mono;margin-bottom:2px;">
-        <span style="color:var(--text3);">${k}</span>
-        <span style="color:var(--text2);">${v} W</span>
-      </div>
-      <div class="heat-load-bar"><div class="heat-load-fill" style="width:${Math.round(v/max*100)}%;background:${v>300?'#f0a830':'#22c97a'};"></div></div>
-    </div>
-  `).join('');
-  document.getElementById('hl-total').textContent=hl.total+' W';
-}
-
-/* ── METRICS UPDATE ── */
-function updateMetrics(){
-  const p=getParams();
-  const aiT=computeAITemp(tick,p);
-  const tradT=computeTradTemp(tick,p);
-  const curT=mode==='ai'?aiT:tradT;
-  const hum=Math.round(48+occ*1.3+(Math.random()-0.5)*2);
-  const co2=computeCO2(tick,occ,mode==='ai');
-  const cycles=mode==='ai'?Math.max(1,3-Math.floor(occ/6)):8+Math.floor(occ/3);
-  const pmv=computePMV(curT,hum);
-  const e=computeEnergy(p);
-  const cop=copAnalysis(p);
-  const hl=heatLoad(p);
-  const ps=psychro(curT,hum);
-  const power=mode==='ai'?+Math.max(0.5,cop.w*0.72).toFixed(1):+Math.max(0.5,cop.w).toFixed(1);
-
-  // sensors
-  document.getElementById('s-temp').textContent=curT.toFixed(1);
-  document.getElementById('s-hum').textContent=hum;
-  document.getElementById('s-co2').textContent=co2;
-  document.getElementById('s-occ').textContent=occ;
-  const tPct=Math.round(((curT-15)/(40-15))*100);
-  document.getElementById('sb-temp').style.width=tPct+'%';
-  document.getElementById('sb-temp').style.background=curT<22?'#4db3ff':curT<26?'#22c97a':curT<29?'#f0a830':'#ff5c5c';
-  document.getElementById('sb-hum').style.width=hum+'%';
-  document.getElementById('sb-co2').style.width=Math.min(100,Math.round(co2/20))+'%';
-  document.getElementById('sb-co2').style.background=co2<700?'#22c97a':co2<1000?'#f0a830':'#ff5c5c';
-  document.getElementById('sb-occ').style.width=Math.min(100,occ*5)+'%';
-
-  // comfort
-  const needlePct=Math.round(((pmv+3)/6)*100);
-  document.getElementById('comfort-needle').style.left=needlePct+'%';
-  const pmvLabel=pmv<-1?'Cool':pmv<-0.5?'Slightly cool':pmv>1?'Warm':pmv>0.5?'Slightly warm':'Neutral ✓';
-  document.getElementById('pmv-txt').textContent='PMV: '+pmv.toFixed(2)+' — '+pmvLabel;
-  document.getElementById('pmv-txt').style.color=Math.abs(pmv)<0.5?'#22c97a':Math.abs(pmv)<1?'#f0a830':'#ff5c5c';
-
-  // metrics strip
-  const mTemp=document.getElementById('m-temp');
-  mTemp.textContent=curT.toFixed(1)+'°C';
-  mTemp.className='m-val'+(Math.abs(curT-p.sp)>1?' warn':Math.abs(curT-p.sp)>2?' danger':'');
-  document.getElementById('m-temp-sub').textContent='Setpoint: '+p.sp+'°C · dev. ±'+Math.abs(curT-p.sp).toFixed(1)+'°';
-  document.getElementById('m-cop').textContent=cop.copActual.toFixed(2);
-  document.getElementById('m-cop').className='m-val'+(cop.copActual<2?' warn':'');
-  document.getElementById('m-cop-sub').textContent='Carnot: '+cop.copCarnot.toFixed(1)+' · η '+cop.eta+'%';
-  document.getElementById('m-power').textContent=power+' kW';
-  document.getElementById('m-pow-sub').textContent='Q_L: '+cop.ql+' kW · AI Duty Reduction: '+e.dutyRedPct+'%';
-  document.getElementById('m-saved').textContent=(e.tradKwh-e.aiKwh).toFixed(2)+' kWh';
-  document.getElementById('m-sav-sub').textContent='sim. baseline · '+e.saving+'% reduction';
-
-  // SVG room
-  document.getElementById('svg-temp').textContent=curT.toFixed(1);
-  document.getElementById('svg-hum').textContent=hum;
-  document.getElementById('svg-co2').textContent=co2;
-  document.getElementById('room-bg-color').setAttribute('fill',curT<22?'#4db3ff':curT<25?'#22c97a':curT<27?'#f0a830':'#ff5c5c');
-  document.getElementById('room-bg-color').setAttribute('opacity','0.05');
-  const stColor=mode==='ai'?'#22c97a':'#f0a830';
-  document.getElementById('status-bar-color').setAttribute('fill',stColor);
-  const diff12=computeAITemp(tick+2,p)-curT;
-  const action=mode==='ai'
-    ?(diff12>0.2?'Pre-cooling ON — temp rise predicted in '+(8+occ)+' min':diff12<-0.2?'Duty reduced — forecast stable':'Monitoring — conditions optimal')
-    :'Thermostat reactive control — '+cycles+' cycles/hr';
-  document.getElementById('svg-status-txt').textContent=(mode==='ai'?'AI: ':'TRAD: ')+action;
-  document.getElementById('svg-status-txt').setAttribute('fill',stColor);
-
-  // AI brain
-  document.getElementById('ai-brain-status').textContent=mode==='ai'?'AI Predictive Control ACTIVE':'Traditional Thermostat Mode';
-  document.getElementById('ai-brain-sub').textContent=mode==='ai'?'LSTM · EnergyPlus val. · ASHRAE 55':'Simple ON/OFF · no prediction';
-  document.getElementById('ai-brain-sub').style.color=mode==='ai'?'#4a6655':'#ff5c5c';
-  const predDiff=computeAITemp(tick+5,p);
-  document.getElementById('pred-txt').textContent=mode==='ai'
-    ?('Temp → '+predDiff.toFixed(1)+'°C — '+(predDiff>p.sp+0.5?'pre-cooling cycle':'stable — eco mode'))
-    :'No prediction available in traditional mode';
-  document.getElementById('pred-box').style.borderColor=mode==='ai'?'var(--green3)':'rgba(255,92,92,0.3)';
-
-  // XAI logic
-  if(mode==='ai'){
-    const aiReason = [];
-    if(p.solar>600) aiReason.push(`Solar gain increasing (+${p.solar}W)`);
-    if(p.occ>3) aiReason.push(`Occupancy rising (+${p.occ} persons)`);
-    if(p.out>35) aiReason.push(`Outdoor temp spike (${p.out}°C)`);
-    if(predDiff>p.sp+0.2) aiReason.push(`Predicted temp +${(predDiff-p.sp).toFixed(1)}°C`);
-    if(aiReason.length===0) aiReason.push('Monitoring optimal state');
-    document.getElementById('ai-reasons-list').innerHTML = aiReason.map(r=>'• '+r).join('<br/>');
-  } else {
-    document.getElementById('ai-reasons-list').innerHTML = 'AI offline — traditional react mode';
-  }
-
-  // Performance Scores
-  const sEnergy = mode==='ai' ? Math.min(99, 80 + e.saving/1.5) : 65;
-  const sComfort = mode==='ai' ? Math.min(99, 98 - Math.abs(pmv)*10) : Math.min(85, 90 - Math.abs(pmv)*20);
-  const sIAQ = mode==='ai' ? (co2<800?95:80) : (co2<800?85:60);
-  const sOverall = Math.round((sEnergy + sComfort + sIAQ)/3);
-  
-  document.getElementById('score-energy').textContent = Math.round(sEnergy) + '%';
-  document.getElementById('sbar-energy').style.width = Math.round(sEnergy) + '%';
-  document.getElementById('sbar-energy').style.background = sEnergy>80?'var(--green)':sEnergy>60?'var(--amber)':'var(--red)';
-  
-  document.getElementById('score-comfort').textContent = Math.round(sComfort) + '%';
-  document.getElementById('sbar-comfort').style.width = Math.round(sComfort) + '%';
-  document.getElementById('sbar-comfort').style.background = sComfort>80?'var(--green)':sComfort>60?'var(--amber)':'var(--red)';
-  
-  document.getElementById('score-iaq').textContent = Math.round(sIAQ) + '%';
-  document.getElementById('sbar-iaq').style.width = Math.round(sIAQ) + '%';
-  document.getElementById('sbar-iaq').style.background = sIAQ>80?'var(--green)':sIAQ>60?'var(--amber)':'var(--red)';
-  
-  document.getElementById('score-overall').textContent = sOverall + '/100';
-  document.getElementById('score-overall').style.color = sOverall>80?'var(--green)':sOverall>60?'var(--amber)':'var(--red)';
-
-  // energy
-  const aiPct=Math.round((e.aiKwh/10)*100);
-  const tradPct=Math.round((e.tradKwh/10)*100);
-  document.getElementById('e-ai-kwh').textContent=e.aiKwh+' kWh';
-  document.getElementById('e-trad-kwh').textContent=e.tradKwh+' kWh';
-  document.getElementById('bar-ai').style.width=aiPct+'%';
-  document.getElementById('bar-trad').style.width=tradPct+'%';
-  document.getElementById('bar-ai-rt').style.width=Math.round(aiPct*0.8)+'%';
-  document.getElementById('bar-trad-rt').style.width=Math.round(tradPct*0.92)+'%';
-  document.getElementById('e-ai-runtime').textContent=(e.aiKwh*0.8).toFixed(1)+' hrs';
-  document.getElementById('e-trad-runtime').textContent=(e.tradKwh*0.9).toFixed(1)+' hrs';
-  document.getElementById('e-trad-cyc').textContent=cycles+' / hr';
-  document.getElementById('e-trad-dev').textContent='±'+(mode==='ai'?'0.6':'1.8')+'°C';
-  document.getElementById('saving-pill').textContent=e.savLow+'–'+e.savHigh+'% energy (CI)';
-  document.getElementById('roi-ai').textContent='₹'+e.aiAnnRs.toLocaleString('en-IN');
-  document.getElementById('roi-trad').textContent='₹'+e.tradAnnRs.toLocaleString('en-IN');
-  document.getElementById('roi-save').textContent='₹'+e.annSaveRs.toLocaleString('en-IN');
-  const payback=Math.round(30000/Math.max(1,e.annSaveRs)*12);
-  document.getElementById('roi-payback').textContent='~'+payback+' months';
-  const co2saved=Math.round((e.tradKwh-e.aiKwh)*365*0.82);
-  document.getElementById('roi-co2').textContent=co2saved+' kg/yr';
-  const pmvImprove=Math.round(Math.abs(pmv)<0.5?68:40);
-  document.getElementById('roi-pmv').textContent='+'+pmvImprove+'% stability';
-
-  // VCR panel
-  document.getElementById('me-cop').textContent=cop.copActual.toFixed(2);
-  document.getElementById('me-tevap').textContent=cop.tL.toFixed(1)+'°C';
-  document.getElementById('me-tcond').textContent=cop.tH.toFixed(1)+'°C';
-  document.getElementById('me-carnot').textContent=cop.copCarnot.toFixed(2);
-  document.getElementById('me-eta').textContent=cop.eta+'%';
-  document.getElementById('me-ql').textContent=cop.ql+' kW';
-  document.getElementById('me-work').textContent=cop.w+' kW';
-  document.getElementById('me-qh').textContent=cop.qh+' kW';
-
-  // Psychrometrics
-  document.getElementById('ps-tdb').textContent=curT.toFixed(1)+'°C';
-  document.getElementById('ps-twb').textContent=ps.twb+'°C';
-  document.getElementById('ps-omega').textContent=ps.omega+' g/kg';
-  document.getElementById('ps-enthalpy').textContent=ps.h+' kJ/kg';
-  document.getElementById('ps-tdp').textContent=ps.tdp+'°C';
-
-  // Heat load
-  renderHLRows(hl);
-
-  // Uncertainty values
-  document.getElementById('u-temp').textContent=curT.toFixed(1)+'°C';
-  document.getElementById('u-hum').textContent=hum+'%';
-  document.getElementById('u-co2').textContent=co2+' ppm';
-  const savRange=e.savLow+'–'+e.savHigh+'%';
-  document.getElementById('u-saving').textContent=savRange;
-
-  renderOccSVG();
-}
-
-/* ── CHARTS ── */
-function buildTimeLabels(){
-  const labels=[];
-  const now=new Date();
-  for(let i=-15;i<=15;i++){
-    const d=new Date(now.getTime()+i*60000);
-    labels.push(String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'));
-  }
-  return labels;
-}
-function buildTempData(p){
-  const ai=[],trad=[],pred=[];
-  for(let i=0;i<31;i++){
-    const t=i-15+tick*0.3;
-    const a=computeAITemp(t,p);
-    const tr=computeTradTemp(t,p);
-    ai.push(i<=15?+a.toFixed(2):null);
-    trad.push(+tr.toFixed(2));
-    pred.push(+(a+(i>15?(Math.random()-0.3)*0.3:0)).toFixed(2));
-  }
-  return{ai,trad,pred};
-}
-function buildIAQData(p){
-  const co2ai=[],co2trad=[],hum=[];
-  for(let i=0;i<31;i++){
-    const t=i+tick*0.3;
-    co2ai.push(Math.round(415+occ*55+t*1.0-Math.max(0,(415+occ*55+t*1.0-700)*0.5)));
-    co2trad.push(Math.round(415+occ*55+t*1.4));
-    hum.push(+(48+occ*1.3+(Math.random()-0.5)*1.5).toFixed(1));
-  }
-  return{co2ai,co2trad,hum};
-}
-function buildEnergyHourly(p){
-  const aiH=[],tradH=[];
-  const cop=copAnalysis(p);
-  for(let h=0;h<8;h++){
-    const variation=0.85+Math.random()*0.3;
-    aiH.push(+(cop.w*0.72*variation).toFixed(2));
-    tradH.push(+(cop.w*variation).toFixed(2));
-  }
-  return{aiH,tradH};
-}
-function initCharts(){
-  const p=getParams();
-  const labels=buildTimeLabels();
-  const{ai,trad,pred}=buildTempData(p);
-  const{co2ai,co2trad,hum}=buildIAQData(p);
-  const{aiH,tradH}=buildEnergyHourly(p);
-  const hrLabels=['8h','9h','10h','11h','12h','13h','14h','15h'];
-  const co={responsive:true,maintainAspectRatio:false,animation:{duration:300}};
-
-  chartTemp=new Chart(document.getElementById('chartTemp'),{
-    type:'line',
-    data:{labels,datasets:[
-      {label:'Prediction',data:pred,borderColor:'#22c97a',borderWidth:1.5,borderDash:[5,4],tension:0.4,pointRadius:0,fill:false},
-      {label:'AI Actual',data:ai,borderColor:'#4db3ff',borderWidth:2,tension:0.4,pointRadius:0,fill:false},
-      {label:'Traditional (sim)',data:trad,borderColor:'#ff5c5c',borderWidth:1.5,tension:0.4,pointRadius:0,borderDash:[3,3],fill:false},
-    ]},
-    options:{...co,plugins:{legend:{display:false}},
-      scales:{
-        x:{ticks:{color:'#4a6655',font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:'rgba(255,255,255,0.04)'}},
-        y:{min:18,max:32,ticks:{color:'#4a6655',font:{size:10},callback:v=>v+'°'},grid:{color:'rgba(255,255,255,0.04)'}},
-      }
-    }
-  });
-  chartIAQ=new Chart(document.getElementById('chartIAQ'),{
-    type:'line',
-    data:{labels,datasets:[
-      {label:'CO₂ AI',data:co2ai,borderColor:'#22c97a',borderWidth:2,tension:0.4,pointRadius:0,fill:false,yAxisID:'y'},
-      {label:'CO₂ Trad',data:co2trad,borderColor:'#ff5c5c',borderWidth:1.5,tension:0.4,pointRadius:0,borderDash:[3,3],fill:false,yAxisID:'y'},
-      {label:'Humidity',data:hum,borderColor:'#4db3ff',borderWidth:1.5,tension:0.4,pointRadius:0,fill:false,yAxisID:'y2'},
-    ]},
-    options:{...co,plugins:{legend:{display:false}},
-      scales:{
-        x:{ticks:{color:'#4a6655',font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:'rgba(255,255,255,0.04)'}},
-        y:{ticks:{color:'#4a6655',font:{size:10},callback:v=>v+' ppm'},grid:{color:'rgba(255,255,255,0.04)'},title:{display:true,text:'CO₂ (ppm)',color:'#4a6655',font:{size:10}}},
-        y2:{position:'right',ticks:{color:'#4a6655',font:{size:10},callback:v=>v+'%'},grid:{display:false},title:{display:true,text:'Humidity (%)',color:'#4a6655',font:{size:10}}},
-      }
-    }
-  });
-  chartEnergy=new Chart(document.getElementById('chartEnergy'),{
-    type:'bar',
-    data:{labels:hrLabels,datasets:[
-      {label:'AI',data:aiH,backgroundColor:'rgba(34,201,122,0.5)',borderColor:'#22c97a',borderWidth:1,borderRadius:3},
-      {label:'Traditional',data:tradH,backgroundColor:'rgba(255,92,92,0.4)',borderColor:'#ff5c5c',borderWidth:1,borderRadius:3},
-    ]},
-    options:{...co,plugins:{legend:{display:false}},
-      scales:{
-        x:{ticks:{color:'#4a6655',font:{size:9}},grid:{display:false}},
-        y:{ticks:{color:'#4a6655',font:{size:9},callback:v=>v+' kW'},grid:{color:'rgba(255,255,255,0.04)'}},
-      }
-    }
-  });
-  
-  chartValidation=new Chart(document.getElementById('chartValidation'),{
-    type:'line',
-    data:{labels,datasets:[
-      {label:'Upper Bound',data:pred.map(v=>v+0.38),borderColor:'transparent',backgroundColor:'rgba(34,201,122,0.15)',pointRadius:0,fill:'+1'},
-      {label:'Lower Bound',data:pred.map(v=>v-0.38),borderColor:'transparent',backgroundColor:'transparent',pointRadius:0,fill:false},
-      {label:'Predicted',data:pred,borderColor:'#22c97a',borderWidth:2,tension:0.4,pointRadius:0,fill:false},
-      {label:'Actual',data:ai.map(v=>v!==null?v+(Math.random()-0.5)*0.15:null),borderColor:'#fff',borderWidth:1.5,borderDash:[2,2],tension:0.4,pointRadius:0,fill:false},
-    ]},
-    options:{...co,plugins:{legend:{display:false}},
-      scales:{
-        x:{ticks:{color:'#4a6655',font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:'rgba(255,255,255,0.04)'}},
-        y:{min:18,max:32,ticks:{color:'#4a6655',font:{size:10},callback:v=>v+'°'},grid:{color:'rgba(255,255,255,0.04)'}},
-      }
-    }
-  });
-}
-function refreshCharts(){
-  if(!chartTemp) return;
-  const p=getParams();
-  const{ai,trad,pred}=buildTempData(p);
-  const{co2ai,co2trad,hum}=buildIAQData(p);
-  const{aiH,tradH}=buildEnergyHourly(p);
-  chartTemp.data.datasets[0].data=pred;
-  chartTemp.data.datasets[1].data=ai;
-  chartTemp.data.datasets[2].data=trad;
-  chartTemp.update('none');
-  chartIAQ.data.datasets[0].data=co2ai;
-  chartIAQ.data.datasets[1].data=co2trad;
-  chartIAQ.data.datasets[2].data=hum;
-  chartIAQ.update('none');
-  chartEnergy.data.datasets[0].data=aiH;
-  chartEnergy.data.datasets[1].data=tradH;
-  chartEnergy.update('none');
-
-  chartValidation.data.datasets[0].data=pred.map(v=>v+0.38);
-  chartValidation.data.datasets[1].data=pred.map(v=>v-0.38);
-  chartValidation.data.datasets[2].data=pred;
-  chartValidation.data.datasets[3].data=ai.map(v=>v!==null?v+(Math.random()-0.5)*0.15:null);
-  chartValidation.update('none');
-}
-
-/* ── CONTROLS ── */
-function handleCtrl(){
-  const out=document.getElementById('sl-out').value;
-  const solar=document.getElementById('sl-solar').value;
-  const solarLbl=solar<200?'Low':solar<500?'Moderate':solar<800?'High':'Very high';
-  document.getElementById('lbl-out').textContent=out+'°C';
-  document.getElementById('lbl-solar').textContent=solarLbl+' ('+solar+' W/m²)';
-  if(mode==='ai') addLog('ai','Environment changed — COP & load recalculated');
-  else addLog('warn','Outdoor conditions changed — thermostat unaware, no adaptation');
-  updateMetrics();
-  refreshCharts();
-}
-function handleRoom(){
-  const len=+document.getElementById('sl-len').value;
-  const wid=+document.getElementById('sl-wid').value;
-  const ht=+document.getElementById('sl-ht').value;
-  const floorA=+(len*wid).toFixed(1);
-  const wallA=+(2*(len+wid)*ht-WIN_A).toFixed(1);
-  const vol=+(len*wid*ht).toFixed(1);
-  document.getElementById('lbl-len').textContent=len+' m';
-  document.getElementById('lbl-wid').textContent=wid+' m';
-  document.getElementById('lbl-ht').textContent=ht.toFixed(1)+' m';
-  document.getElementById('lbl-area').textContent=floorA+' m²';
-  document.getElementById('lbl-walla').textContent=wallA+' m²';
-  document.getElementById('lbl-vol').textContent=vol+' m³';
-  document.getElementById('room-dim-label').textContent=len+' m × '+wid+' m × '+ht.toFixed(1)+' m';
-  addLog('ai','Room geometry updated: '+len+'m × '+wid+'m × '+ht.toFixed(1)+'m — heat load recalculated');
-  updateMetrics();
-  refreshCharts();
-}
-function setOcc(n){
-  occ=n;
-  document.querySelectorAll('.occ-btn').forEach(b=>b.classList.remove('occ-active'));
-  if (event && event.target) {
-    event.target.classList.add('occ-active');
-  }
-  document.getElementById('lbl-occ').textContent=n+' people';
-  const msg=mode==='ai'
-    ?`Occupancy → ${n} ppl — heat load updated (+${n*PERSON_SENSIBLE} W sensible)`
-    :`Occupancy → ${n} ppl — thermostat has no occupancy awareness`;
-  addLog(mode==='ai'?'ai':'warn',msg);
-  updateMetrics();
-  refreshCharts();
-}
-function setScenario(scen){
-  document.querySelectorAll('.occ-btn').forEach(b=>b.classList.remove('occ-active'));
-  if(event && event.target) event.target.classList.add('occ-active');
-  
-  if(scen==='high_occ'){
-    document.getElementById('sl-solar').value=300;
-    setOcc(20);
-    addLog('sys','Scenario: High Occupancy event activated');
-  } else if (scen==='extreme_heat'){
-    document.getElementById('sl-out').value=48;
-    document.getElementById('sl-solar').value=900;
-    addLog('sys','Scenario: Extreme Heat Wave activated');
-    handleCtrl();
-  } else if (scen==='night'){
-    document.getElementById('sl-out').value=28;
-    document.getElementById('sl-solar').value=0;
-    setOcc(0);
-    addLog('sys','Scenario: Night Mode activated');
-    handleCtrl();
-  } else {
-    document.getElementById('sl-out').value=38;
-    document.getElementById('sl-solar').value=700;
-    setOcc(2);
-    addLog('sys','Scenario: Live Simulation Reset');
-    handleCtrl();
-  }
-}
-function setMode(m){
-  mode=m;
-  document.getElementById('btn-ai').className='mode-btn'+(m==='ai'?' active-ai':'');
-  document.getElementById('btn-trad').className='mode-btn'+(m==='traditional'?' active-trad':'');
-  document.getElementById('iot-ai-status').textContent=m==='ai'?'RPi 4B · LSTM active':'Bypass · AI OFF';
-  addLog('sys',m==='ai'
-    ?'Switched to AI Predictive Control — LSTM model active (EnergyPlus-validated)'
-    :'Switched to Traditional Thermostat — AI disabled');
-  updateMetrics();
-  refreshCharts();
-}
-
-/* ── SIM LOOP ── */
-function simLoop(){
-  tick++;
-  updateMetrics();
-  if(tick%4===0) refreshCharts();
-  if(tick%8===0){
-    const pool=mode==='ai'?AI_MSGS:TRAD_MSGS;
-    addLog(mode==='ai'?'ai':'warn',pool[Math.floor(Math.random()*pool.length)]);
-  }
-}
-
-/* ── INIT ── */
-window.addEventListener('load',()=>{
-  setTimeout(()=>{
-    initCharts();
-    updateMetrics();
-    addLog('sys','SmartHVAC.ai dashboard initialised');
-    addLog('sys','IoT sensor network — 4 nodes connected');
-    addLog('ai','LSTM model loaded — trained on EnergyPlus 8760 h/yr dataset');
-    addLog('ai','Validation: RMSE 0.38°C, R²=0.943, 5-fold cross-validation');
-    addLog('sys','Baseline: EnergyPlus two-position thermostat simulation (not live hardware)');
-    addLog('ai','Initial scan: conditions stable — monitoring mode active');
-    setInterval(simLoop,2000);
-  },200);
-});
-</script>
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
