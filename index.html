@@ -279,10 +279,10 @@
         }
 
         header.scrolled {
-            background-color: rgba(26, 18, 8, 0.95);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 1rem 5%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .nav-container {
@@ -297,7 +297,7 @@
             font-family: var(--font-display);
             font-weight: 900;
             font-size: 1.8rem;
-            color: var(--white);
+            color: var(--dark);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -314,7 +314,7 @@
         }
 
         .nav-links a {
-            color: var(--light);
+            color: var(--dark);
             font-weight: 500;
             transition: color 0.3s;
             font-size: 1.05rem;
@@ -326,7 +326,7 @@
 
         .mobile-menu-btn {
             display: none;
-            color: var(--light);
+            color: var(--dark);
             background: none;
             border: none;
             cursor: pointer;
@@ -340,7 +340,7 @@
             position: relative;
             padding-top: 120px;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(26, 18, 8, 1) 0%, rgba(15, 10, 5, 1) 100%);
+            background: linear-gradient(135deg, var(--background-alt) 0%, var(--background-base) 100%);
         }
 
         .hero::before {
@@ -397,23 +397,38 @@
         }
 
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
         }
 
         @keyframes pulse-glow {
-            0% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.95); }
-            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+            0% {
+                opacity: 0.7;
+                transform: translate(-50%, -50%) scale(0.95);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.05);
+            }
         }
 
         .badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background-color: rgba(245, 200, 66, 0.15);
-            border: 1px solid var(--accent);
-            color: var(--accent);
+            background-color: rgba(232, 104, 26, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
             padding: 8px 16px;
             border-radius: 30px;
             font-family: var(--font-hinglish);
@@ -422,7 +437,7 @@
         }
 
         .hero h1 {
-            color: var(--white);
+            color: var(--dark);
             margin-bottom: 20px;
         }
 
@@ -433,7 +448,7 @@
         }
 
         .hero p.lead {
-            color: var(--light);
+            color: var(--text-muted);
             font-size: 1.25rem;
             opacity: 0.9;
             margin-bottom: 40px;
@@ -452,20 +467,20 @@
             flex-wrap: wrap;
             gap: 30px;
             padding-top: 30px;
-            border-top: 1px solid rgba(250, 245, 236, 0.1);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .proof-item {
             display: flex;
             align-items: center;
             gap: 10px;
-            color: var(--light);
+            color: var(--dark);
             font-family: var(--font-hinglish);
             font-size: 1.1rem;
         }
 
         .proof-item i {
-            color: var(--accent);
+            color: var(--primary);
         }
 
         /* 3. Problem Section */
@@ -492,6 +507,10 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-bottom: 60px;
+        }
+
+        .problem-section .card {
+            background-color: #FFFbf2;
         }
 
         .card {
@@ -598,11 +617,12 @@
         }
 
         .tab-btn {
-            padding: 12px 24px;
-            border-radius: 30px;
-            border: 2px solid var(--secondary);
-            background: transparent;
+            padding: 14px 32px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(124, 29, 46, 0.05);
             color: var(--secondary);
+            box-shadow: inset 0 0 0 2px rgba(124, 29, 46, 0.1);
             font-family: var(--font-body);
             font-weight: 600;
             font-size: 1.1rem;
@@ -615,8 +635,11 @@
 
         .tab-btn.active,
         .tab-btn:hover {
-            background-color: var(--secondary);
+            background-color: var(--primary);
             color: var(--white);
+            box-shadow: 0 4px 15px rgba(232, 104, 26, 0.3);
+            transform: translateY(-2px);
+            border: none;
         }
 
         .tab-content {
@@ -1138,7 +1161,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
-            background: var(--background-alt);
+            background: var(--primary);
             padding: 60px;
             border-radius: 24px;
             position: relative;
@@ -1161,13 +1184,13 @@
         }
 
         .cta-content h2 {
-            color: var(--secondary);
+            color: var(--white);
             margin-bottom: 20px;
         }
 
         .cta-content p {
-            color: var(--text-muted);
-            opacity: 0.9;
+            color: rgba(255, 255, 255, 0.9);
+            opacity: 1;
             margin-bottom: 40px;
             font-size: 1.2rem;
         }
@@ -1196,32 +1219,58 @@
 
         /* 12. Footer */
         footer {
-            background: var(--background-base);
+            background: #F8F6F2;
+            border-top: 1px solid rgba(0,0,0,0.05);
             color: rgba(26, 18, 8, 0.8);
-            padding: 60px 5% 30px;
-            text-align: center;
+            padding: 40px 5% 20px;
+        }
+
+        .footer-content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .footer-logo {
             font-family: var(--font-display);
-            font-size: 2rem;
+            font-size: 1.6rem;
             color: var(--dark);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            width: auto;
         }
 
         .footer-tagline {
             font-family: var(--font-hinglish);
             color: var(--primary);
-            font-size: 1.2rem;
-            margin-bottom: 40px;
+            font-size: 1.1rem;
         }
 
         .footer-links {
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
+            gap: 25px;
             flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-weight: 500;
+            transition: color 0.3s;
         }
 
         .footer-links a:hover {
@@ -1230,32 +1279,40 @@
 
         .social-icons {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
+            gap: 15px;
         }
 
         .social-icon {
-            width: 45px;
-            height: 45px;
-            background: rgba(232, 104, 26, 0.1);
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border: 1px solid rgba(0,0,0,0.05);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary);
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
         }
 
         .social-icon:hover {
             background: var(--primary);
-            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(232, 104, 26, 0.2);
+        }
+
+        .social-icon img {
+            width: 20px;
+            height: 20px;
+            transition: filter 0.3s;
         }
 
         .footer-bottom {
             border-top: 1px solid rgba(26, 18, 8, 0.1);
-            padding-top: 30px;
+            padding-top: 20px;
             font-size: 0.9rem;
+            text-align: center;
+            color: var(--text-muted);
         }
 
         /* Floating Elements */
@@ -1263,18 +1320,22 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 60px;
-            height: 60px;
             background-color: #25D366;
             color: white;
-            border-radius: 50%;
+            border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 10px;
+            padding: 12px 24px;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 1.1rem;
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
             z-index: 1000;
             transition: transform 0.3s;
             animation: pulse-wa 2s infinite;
+            text-decoration: none;
         }
 
         .fab-whatsapp i {
@@ -1342,6 +1403,63 @@
             }
         }
 
+
+        @media (max-width: 770px) {
+            .package-card-inner {
+                transform: none !important;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .package-card-front,
+            .package-card-back {
+                position: static;
+                backface-visibility: visible;
+                transform: none !important;
+                width: 100%;
+                height: auto;
+            }
+
+            .package-card-back {
+                display: none;
+                margin-top: 10px;
+                border-top: 2px dashed rgba(232, 104, 26, 0.3);
+                padding-top: 20px;
+            }
+
+            .package-card.accordion-open .package-card-back {
+                display: flex;
+                animation: fadeIn 0.4s ease;
+            }
+
+            .flip-hint {
+                background: rgba(232, 104, 26, 0.1);
+                padding: 12px;
+                border-radius: 8px;
+                color: var(--primary);
+                font-weight: 700;
+                cursor: pointer;
+                margin-top: 20px;
+                border: 1px solid rgba(232, 104, 26, 0.3);
+            }
+
+            .desktop-hint {
+                display: none;
+            }
+
+            .mobile-hint {
+                display: inline-block;
+            }
+
+        }
+
+        @media (min-width: 771px) {
+            .mobile-hint {
+                display: none;
+            }
+        }
+
         /* Media Queries */
         @media (max-width: 1024px) {
             .hero-grid {
@@ -1357,7 +1475,8 @@
                 align-items: center;
             }
 
-            .hero-ctas, .social-proof-bar {
+            .hero-ctas,
+            .social-proof-bar {
                 justify-content: center;
             }
 
@@ -1397,9 +1516,9 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: var(--dark);
+                background: var(--white);
                 padding: 20px 5%;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             }
 
             .nav-active .nav-btn {
@@ -1434,6 +1553,20 @@
                 padding-bottom: 100px;
                 /* Space for sticky bar */
             }
+
+            .footer-content-wrapper {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .footer-brand {
+                align-items: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1464,7 +1597,7 @@
                 The Buffet Bhai
             </a>
             <nav class="nav-links">
-                <a href="#offers" style="color: var(--accent); font-weight: 700;">Offers</a>
+                <a href="#offers" style="color: var(--primary); font-weight: 700;">Offers</a>
                 <a href="#packages">Packages</a>
                 <a href="#how-it-works">How It Works</a>
                 <a href="#reviews">Reviews</a>
@@ -1482,14 +1615,15 @@
     </header>
 
     <!-- 2. Hero Section -->
-    <section class="hero section-dark clip-diagonal-bottom">
+    <section class="hero section-light clip-diagonal-bottom">
         <div class="container hero-grid animate-on-scroll">
             <div class="hero-content">
                 <div class="badge">
                     <i data-lucide="star"></i> Delhi NCR ka #1 House Party Caterer
                 </div>
                 <h1>Ghar Pe Dawaat Ka Scene? <i>Chhod Do Hamare Pe.</i></h1>
-                <p class="lead">Premium buffet catering for 10–100 guests. Hot food, complete setup, zero kitchen stress —
+                <p class="lead">Premium buffet catering for 10–100 guests. Hot food, complete setup, zero kitchen stress
+                    —
                     delivered to your door.</p>
 
                 <div class="hero-ctas">
@@ -1498,7 +1632,7 @@
                         <img src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg" alt="WhatsApp"
                             style="width: 20px; height: 20px;"> Book Now
                     </a>
-                    <a href="#packages" class="btn btn-outline-light">View Packages</a>
+                    <a href="#packages" class="btn btn-secondary">View Packages</a>
                 </div>
 
                 <div class="social-proof-bar">
@@ -1521,64 +1655,6 @@
                 <div class="hero-glow"></div>
                 <img src="images/real%20images/hero.png" alt="Premium Buffet Catering" class="hero-image">
             </div>
-        </div>
-    </section>
-
-    <!-- Offers Section -->
-    <section id="offers" class="offers-section"
-        style="padding: 60px 5%; background: var(--background-alt); position: relative; overflow: hidden;">
-        <div class="container" style="position: relative; z-index: 2;">
-            <div class="section-header animate-on-scroll" style="margin-bottom: 40px;">
-                <h2 style="color: var(--dark); font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin: 0;">
-                    Special <span style="color: var(--accent);">Offers</span></h2>
-                <p style="color: var(--secondary); text-align: center; margin-top: 10px;">Grab these exclusive
-                    deals before they're gone!</p>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <!-- Offer 1 -->
-                <div class="offer-card animate-on-scroll"
-                    style="background: var(--background-base); border: 1px solid rgba(0,0,0,0.05); border-radius: 20px; padding: 40px 30px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.4s ease; cursor: pointer;">
-                    <div
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--accent);">
-                    </div>
-                    <div
-                        style="width: 70px; height: 70px; background: rgba(245, 200, 66, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-                        <img src="images/social logos/instagram-svgrepo-com.svg" alt="Instagram"
-                            style="width: 35px; height: 35px; filter: invert(80%) sepia(30%) saturate(1000%) hue-rotate(350deg) brightness(110%);">
-                    </div>
-                    <h3
-                        style="color: var(--dark); font-size: 1.6rem; margin-bottom: 15px; font-family: var(--font-display);">
-                        5% Cashback</h3>
-                    <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">Upload an Instagram
-                        Story of our food & tag us! Show it to our team to get an instant 5% cashback on your order.</p>
-                </div>
-
-                <!-- Offer 2 -->
-                <div class="offer-card animate-on-scroll"
-                    style="transition-delay: 0.1s; background: var(--background-base); border: 1px solid rgba(0,0,0,0.05); border-radius: 20px; padding: 40px 30px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.4s ease; cursor: pointer;">
-                    <div
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--primary);">
-                    </div>
-                    <div
-                        style="width: 70px; height: 70px; background: rgba(232, 104, 26, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-                        <i data-lucide="cake" style="color: var(--primary); width: 35px; height: 35px;"></i>
-                    </div>
-                    <h3
-                        style="color: var(--dark); font-size: 1.6rem; margin-bottom: 15px; font-family: var(--font-display);">
-                        Free Birthday Cake</h3>
-                    <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">Celebrating a
-                        birthday with us? Get a complimentary 1/2 KG Cake on the house! (Valid ID proof required).</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Background decorative elements -->
-        <div
-            style="position: absolute; top: -100px; right: -50px; width: 300px; height: 300px; background: rgba(245, 200, 66, 0.05); border-radius: 50%; filter: blur(50px); pointer-events: none;">
-        </div>
-        <div
-            style="position: absolute; bottom: -100px; left: -50px; width: 300px; height: 300px; background: rgba(232, 104, 26, 0.05); border-radius: 50%; filter: blur(50px); pointer-events: none;">
         </div>
     </section>
 
@@ -1615,31 +1691,80 @@
         </div>
     </section>
 
-    <!-- 4. Solution / What We Do -->
-    <section class="solution-section section-dark clip-diagonal-bottom">
+    <!-- Why Choose Us -->
+    <section class="trust-section clip-diagonal-bottom"
+        style="background-color: #FFF8F0; padding: var(--section-padding);">
         <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 class="text-dark">Aapki Dawaat, <span class="text-primary">Hamari Zimmedari</span></h2>
+            <div class="section-header animate-on-scroll" style="text-align: center;">
+                <h2 style="font-family: var(--font-display); margin-bottom: 20px;">Why Choose <span
+                        class="text-primary">Buffet Bhai?</span></h2>
+                <p class="text-secondary" style="font-size: 1.15rem; max-width: 700px; margin: 15px auto 0;">Har daawat
+                    mein do cheezein matter karti hain — khana aur presentation. Hum dono pe koi compromise nahi karte.
+                </p>
             </div>
 
-            <div class="solution-grid">
-                <div class="solution-card animate-on-scroll">
-                    <div class="icon-wrapper"><i data-lucide="truck" size="40"></i></div>
-                    <h3>Hot & Fresh Delivery</h3>
-                    <p>Restaurant-quality food, packed in heat-retaining containers, delivered right before your guests
-                        arrive.</p>
+            <div class="trust-2col-layout animate-on-scroll"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <!-- Column 1 -->
+                <div class="trust-card"
+                    style="background: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(124, 29, 46, 0.08); display: flex; flex-direction: column; overflow: hidden;">
+                    <div class="trust-img-placeholder"
+                        style="height: 300px; background-color: #f0e6da; position: relative;">
+                        <img src="images/real images/spread.png" alt="Restaurant Quality Food Spread"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="trust-card-content"
+                        style="padding: 30px; display: flex; flex-direction: column; flex-grow: 1;">
+                        <h3
+                            style="font-family: var(--font-display); font-size: 1.6rem; color: var(--secondary); margin-bottom: 12px;">
+                            Restaurant-Quality Food, Ghar Pe</h3>
+                        <p
+                            style="color: #555; font-size: 1.05rem; line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">
+                            Har dish freshly prepared and delivered piping hot in heat-retaining containers. Dal
+                            makhani, shahi paneer, biryani — sab kuch dum wala. Mehman soochenge kaunsa restaurant tha.
+                        </p>
+                        <div class="trust-badge"
+                            style="background: rgba(245, 200, 66, 0.15); color: var(--dark); padding: 8px 16px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                            🌶️ Authentic Delhi Flavors | 🧑‍🍳 Freshly Prepared
+                        </div>
+                    </div>
                 </div>
-                <div class="solution-card animate-on-scroll" style="transition-delay: 0.1s">
-                    <div class="icon-wrapper"><i data-lucide="utensils" size="40"></i></div>
-                    <h3>Complete Buffet Setup</h3>
-                    <p>Premium disposables, serving spoons, napkins, chafing dishes — everything. You literally just
-                        open the box.</p>
+
+                <!-- Column 2 -->
+                <div class="trust-card"
+                    style="background: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(124, 29, 46, 0.08); display: flex; flex-direction: column; overflow: hidden;">
+                    <div class="trust-img-placeholder"
+                        style="height: 300px; background-color: #f0e6da; position: relative;">
+                        <img src="images/real images/packaging.png" alt="Complete Buffet Setup Packaging"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="trust-card-content"
+                        style="padding: 30px; display: flex; flex-direction: column; flex-grow: 1;">
+                        <h3
+                            style="font-family: var(--font-display); font-size: 1.6rem; color: var(--secondary); margin-bottom: 12px;">
+                            Complete Setup — Aap Sirf Host Bano</h3>
+                        <p
+                            style="color: #555; font-size: 1.05rem; line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">
+                            Premium disposables, chafing dishes, serving spoons, napkins — sab hamare saath aata hai.
+                            Aapko kuch arrange nahi karna. Box kholo, buffet ready.</p>
+                        <div class="trust-badge"
+                            style="background: rgba(245, 200, 66, 0.15); color: var(--dark); padding: 8px 16px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                            📦 Zero Setup Stress | ✅ Everything Included
+                        </div>
+                    </div>
                 </div>
-                <div class="solution-card animate-on-scroll" style="transition-delay: 0.2s">
-                    <div class="icon-wrapper"><i data-lucide="smartphone" size="40"></i></div>
-                    <h3>Book in Minutes</h3>
-                    <p>WhatsApp us your date, guest count, and menu preference. Confirm in under an hour.</p>
-                </div>
+            </div>
+
+            <!-- Single centered row of 4 smaller trust pills -->
+            <div class="trust-bottom-pills animate-on-scroll"
+                style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; background: #fdfaf5; padding: 15px 25px; border-radius: 50px; border: 1px solid rgba(0,0,0,0.05); max-width: 900px; margin: 0 auto;">
+                <span style="font-weight: 600; color: #444; font-size: 0.95rem;">⏱️ On-Time Delivery</span>
+                <span style="color: #ccc; margin: 0 5px;">|</span>
+                <span style="font-weight: 600; color: #444; font-size: 0.95rem;">💸 No Hidden Charges</span>
+                <span style="color: #ccc; margin: 0 5px;">|</span>
+                <span style="font-weight: 600; color: #444; font-size: 0.95rem;">📱 Book on WhatsApp</span>
+                <span style="color: #ccc; margin: 0 5px;">|</span>
+                <span style="font-weight: 600; color: #444; font-size: 0.95rem;">🎂 Free Birthday Cake</span>
             </div>
         </div>
     </section>
@@ -1691,7 +1816,9 @@
                                     class="btn btn-primary btn-pulse" target="_blank">Order Desi Dawat</a>
                             </div>
                             <div class="flip-hint">
-                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                                <span class="desktop-hint"><i data-lucide="rotate-cw"></i> Tap/Hover to see packages for
+                                    larger groups</span><span class="mobile-hint">View Pricing for Larger Groups
+                                    ▼</span>
                             </div>
                         </div>
                         <!-- Back -->
@@ -1768,7 +1895,9 @@
                                     class="btn btn-primary btn-pulse" target="_blank">Order Shahi Dawat</a>
                             </div>
                             <div class="flip-hint">
-                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                                <span class="desktop-hint"><i data-lucide="rotate-cw"></i> Tap/Hover to see packages for
+                                    larger groups</span><span class="mobile-hint">View Pricing for Larger Groups
+                                    ▼</span>
                             </div>
                         </div>
                         <!-- Back -->
@@ -1845,7 +1974,9 @@
                                     class="btn btn-primary btn-pulse" target="_blank">Order Grand Buffet Bhai</a>
                             </div>
                             <div class="flip-hint">
-                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                                <span class="desktop-hint"><i data-lucide="rotate-cw"></i> Tap/Hover to see packages for
+                                    larger groups</span><span class="mobile-hint">View Pricing for Larger Groups
+                                    ▼</span>
                             </div>
                         </div>
                         <!-- Back -->
@@ -1924,7 +2055,9 @@
                                     class="btn btn-primary btn-pulse" target="_blank">Order Murgh Mela</a>
                             </div>
                             <div class="flip-hint">
-                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                                <span class="desktop-hint"><i data-lucide="rotate-cw"></i> Tap/Hover to see packages for
+                                    larger groups</span><span class="mobile-hint">View Pricing for Larger Groups
+                                    ▼</span>
                             </div>
                         </div>
                         <!-- Back -->
@@ -2001,7 +2134,9 @@
                                     class="btn btn-primary btn-pulse" target="_blank">Order Sher-e-Punjab</a>
                             </div>
                             <div class="flip-hint">
-                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                                <span class="desktop-hint"><i data-lucide="rotate-cw"></i> Tap/Hover to see packages for
+                                    larger groups</span><span class="mobile-hint">View Pricing for Larger Groups
+                                    ▼</span>
                             </div>
                         </div>
                         <!-- Back -->
@@ -2078,7 +2213,9 @@
                                     class="btn btn-primary btn-pulse" target="_blank">Order Nawabi Grand</a>
                             </div>
                             <div class="flip-hint">
-                                <i data-lucide="rotate-cw"></i> Tap/Hover to see packages for larger groups
+                                <span class="desktop-hint"><i data-lucide="rotate-cw"></i> Tap/Hover to see packages for
+                                    larger groups</span><span class="mobile-hint">View Pricing for Larger Groups
+                                    ▼</span>
                             </div>
                         </div>
                         <!-- Back -->
@@ -2378,90 +2515,61 @@
         </div>
     </section>
 
-    <!-- 6. Instagram Section -->
-    <section class="instagram-section section-dark clip-diagonal-bottom">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 class="text-dark">This is What a <span class="text-primary">Real Daawat Looks Like</span></h2>
-                <p class="text-secondary">Follow us on Instagram @TheBuffetBhai for behind-the-scenes, new dishes, and
-                    daawat inspo.</p>
+    <!-- Offers Section -->
+    <section id="offers" class="offers-section"
+        style="padding: 60px 5%; background: var(--background-alt); position: relative; overflow: hidden;">
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="section-header animate-on-scroll" style="margin-bottom: 40px;">
+                <h2 style="color: var(--dark); font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin: 0;">
+                    Special <span style="color: var(--accent);">Offers</span></h2>
+                <p style="color: var(--secondary); text-align: center; margin-top: 10px;">Grab these exclusive
+                    deals before they're gone!</p>
             </div>
 
-            <div class="insta-embed-container animate-on-scroll"
-                style="max-width: 500px; margin: 0 auto 40px; width: 100%;">
-                <!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
-                <script src="https://elfsightcdn.com/platform.js" async></script>
-                <div class="elfsight-app-163ee9a7-ed86-4627-ab25-a23e8c21367b" data-elfsight-app-lazy></div>
-            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <!-- Offer 1 -->
+                <div class="offer-card animate-on-scroll"
+                    style="background: var(--background-base); border: 1px solid rgba(0,0,0,0.05); border-radius: 20px; padding: 40px 30px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.4s ease; cursor: pointer;">
+                    <div
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--accent);">
+                    </div>
+                    <div
+                        style="width: 70px; height: 70px; background: rgba(245, 200, 66, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <img src="images/social logos/instagram-svgrepo-com.svg" alt="Instagram"
+                            style="width: 35px; height: 35px; filter: invert(80%) sepia(30%) saturate(1000%) hue-rotate(350deg) brightness(110%);">
+                    </div>
+                    <h3
+                        style="color: var(--dark); font-size: 1.6rem; margin-bottom: 15px; font-family: var(--font-display);">
+                        5% Cashback</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">Upload an Instagram
+                        Story of our food & tag us! Show it to our team to get an instant 5% cashback on your order.</p>
+                </div>
 
-            <div class="text-center animate-on-scroll"
-                style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://www.instagram.com/thebuffetbhai?igsh=ZXVrdWxpbHFnMGV6&utm_source=qr" target="_blank"
-                    class="btn"
-                    style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; border: none;">
-                    <img src="images/social logos/instagram-svgrepo-com.svg"
-                        style="width: 20px; height: 20px; filter: invert(1); margin-right: 8px;"> Follow on Instagram
-                </a>
-                <a href="https://www.facebook.com/share/18NHys7xiu/?mibextid=wwXIfr" target="_blank" class="btn"
-                    style="background: #1877F2; color: white; border: none;">
-                    <img src="images/social logos/facebook-svgrepo-com.svg"
-                        style="width: 20px; height: 20px; filter: invert(1); margin-right: 8px;"> Follow on Facebook
-                </a>
+                <!-- Offer 2 -->
+                <div class="offer-card animate-on-scroll"
+                    style="transition-delay: 0.1s; background: var(--background-base); border: 1px solid rgba(0,0,0,0.05); border-radius: 20px; padding: 40px 30px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.4s ease; cursor: pointer;">
+                    <div
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--primary);">
+                    </div>
+                    <div
+                        style="width: 70px; height: 70px; background: rgba(232, 104, 26, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <i data-lucide="cake" style="color: var(--primary); width: 35px; height: 35px;"></i>
+                    </div>
+                    <h3
+                        style="color: var(--dark); font-size: 1.6rem; margin-bottom: 15px; font-family: var(--font-display);">
+                        Free Birthday Cake</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">Celebrating a
+                        birthday with us? Get a complimentary 1/2 KG Cake on the house! (Valid ID proof required).</p>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- 7. Why Choose Us -->
-    <section class="trust-section section-light clip-diagonal-bottom">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2>Why Choose <span>Buffet Bhai?</span></h2>
-            </div>
-
-            <div class="trust-grid">
-                <div class="trust-item animate-on-scroll">
-                    <div class="trust-icon">🏆</div>
-                    <div class="trust-content">
-                        <h4>Serving Delhi NCR</h4>
-                        <p>Delivering unforgettable dawaats and premium catering experiences across the NCR.</p>
-                    </div>
-                </div>
-                <div class="trust-item animate-on-scroll" style="transition-delay: 0.1s">
-                    <div class="trust-icon">⏱️</div>
-                    <div class="trust-content">
-                        <h4>On-Time, Every Time</h4>
-                        <p>Your food arrives hot before your first guest. Guaranteed.</p>
-                    </div>
-                </div>
-                <div class="trust-item animate-on-scroll" style="transition-delay: 0.2s">
-                    <div class="trust-icon">🌶️</div>
-                    <div class="trust-content">
-                        <h4>Authentic Delhi Flavors</h4>
-                        <p>Recipes perfected over decades. Ghee ka tadka included.</p>
-                    </div>
-                </div>
-                <div class="trust-item animate-on-scroll">
-                    <div class="trust-icon">💸</div>
-                    <div class="trust-content">
-                        <h4>100% Transparency</h4>
-                        <p>No hidden charges. Full transparency from quote to delivery.</p>
-                    </div>
-                </div>
-                <div class="trust-item animate-on-scroll" style="transition-delay: 0.1s">
-                    <div class="trust-icon">🎁</div>
-                    <div class="trust-content">
-                        <h4>Everything Included</h4>
-                        <p>Disposables, containers, cutlery — nothing extra to arrange.</p>
-                    </div>
-                </div>
-                <div class="trust-item animate-on-scroll" style="transition-delay: 0.2s">
-                    <div class="trust-icon">📱</div>
-                    <div class="trust-content">
-                        <h4>Direct on WhatsApp</h4>
-                        <p>Order, track, inquire — all on WhatsApp. No app downloads.</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Background decorative elements -->
+        <div
+            style="position: absolute; top: -100px; right: -50px; width: 300px; height: 300px; background: rgba(245, 200, 66, 0.05); border-radius: 50%; filter: blur(50px); pointer-events: none;">
+        </div>
+        <div
+            style="position: absolute; bottom: -100px; left: -50px; width: 300px; height: 300px; background: rgba(232, 104, 26, 0.05); border-radius: 50%; filter: blur(50px); pointer-events: none;">
         </div>
     </section>
 
@@ -2509,6 +2617,8 @@
             <div class="testimonials-carousel animate-on-scroll">
                 <div class="testimonial-card section-dark">
                     <i data-lucide="quote" class="quote-icon"></i>
+                    <div style="color: var(--accent); font-size: 1.2rem; margin-bottom: 15px; letter-spacing: 2px;">
+                        ★★★★★</div>
                     <p class="testimonial-text">"Bete ki birthday pe 40 log aaye. Buffet Bhai ne poora setup bhi karwa
                         diya, khana toh lajawab tha. Mummy ne pucha kaun sa restaurant tha!"</p>
                     <div class="testimonial-author">
@@ -2522,6 +2632,8 @@
 
                 <div class="testimonial-card section-dark">
                     <i data-lucide="quote" class="quote-icon"></i>
+                    <div style="color: var(--accent); font-size: 1.2rem; margin-bottom: 15px; letter-spacing: 2px;">
+                        ★★★★★</div>
                     <p class="testimonial-text">"Office farewell tha, 60 log. Finger foods se leke biryani tak sab kuch
                         perfect. Delivery bhi time pe. Recommend karna toh banega hi."</p>
                     <div class="testimonial-author">
@@ -2535,6 +2647,8 @@
 
                 <div class="testimonial-card section-dark">
                     <i data-lucide="quote" class="quote-icon"></i>
+                    <div style="color: var(--accent); font-size: 1.2rem; margin-bottom: 15px; letter-spacing: 2px;">
+                        ★★★★★</div>
                     <p class="testimonial-text">"Puja ke liye no-onion-garlic package liya. Halwa, kheer, paneer, dal —
                         sab saatvik aur delicious. Panditji bhi impressed ho gaye!"</p>
                     <div class="testimonial-author">
@@ -2548,6 +2662,8 @@
 
                 <div class="testimonial-card section-dark">
                     <i data-lucide="quote" class="quote-icon"></i>
+                    <div style="color: var(--accent); font-size: 1.2rem; margin-bottom: 15px; letter-spacing: 2px;">
+                        ★★★★★</div>
                     <p class="testimonial-text">"Meri anniversary ka surprise plan kiya tha. Buffet Bhai ne itna perfect
                         khana diya, biwi khush, sas khush, main khush."</p>
                     <div class="testimonial-author">
@@ -2561,6 +2677,8 @@
 
                 <div class="testimonial-card section-dark">
                     <i data-lucide="quote" class="quote-icon"></i>
+                    <div style="color: var(--accent); font-size: 1.2rem; margin-bottom: 15px; letter-spacing: 2px;">
+                        ★★★★★</div>
                     <p class="testimonial-text">"Tried 3 caterers before finding these guys. Koi mukaabla nahi. Taste,
                         quantity, packaging — sab best."</p>
                     <div class="testimonial-author">
@@ -2666,12 +2784,14 @@
     <!-- 11. Final CTA Section -->
     <section class="final-cta section-light clip-diagonal-top">
         <div class="container">
-            <div class="cta-container animate-on-scroll" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px;">
+            <div class="cta-container animate-on-scroll"
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px;">
                 <div class="cta-content" style="text-align: center; max-width: 800px; width: 100%;">
-                    <h2>Is Weekend Ki Dawaat <span class="text-primary">Confirm Kar Lo</span></h2>
+                    <h2>Is Weekend Ki Dawaat Confirm Kar Lo</span></h2>
                     <p>Slots fill up fast, especially on weekends. Ek WhatsApp message bhejo — hum baaki sambhal lete
                         hain.</p>
-                    <div class="cta-buttons" style="flex-direction: row; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                    <div class="cta-buttons"
+                        style="flex-direction: row; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
                         <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
                             class="btn btn-whatsapp btn-pulse" target="_blank"
                             style="font-size: 1.3rem; padding: 1.2rem 2rem;">
@@ -2700,30 +2820,31 @@
     <!-- 12. Footer -->
     <footer>
         <div class="container">
-            <div class="footer-logo" style="display: flex; align-items: center; justify-content: center; gap: 15px;">
-                <img src="images/brand logo/logo.png" alt="The Buffet Bhai Logo" style="height: 80px; width: auto;">
-                The Buffet Bhai
-            </div>
-            <div class="footer-tagline">"Apka Buffet, Apki Shaan."</div>
+            <div class="footer-content-wrapper">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <img src="images/brand logo/logo.png" alt="The Buffet Bhai Logo">
+                        The Buffet Bhai
+                    </a>
+                    <div class="footer-tagline">"Apka Buffet, Apki Shaan."</div>
+                </div>
 
-            <div class="footer-links">
-                <a href="#packages">Packages</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="#faq">FAQ</a>
-                <a href="#reviews">Reviews</a>
-            </div>
+                <div class="footer-links">
+                    <a href="#packages">Packages</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#reviews">Reviews</a>
+                </div>
 
-            <div class="social-icons">
-                <a href="https://www.instagram.com/thebuffetbhai?igsh=ZXVrdWxpbHFnMGV6&utm_source=qr"
-                    class="social-icon" target="_blank"><img src="images/social logos/instagram-svgrepo-com.svg"
-                        style="width: 24px; height: 24px;"></a>
-                <a href="https://www.facebook.com/share/18NHys7xiu/?mibextid=wwXIfr" class="social-icon"
-                    target="_blank"><img src="images/social logos/facebook-svgrepo-com.svg"
-                        style="width: 24px; height: 24px;"></a>
-                <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
-                    class="social-icon" target="_blank"><img
-                        src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg"
-                        style="width: 24px; height: 24px;"></a>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/thebuffetbhai?igsh=ZXVrdWxpbHFnMGV6&utm_source=qr"
+                        class="social-icon" target="_blank"><img src="images/social logos/instagram-svgrepo-com.svg" alt="Instagram"></a>
+                    <a href="https://www.facebook.com/share/18NHys7xiu/?mibextid=wwXIfr" class="social-icon"
+                        target="_blank"><img src="images/social logos/facebook-svgrepo-com.svg" alt="Facebook"></a>
+                    <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
+                        class="social-icon" target="_blank"><img
+                            src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg" alt="WhatsApp"></a>
+                </div>
             </div>
 
             <div class="footer-bottom">
@@ -2736,7 +2857,8 @@
     <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
         class="fab-whatsapp" target="_blank" aria-label="WhatsApp Us">
         <img src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg" alt="WhatsApp"
-            style="width: 30px; height: 30px;">
+            style="width: 24px; height: 24px;">
+        Book Now
     </a>
 
     <!-- <div class="mobile-sticky-bar">
@@ -2820,14 +2942,24 @@
             });
         });
 
-        // Package Card Flip Logic for Mobile
+        // Package Card Accordion Logic for Mobile
         const packageCards = document.querySelectorAll('.package-card');
         packageCards.forEach(card => {
-            card.addEventListener('click', () => {
-                if (window.innerWidth <= 770) {
-                    card.classList.toggle('flipped');
-                }
-            });
+            const flipHint = card.querySelector('.flip-hint');
+            if (flipHint) {
+                flipHint.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 770) {
+                        e.stopPropagation();
+                        card.classList.toggle('accordion-open');
+                        const hintText = card.querySelector('.mobile-hint');
+                        if (card.classList.contains('accordion-open')) {
+                            hintText.innerHTML = 'Hide Pricing ▲';
+                        } else {
+                            hintText.innerHTML = 'View Pricing for Larger Groups ▼';
+                        }
+                    }
+                });
+            }
         });
 
         // FAQ Accordion Logic
