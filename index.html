@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1221,7 +1220,7 @@
         /* 12. Footer */
         footer {
             background: #F8F6F2;
-            border-top: 1px solid rgba(0,0,0,0.05);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
             color: rgba(26, 18, 8, 0.8);
             padding: 40px 5% 20px;
         }
@@ -1287,13 +1286,13 @@
             width: 40px;
             height: 40px;
             background: var(--white);
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
         }
 
         .social-icon:hover {
@@ -1586,6 +1585,405 @@
             border-color: rgba(255, 255, 255, 0.3) !important;
         }
     </style>
+
+    <style>
+        /* ============================================
+   PREMIUM PACKAGE CARD REDESIGN
+   ============================================ */
+
+        /* Card shell — remove old padding, add overflow hidden for header */
+        .package-card-front,
+        .package-card-back {
+            background: #FFFDF8 !important;
+            border-radius: 22px !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03), 0 16px 48px rgba(124, 29, 46, 0.13) !important;
+            border: none !important;
+            border-top: none !important;
+            padding: 0 !important;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Rich header band — package name */
+        .package-name {
+            font-family: var(--font-display) !important;
+            font-size: 1.95rem !important;
+            font-weight: 900 !important;
+            color: #fff !important;
+            background: linear-gradient(135deg, #7C1D2E 0%, #4e1020 100%);
+            padding: 28px 28px 14px !important;
+            margin: 0 !important;
+            line-height: 1.15;
+            letter-spacing: -0.3px;
+        }
+
+        /* Subtitle — continuation of header band */
+        .package-subtitle {
+            background: linear-gradient(135deg, #7C1D2E 0%, #4e1020 100%);
+            color: rgba(255, 200, 140, 0.85) !important;
+            font-style: italic !important;
+            font-size: 0.97rem !important;
+            padding: 0 28px 22px !important;
+            margin: 0 !important;
+            border-bottom: 3px solid var(--primary) !important;
+            font-family: var(--font-body);
+        }
+
+        /* Best-seller — saffron header */
+        .best-seller-face .package-name {
+            background: linear-gradient(135deg, #c45510 0%, #9c3e08 100%) !important;
+        }
+
+        .best-seller-face .package-subtitle {
+            background: linear-gradient(135deg, #c45510 0%, #9c3e08 100%) !important;
+            border-bottom-color: var(--secondary) !important;
+        }
+
+        /* Best-seller tag — sits over header */
+        .package-tag {
+            position: absolute;
+            top: 18px !important;
+            right: 18px !important;
+            background: var(--accent) !important;
+            color: #1A1208 !important;
+            font-family: var(--font-hinglish) !important;
+            font-size: 0.78rem !important;
+            font-weight: 800 !important;
+            padding: 4px 13px !important;
+            border-radius: 20px !important;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        /* Price highlight box */
+        .price-highlight {
+            margin: 22px 24px 0 !important;
+            padding: 18px 20px !important;
+            background: linear-gradient(135deg, rgba(245, 200, 66, 0.1) 0%, rgba(232, 104, 26, 0.07) 100%) !important;
+            border: 1.5px solid rgba(245, 200, 66, 0.45) !important;
+            border-radius: 14px !important;
+            text-align: center;
+        }
+
+        .price-highlight .price-val {
+            font-family: var(--font-display) !important;
+            font-size: 2.7rem !important;
+            font-weight: 900 !important;
+            color: var(--secondary) !important;
+            line-height: 1.05 !important;
+            letter-spacing: -1px;
+            display: block;
+        }
+
+        .price-highlight .per-head {
+            font-size: 1rem !important;
+            color: var(--primary) !important;
+            font-weight: 700 !important;
+            display: block;
+            margin-top: 3px;
+        }
+
+        .price-highlight .pax-label {
+            font-family: var(--font-body) !important;
+            font-size: 0.85rem !important;
+            color: #999 !important;
+            margin-top: 5px !important;
+            display: block;
+        }
+
+        /* Menu section */
+        .package-menu {
+            padding: 0 24px !important;
+            margin: 18px 0 16px !important;
+            flex-grow: 1;
+        }
+
+        .package-menu .menu-header {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: #bbb;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+            margin-bottom: 4px;
+        }
+
+        .package-menu ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Remove old bullet */
+        .package-menu li::before {
+            display: none !important;
+        }
+
+        .package-menu li {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            padding: 9px 0 !important;
+            padding-left: 0 !important;
+            margin-bottom: 0 !important;
+            color: #3a3330 !important;
+            font-size: 0.95rem !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.055);
+            line-height: 1.35;
+        }
+
+        .package-menu li:last-child {
+            border-bottom: none;
+        }
+
+        /* Qty badge — refined pill */
+        .package-menu .qty-badge {
+            background: rgba(232, 104, 26, 0.1) !important;
+            color: var(--primary) !important;
+            border: 1px solid rgba(232, 104, 26, 0.2) !important;
+            padding: 2px 9px !important;
+            border-radius: 20px !important;
+            font-size: 0.72rem !important;
+            font-weight: 700 !important;
+            font-family: var(--font-hinglish) !important;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-right: 0 !important;
+        }
+
+        /* Sweet badge special color */
+        .package-menu li:has(.qty-badge:last-of-type) .qty-badge {
+            background: rgba(124, 29, 46, 0.1) !important;
+            color: var(--secondary) !important;
+            border-color: rgba(124, 29, 46, 0.2) !important;
+        }
+
+        /* CTA area */
+        .package-ctas {
+            padding: 16px 24px 22px !important;
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px !important;
+        }
+
+        .package-ctas .btn {
+            border-radius: 12px !important;
+            font-size: 0.88rem !important;
+            letter-spacing: 1.2px !important;
+            padding: 14px 20px !important;
+            font-weight: 700 !important;
+        }
+
+        /* Flip hint */
+        .flip-hint {
+            padding: 0 24px 16px !important;
+            margin: 0 !important;
+            color: #c0b8b0 !important;
+            font-size: 0.8rem !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .flip-hint svg {
+            width: 13px;
+            height: 13px;
+            opacity: 0.6;
+        }
+
+        /* ---- BACK CARD: Pricing table redesign ---- */
+        .package-card-back {
+            justify-content: flex-start !important;
+        }
+
+        .package-pricing {
+            width: auto !important;
+            margin: 18px 24px !important;
+            border-collapse: separate !important;
+            border-spacing: 0 7px !important;
+            flex-grow: 1;
+        }
+
+        .package-pricing thead tr th {
+            font-family: var(--font-body) !important;
+            font-size: 0.68rem !important;
+            letter-spacing: 1.8px !important;
+            text-transform: uppercase !important;
+            color: #bbb !important;
+            font-weight: 600 !important;
+            padding: 2px 14px 12px !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
+            background: transparent !important;
+        }
+
+        .package-pricing tbody tr td {
+            background: #F5F0E8;
+            padding: 13px 14px !important;
+            border-bottom: none !important;
+            font-size: 0.95rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .package-pricing tbody tr td:first-child {
+            border-radius: 12px 0 0 12px;
+            font-weight: 600;
+            color: #444;
+            font-family: var(--font-body);
+        }
+
+        .package-pricing tbody tr td:last-child {
+            border-radius: 0 12px 12px 0;
+            color: #999;
+            font-size: 0.88rem;
+            text-align: right;
+        }
+
+        .package-pricing tbody tr td:nth-child(2) {
+            font-family: var(--font-display) !important;
+            font-size: 1.2rem !important;
+            font-weight: 900 !important;
+            color: var(--secondary) !important;
+        }
+
+        /* First data row gets a highlight */
+        .package-pricing tbody tr:first-child td {
+            background: rgba(232, 104, 26, 0.09);
+        }
+
+        .package-pricing tbody tr:first-child td:first-child {
+            border-radius: 12px 0 0 12px;
+        }
+
+        .package-pricing tbody tr:first-child td:last-child {
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* ============================================
+   SNACKS SECTION REDESIGN
+   ============================================ */
+
+        /* Override the inline snack styles */
+        .snack-item-card {
+            background: #FAF7F0 !important;
+            border: none !important;
+            border-radius: 14px !important;
+            padding: 18px 14px !important;
+            font-weight: 600 !important;
+            font-size: 0.95rem !important;
+            color: #3a3330 !important;
+            min-height: 80px !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+            transition: all 0.25s ease !important;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .snack-item-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            transition: all 0.25s ease;
+        }
+
+        .snack-item-card:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+            color: #1A1208 !important;
+        }
+
+        .snack-item-card.veg:hover {
+            background: rgba(0, 166, 81, 0.06) !important;
+        }
+
+        .snack-item-card.veg:hover::before {
+            background: #00a651 !important;
+        }
+
+        .snack-item-card.non-veg:hover {
+            background: rgba(232, 104, 26, 0.07) !important;
+        }
+
+        .snack-item-card.non-veg:hover::before {
+            background: var(--primary) !important;
+        }
+
+        /* Category titles */
+        .snack-category-title {
+            font-family: var(--font-display) !important;
+            font-size: 1.7rem !important;
+            font-weight: 700 !important;
+            gap: 14px !important;
+        }
+
+        /* Veg/non-veg dot indicator refined */
+        .snack-category-title>div {
+            width: 16px !important;
+            height: 16px !important;
+            border-width: 2px !important;
+            flex-shrink: 0;
+        }
+
+        /* Price badge refinement */
+        .price-badge {
+            font-size: 0.9rem !important;
+            font-weight: 700 !important;
+            padding: 6px 16px !important;
+            border-radius: 30px !important;
+            letter-spacing: 0.2px;
+        }
+
+        .veg-badge {
+            background: #eaf5ea !important;
+            color: #1e5a1e !important;
+            border: 1px solid #c2e0be !important;
+        }
+
+        .non-veg-badge {
+            background: rgba(232, 104, 26, 0.1) !important;
+            color: #9c3e08 !important;
+            border: 1px solid rgba(232, 104, 26, 0.25) !important;
+        }
+
+        /* Snack grid spacing */
+        .snack-grid {
+            gap: 12px !important;
+        }
+
+        /* Pricing explanation block */
+        .extras-section>div[style*="border-left"] {
+            background: #FAF7F0 !important;
+            border-left: 4px solid var(--primary) !important;
+            border-radius: 0 16px 16px 0 !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+        }
+
+        /* Other Extras cards */
+        .extras-section>div:last-child>div>div {
+            border: none !important;
+            background: #FAF7F0 !important;
+            border-radius: 16px !important;
+            box-shadow: 0 4px 20px rgba(124, 29, 46, 0.06) !important;
+        }
+
+        /* Mobile accordion fix */
+        @media (max-width: 770px) {
+            .package-card-back {
+                border-top: none !important;
+                padding-top: 0 !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -1594,7 +1992,7 @@
     <header id="header">
         <div class="nav-container">
             <a href="#" class="logo">
-                <img src="images/brand logo/logo.png" alt="The Buffet Bhai Logo" style="height: 65px; width: auto;">
+                <img src="images/brand_logo/logo.png" alt="The Buffet Bhai Logo" style="height: 65px; width: auto;">
                 The Buffet Bhai
             </a>
             <nav class="nav-links">
@@ -1654,7 +2052,7 @@
 
             <div class="hero-image-wrapper animate-on-scroll" style="transition-delay: 0.2s;">
                 <div class="hero-glow"></div>
-                <img src="images/real%20images/hero.png" alt="Premium Buffet Catering" class="hero-image">
+                <img src="images/real_images/hero.png" alt="Premium Buffet Catering" class="hero-image">
             </div>
         </div>
     </section>
@@ -1711,7 +2109,7 @@
                     style="background: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(124, 29, 46, 0.08); display: flex; flex-direction: column; overflow: hidden;">
                     <div class="trust-img-placeholder"
                         style="height: 300px; background-color: #f0e6da; position: relative;">
-                        <img src="images/real images/spread.png" alt="Restaurant Quality Food Spread"
+                        <img src="images/real_images/spread.png" alt="Restaurant Quality Food Spread"
                             style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="trust-card-content"
@@ -1736,7 +2134,7 @@
                     style="background: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(124, 29, 46, 0.08); display: flex; flex-direction: column; overflow: hidden;">
                     <div class="trust-img-placeholder"
                         style="height: 300px; background-color: #f0e6da; position: relative;">
-                        <img src="images/real images/packaging.png" alt="Complete Buffet Setup Packaging"
+                        <img src="images/real_images/packaging.png" alt="Complete Buffet Setup Packaging"
                             style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="trust-card-content"
@@ -1827,31 +2225,35 @@
                             <div class="package-name">Desi Dawat</div>
                             <div class="package-subtitle">Pricing for larger groups</div>
                             <table class="package-pricing">
-                                <tr>
-                                    <th>Guests</th>
-                                    <th>Price</th>
-                                    <th>Per Head</th>
-                                </tr>
-                                <tr>
-                                    <td>10 pax</td>
-                                    <td class="price-val">₹2,999</td>
-                                    <td>₹300</td>
-                                </tr>
-                                <tr>
-                                    <td>15 pax</td>
-                                    <td class="price-val">₹4,499</td>
-                                    <td>₹300</td>
-                                </tr>
-                                <tr>
-                                    <td>20 pax</td>
-                                    <td class="price-val">₹5,999</td>
-                                    <td>₹300</td>
-                                </tr>
-                                <tr>
-                                    <td>25 pax</td>
-                                    <td class="price-val">₹7,499</td>
-                                    <td>₹300</td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Guests</th>
+                                        <th>Price</th>
+                                        <th>Per Head</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>10 pax</td>
+                                        <td class="price-val">₹2,999</td>
+                                        <td>₹300</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15 pax</td>
+                                        <td class="price-val">₹4,499</td>
+                                        <td>₹300</td>
+                                    </tr>
+                                    <tr>
+                                        <td>20 pax</td>
+                                        <td class="price-val">₹5,999</td>
+                                        <td>₹300</td>
+                                    </tr>
+                                    <tr>
+                                        <td>25 pax</td>
+                                        <td class="price-val">₹7,499</td>
+                                        <td>₹300</td>
+                                    </tr>
+                                </tbody>
                             </table>
                             <div style="flex-grow: 1;"></div>
                             <div class="package-ctas">
@@ -1906,31 +2308,35 @@
                             <div class="package-name">Shahi Dawat</div>
                             <div class="package-subtitle">Pricing for larger groups</div>
                             <table class="package-pricing">
-                                <tr>
-                                    <th>Guests</th>
-                                    <th>Price</th>
-                                    <th>Per Head</th>
-                                </tr>
-                                <tr>
-                                    <td>10 pax</td>
-                                    <td class="price-val">₹3,999</td>
-                                    <td>₹400</td>
-                                </tr>
-                                <tr>
-                                    <td>15 pax</td>
-                                    <td class="price-val">₹5,999</td>
-                                    <td>₹400</td>
-                                </tr>
-                                <tr>
-                                    <td>20 pax</td>
-                                    <td class="price-val">₹7,999</td>
-                                    <td>₹400</td>
-                                </tr>
-                                <tr>
-                                    <td>25 pax</td>
-                                    <td class="price-val">₹9,999</td>
-                                    <td>₹400</td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Guests</th>
+                                        <th>Price</th>
+                                        <th>Per Head</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>10 pax</td>
+                                        <td class="price-val">₹3,999</td>
+                                        <td>₹400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15 pax</td>
+                                        <td class="price-val">₹5,999</td>
+                                        <td>₹400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>20 pax</td>
+                                        <td class="price-val">₹7,999</td>
+                                        <td>₹400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>25 pax</td>
+                                        <td class="price-val">₹9,999</td>
+                                        <td>₹400</td>
+                                    </tr>
+                                </tbody>
                             </table>
                             <div style="flex-grow: 1;"></div>
                             <div class="package-ctas">
@@ -1985,31 +2391,35 @@
                             <div class="package-name">Grand Buffet Bhai</div>
                             <div class="package-subtitle">Pricing for larger groups</div>
                             <table class="package-pricing">
-                                <tr>
-                                    <th>Guests</th>
-                                    <th>Price</th>
-                                    <th>Per Head</th>
-                                </tr>
-                                <tr>
-                                    <td>10 pax</td>
-                                    <td class="price-val">₹5,499</td>
-                                    <td>₹550</td>
-                                </tr>
-                                <tr>
-                                    <td>15 pax</td>
-                                    <td class="price-val">₹8,249</td>
-                                    <td>₹550</td>
-                                </tr>
-                                <tr>
-                                    <td>20 pax</td>
-                                    <td class="price-val">₹10,999</td>
-                                    <td>₹550</td>
-                                </tr>
-                                <tr>
-                                    <td>25 pax</td>
-                                    <td class="price-val">₹13,749</td>
-                                    <td>₹550</td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Guests</th>
+                                        <th>Price</th>
+                                        <th>Per Head</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>10 pax</td>
+                                        <td class="price-val">₹5,499</td>
+                                        <td>₹550</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15 pax</td>
+                                        <td class="price-val">₹8,249</td>
+                                        <td>₹550</td>
+                                    </tr>
+                                    <tr>
+                                        <td>20 pax</td>
+                                        <td class="price-val">₹10,999</td>
+                                        <td>₹550</td>
+                                    </tr>
+                                    <tr>
+                                        <td>25 pax</td>
+                                        <td class="price-val">₹13,749</td>
+                                        <td>₹550</td>
+                                    </tr>
+                                </tbody>
                             </table>
                             <div style="flex-grow: 1;"></div>
                             <div class="package-ctas">
@@ -2066,31 +2476,35 @@
                             <div class="package-name">Murgh Mela</div>
                             <div class="package-subtitle">Pricing for larger groups</div>
                             <table class="package-pricing">
-                                <tr>
-                                    <th>Guests</th>
-                                    <th>Price</th>
-                                    <th>Per Head</th>
-                                </tr>
-                                <tr>
-                                    <td>10 pax</td>
-                                    <td class="price-val">₹3,999</td>
-                                    <td>₹400</td>
-                                </tr>
-                                <tr>
-                                    <td>15 pax</td>
-                                    <td class="price-val">₹5,999</td>
-                                    <td>₹400</td>
-                                </tr>
-                                <tr>
-                                    <td>20 pax</td>
-                                    <td class="price-val">₹7,999</td>
-                                    <td>₹400</td>
-                                </tr>
-                                <tr>
-                                    <td>25 pax</td>
-                                    <td class="price-val">₹9,999</td>
-                                    <td>₹400</td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Guests</th>
+                                        <th>Price</th>
+                                        <th>Per Head</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>10 pax</td>
+                                        <td class="price-val">₹3,999</td>
+                                        <td>₹400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15 pax</td>
+                                        <td class="price-val">₹5,999</td>
+                                        <td>₹400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>20 pax</td>
+                                        <td class="price-val">₹7,999</td>
+                                        <td>₹400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>25 pax</td>
+                                        <td class="price-val">₹9,999</td>
+                                        <td>₹400</td>
+                                    </tr>
+                                </tbody>
                             </table>
                             <div style="flex-grow: 1;"></div>
                             <div class="package-ctas">
@@ -2145,31 +2559,35 @@
                             <div class="package-name">Sher-e-Punjab</div>
                             <div class="package-subtitle">Pricing for larger groups</div>
                             <table class="package-pricing">
-                                <tr>
-                                    <th>Guests</th>
-                                    <th>Price</th>
-                                    <th>Per Head</th>
-                                </tr>
-                                <tr>
-                                    <td>10 pax</td>
-                                    <td class="price-val">₹5,999</td>
-                                    <td>₹600</td>
-                                </tr>
-                                <tr>
-                                    <td>15 pax</td>
-                                    <td class="price-val">₹8,999</td>
-                                    <td>₹600</td>
-                                </tr>
-                                <tr>
-                                    <td>20 pax</td>
-                                    <td class="price-val">₹11,999</td>
-                                    <td>₹600</td>
-                                </tr>
-                                <tr>
-                                    <td>25 pax</td>
-                                    <td class="price-val">₹14,999</td>
-                                    <td>₹600</td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Guests</th>
+                                        <th>Price</th>
+                                        <th>Per Head</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>10 pax</td>
+                                        <td class="price-val">₹5,999</td>
+                                        <td>₹600</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15 pax</td>
+                                        <td class="price-val">₹8,999</td>
+                                        <td>₹600</td>
+                                    </tr>
+                                    <tr>
+                                        <td>20 pax</td>
+                                        <td class="price-val">₹11,999</td>
+                                        <td>₹600</td>
+                                    </tr>
+                                    <tr>
+                                        <td>25 pax</td>
+                                        <td class="price-val">₹14,999</td>
+                                        <td>₹600</td>
+                                    </tr>
+                                </tbody>
                             </table>
                             <div style="flex-grow: 1;"></div>
                             <div class="package-ctas">
@@ -2224,31 +2642,35 @@
                             <div class="package-name">Nawabi Grand</div>
                             <div class="package-subtitle">Pricing for larger groups</div>
                             <table class="package-pricing">
-                                <tr>
-                                    <th>Guests</th>
-                                    <th>Price</th>
-                                    <th>Per Head</th>
-                                </tr>
-                                <tr>
-                                    <td>10 pax</td>
-                                    <td class="price-val">₹8,499</td>
-                                    <td>₹850</td>
-                                </tr>
-                                <tr>
-                                    <td>15 pax</td>
-                                    <td class="price-val">₹12,749</td>
-                                    <td>₹850</td>
-                                </tr>
-                                <tr>
-                                    <td>20 pax</td>
-                                    <td class="price-val">₹16,999</td>
-                                    <td>₹850</td>
-                                </tr>
-                                <tr>
-                                    <td>25 pax</td>
-                                    <td class="price-val">₹21,249</td>
-                                    <td>₹850</td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Guests</th>
+                                        <th>Price</th>
+                                        <th>Per Head</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>10 pax</td>
+                                        <td class="price-val">₹8,499</td>
+                                        <td>₹850</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15 pax</td>
+                                        <td class="price-val">₹12,749</td>
+                                        <td>₹850</td>
+                                    </tr>
+                                    <tr>
+                                        <td>20 pax</td>
+                                        <td class="price-val">₹16,999</td>
+                                        <td>₹850</td>
+                                    </tr>
+                                    <tr>
+                                        <td>25 pax</td>
+                                        <td class="price-val">₹21,249</td>
+                                        <td>₹850</td>
+                                    </tr>
+                                </tbody>
                             </table>
                             <div style="flex-grow: 1;"></div>
                             <div class="package-ctas">
@@ -2266,247 +2688,454 @@
             <!-- Snacks & Extras Tab -->
             <div class="tab-content" id="tab-extras">
                 <style>
-                    .snack-grid {
-                        display: grid;
-                        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                        gap: 15px;
+                    .snacks-wrapper {
+                        max-width: 1000px;
+                        margin: 0 auto;
+                        width: 100%;
+                    }
+
+                    .snacks-intro {
+                        text-align: center;
                         margin-bottom: 40px;
                     }
 
-                    .snack-item-card {
-                        background: #fff;
-                        border: 1px solid rgba(0, 0, 0, 0.08);
-                        border-radius: 12px;
-                        padding: 20px 15px;
-                        text-align: center;
-                        font-weight: 600;
-                        color: #444;
-                        transition: all 0.3s ease;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        min-height: 85px;
-                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
-                        font-family: var(--font-body);
+                    .snacks-intro p {
                         font-size: 1.05rem;
-                        position: relative;
+                        color: #777;
+                        max-width: 600px;
+                        margin: 0 auto;
+                        line-height: 1.6;
+                    }
+
+                    .snacks-panels {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 24px;
+                        margin-bottom: 30px;
+                    }
+
+                    @media (max-width: 720px) {
+                        .snacks-panels {
+                            grid-template-columns: 1fr;
+                        }
+                    }
+
+                    .snack-panel {
+                        border-radius: 20px;
                         overflow: hidden;
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03), 0 16px 40px rgba(0, 0, 0, 0.08);
                     }
 
-                    .snack-item-card::before {
-                        content: '';
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 4px;
-                        background: transparent;
-                        transition: all 0.3s ease;
-                    }
-
-                    .snack-item-card:hover {
-                        transform: translateY(-5px);
-                        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
-                        color: #111;
-                    }
-
-                    .snack-item-card.veg:hover::before {
-                        background: #00a651;
-                    }
-
-                    .snack-item-card.non-veg:hover::before {
-                        background: #d12229;
-                    }
-
-                    .section-title-wrapper {
+                    .snack-panel-header {
+                        padding: 22px 26px 18px;
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
-                        margin-bottom: 25px;
-                        flex-wrap: wrap;
-                        gap: 15px;
-                    }
-
-                    .snack-category-title {
-                        font-family: var(--font-display);
-                        font-size: 2rem;
-                        margin: 0;
-                        display: flex;
-                        align-items: center;
                         gap: 12px;
                     }
 
-                    .price-badge {
-                        font-size: 1.1rem;
-                        font-family: var(--font-body);
+                    .snack-panel-header.veg-header {
+                        background: linear-gradient(135deg, #1e5a1e 0%, #164b16 100%);
+                    }
+
+                    .snack-panel-header.nonveg-header {
+                        background: linear-gradient(135deg, #7C1D2E 0%, #4e1020 100%);
+                    }
+
+                    .snack-panel-title {
+                        display: flex;
+                        align-items: center;
+                        gap: 11px;
+                    }
+
+                    .snack-dot-sq {
+                        width: 13px;
+                        height: 13px;
+                        border-radius: 3px;
+                        flex-shrink: 0;
+                        border: 2px solid rgba(255, 255, 255, 0.35);
+                    }
+
+                    .snack-dot-sq.veg {
+                        background: #4caf50;
+                    }
+
+                    .snack-dot-sq.nonveg {
+                        background: #e53935;
+                    }
+
+                    .snack-panel-title h4 {
+                        font-family: var(--font-display);
+                        font-size: 1.2rem;
                         font-weight: 700;
-                        padding: 6px 15px;
+                        color: #fff;
+                        margin: 0;
+                    }
+
+                    .snack-price-tag {
+                        background: rgba(255, 255, 255, 0.15);
+                        color: #fff;
+                        border: 1px solid rgba(255, 255, 255, 0.25);
                         border-radius: 30px;
-                        display: inline-block;
+                        padding: 5px 13px;
+                        font-size: 0.8rem;
+                        font-weight: 700;
+                        font-family: var(--font-body);
+                        white-space: nowrap;
+                        letter-spacing: 0.3px;
                     }
 
-                    .veg-badge {
-                        background: #eaf5ea;
+                    .snack-panel-body {
+                        background: #FFFDF8;
+                        padding: 6px 0;
+                    }
+
+                    .snack-row {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 12px 24px;
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                        transition: background 0.2s ease;
+                        gap: 10px;
+                    }
+
+                    .snack-row:last-child {
+                        border-bottom: none;
+                    }
+
+                    .snack-row:hover {
+                        background: rgba(232, 104, 26, 0.04);
+                    }
+
+                    .snack-row-left {
+                        display: flex;
+                        align-items: center;
+                        gap: 11px;
+                    }
+
+                    .snack-row-dot {
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 2px;
+                        flex-shrink: 0;
+                    }
+
+                    .snack-row-dot.veg {
+                        background: #4caf50;
+                    }
+
+                    .snack-row-dot.nonveg {
+                        background: #e53935;
+                    }
+
+                    .snack-row-name {
+                        font-family: var(--font-body);
+                        font-size: 0.96rem;
+                        font-weight: 500;
+                        color: #333;
+                    }
+
+                    .snack-row-price {
+                        font-family: var(--font-hinglish);
+                        font-size: 0.78rem;
+                        font-weight: 700;
+                        padding: 3px 10px;
+                        border-radius: 20px;
+                        white-space: nowrap;
+                        flex-shrink: 0;
+                    }
+
+                    .snack-row-price.veg-price {
+                        background: rgba(76, 175, 80, 0.1);
                         color: #1e5a1e;
-                        border: 1px solid #c2e0be;
                     }
 
-                    .non-veg-badge {
-                        background: #faeded;
-                        color: #873030;
-                        border: 1px solid #f0caca;
+                    .snack-row-price.nonveg-price {
+                        background: rgba(232, 104, 26, 0.1);
+                        color: #9c3e08;
+                    }
+
+                    .snacks-how-strip {
+                        background: linear-gradient(135deg, #FAF5EC 0%, #FDF8F0 100%);
+                        border: 1.5px solid rgba(245, 200, 66, 0.4);
+                        border-radius: 16px;
+                        padding: 20px 26px;
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 16px;
+                        margin-bottom: 48px;
+                    }
+
+                    .snacks-how-icon {
+                        width: 40px;
+                        height: 40px;
+                        background: rgba(232, 104, 26, 0.1);
+                        border-radius: 10px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-shrink: 0;
+                        font-size: 1.2rem;
+                    }
+
+                    .snacks-how-text strong {
+                        font-family: var(--font-display);
+                        font-size: 1.05rem;
+                        color: var(--secondary);
+                        display: block;
+                        margin-bottom: 5px;
+                    }
+
+                    .snacks-how-text p {
+                        font-size: 0.93rem;
+                        color: #666;
+                        margin: 0;
+                        line-height: 1.55;
+                    }
+
+                    .extras-title {
+                        font-family: var(--font-display);
+                        font-size: 1.7rem;
+                        font-weight: 700;
+                        color: var(--secondary);
+                        margin-bottom: 20px;
+                        display: flex;
+                        align-items: center;
+                        gap: 16px;
+                    }
+
+                    .extras-title::after {
+                        content: '';
+                        flex: 1;
+                        height: 1px;
+                        background: rgba(124, 29, 46, 0.12);
+                    }
+
+                    .extras-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+                        gap: 16px;
+                    }
+
+                    .extra-card {
+                        background: #FFFDF8;
+                        border-radius: 16px;
+                        padding: 20px 20px 18px;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.05);
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
+                        transition: transform 0.2s ease, box-shadow 0.2s ease;
+                    }
+
+                    .extra-card:hover {
+                        transform: translateY(-3px);
+                        box-shadow: 0 6px 20px rgba(124, 29, 46, 0.1);
+                    }
+
+                    .extra-card-top {
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: space-between;
+                        gap: 10px;
+                        margin-bottom: 2px;
+                    }
+
+                    .extra-card-name {
+                        font-family: var(--font-display);
+                        font-size: 1.05rem;
+                        font-weight: 700;
+                        color: var(--secondary);
+                        line-height: 1.25;
+                    }
+
+                    .extra-card-price {
+                        font-family: var(--font-display);
+                        font-size: 1.25rem;
+                        font-weight: 900;
+                        color: var(--dark);
+                        white-space: nowrap;
+                    }
+
+                    .extra-card-unit {
+                        font-size: 0.75rem;
+                        font-weight: 600;
+                        color: #aaa;
+                        text-transform: uppercase;
+                        letter-spacing: 0.8px;
+                    }
+
+                    .extra-card-desc {
+                        font-size: 0.86rem;
+                        color: #888;
+                        line-height: 1.45;
+                        margin-top: 6px;
                     }
                 </style>
-                <div class="extras-section" style="max-width: 950px; margin: 0 auto; width: 100%;">
 
-                    <!-- Header -->
-                    <!-- <div style="display: flex; align-items: center; margin-bottom: 30px;">
-                        <h3
-                            style="font-family: var(--font-display); color: #a66f42; font-size: 2rem; border: 2px solid #e2bc91; padding: 12px 24px; margin: 0; white-space: nowrap; border-radius: 6px; background-color: #fdfaf5;">
-                            Add-on Snacks & Extras</h3>
-                        <div style="height: 1px; background-color: #e2bc91; flex-grow: 1; margin-left: 20px;"></div>
-                    </div> -->
+                <div class="snacks-wrapper">
+                    <div class="snacks-intro">
+                        <p>Mix and match starters to make your dawaat extra special. Add as many as you want to any
+                            package.</p>
+                    </div>
 
-                    <p style="margin-bottom: 40px; font-size: 1.15rem; color: #555; line-height: 1.6;">Mix and match
-                        your favorite starters! Add as many snacks as you want to your chosen buffet package.</p>
-
-                    <!-- Veg Snacks -->
-                    <div class="section-title-wrapper">
-                        <h4 class="snack-category-title" style="color: #1e5a1e;">
-                            <div
-                                style="width: 20px; height: 20px; border-radius: 50%; background-color: #00a651; border: 3px solid #eaf5ea; outline: 1px solid #00a651;">
+                    <div class="snacks-panels">
+                        <!-- Veg Panel -->
+                        <div class="snack-panel">
+                            <div class="snack-panel-header veg-header">
+                                <div class="snack-panel-title">
+                                    <div class="snack-dot-sq veg"></div>
+                                    <h4>Vegetarian Snacks</h4>
+                                </div>
+                                <span class="snack-price-tag">+₹50 / item / person</span>
                             </div>
-                            Vegetarian Snacks
-                        </h4>
-                        <div class="price-badge veg-badge">+ ₹50 / person per item</div>
-                    </div>
-
-                    <div class="snack-grid">
-                        <div class="snack-item-card veg">Veg Momos</div>
-                        <div class="snack-item-card veg">Paneer Momos</div>
-                        <div class="snack-item-card veg">Spring Roll</div>
-                        <div class="snack-item-card veg">Veg Chowmein</div>
-                        <div class="snack-item-card veg">Paneer Tikka</div>
-                        <div class="snack-item-card veg">French Fries</div>
-                        <div class="snack-item-card veg">Tandoori Chaap</div>
-                    </div>
-
-                    <!-- Non-Veg Snacks -->
-                    <div class="section-title-wrapper" style="margin-top: 50px;">
-                        <h4 class="snack-category-title" style="color: #7c2424;">
-                            <div
-                                style="width: 20px; height: 20px; border-radius: 50%; background-color: #d12229; border: 3px solid #faeded; outline: 1px solid #d12229;">
+                            <div class="snack-panel-body">
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot veg"></div><span class="snack-row-name">Veg
+                                            Momos</span>
+                                    </div>
+                                </div>
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot veg"></div><span class="snack-row-name">Paneer
+                                            Momos</span>
+                                    </div>
+                                </div>
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot veg"></div><span class="snack-row-name">Spring
+                                            Roll</span>
+                                    </div>
+                                </div>
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot veg"></div><span class="snack-row-name">Veg
+                                            Chowmein</span>
+                                    </div>
+                                </div>
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot veg"></div><span class="snack-row-name">Paneer
+                                            Tikka</span>
+                                    </div>
+                                </div>
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot veg"></div><span class="snack-row-name">French
+                                            Fries</span>
+                                    </div>
+                                </div>
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot veg"></div><span class="snack-row-name">Tandoori
+                                            Chaap</span>
+                                    </div>
+                                </div>
                             </div>
-                            Non-Vegetarian Snacks
-                        </h4>
-                        <div class="price-badge non-veg-badge">+ ₹100 / person per item</div>
-                    </div>
-
-                    <div class="snack-grid">
-                        <div class="snack-item-card non-veg">Chicken Momos</div>
-                        <div class="snack-item-card non-veg">Chicken Tikka</div>
-                        <div class="snack-item-card non-veg">Afghani Tikka</div>
-                        <div class="snack-item-card non-veg">Chicken Tandoori</div>
-                        <div class="snack-item-card non-veg">Afghani Chicken</div>
-                        <div class="snack-item-card non-veg">Seekh Kebab</div>
-                        <div class="snack-item-card non-veg">Chicken Chowmein</div>
-                        <div class="snack-item-card non-veg">Chilly Chicken</div>
-                    </div>
-
-                    <!-- Simplified Pricing Explanation -->
-                    <div
-                        style="background-color: #fdfaf5; border-left: 4px solid var(--primary); padding: 25px; border-radius: 0 12px 12px 0; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
-                        <p style="margin: 0; font-size: 1.15rem; color: #444; line-height: 1.6;">
-                            <strong
-                                style="color: #111; font-family: var(--font-display); font-size: 1.3rem; display: block; margin-bottom: 8px;">How
-                                Pricing Works</strong>
-                            Choose any combination of snacks. Each Veg snack adds <strong>₹50/person</strong> and each
-                            Non-Veg snack adds <strong>₹100/person</strong>.<br>
-                            <span style="color: #666; font-size: 1.05rem; display: inline-block; margin-top: 5px;"><em>Example:
-                                    For 20 guests, adding Veg Momos (₹50) and Chicken Tikka (₹100) will add ₹150/person
-                                    → 20 × ₹150 = ₹3,000 extra.</em></span>
-                        </p>
-                    </div>
-
-                    <div style="margin-top: 60px;">
-                        <div style="display: flex; align-items: center; margin-bottom: 30px;">
-                            <h3
-                                style="font-family: var(--font-display); color: #a66f42; font-size: 2rem; border: 2px solid #e2bc91; padding: 12px 24px; margin: 0; white-space: nowrap; border-radius: 6px; background-color: #fdfaf5;">
-                                Other Extras</h3>
-                            <div style="height: 1px; background-color: #e2bc91; flex-grow: 1; margin-left: 20px;"></div>
                         </div>
 
-                        <div
-                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-
-                            <div
-                                style="border: 2px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 25px; background: #fff; display: flex; flex-direction: column;">
-                                <div
-                                    style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 15px;">
-                                    <h4
-                                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--secondary); margin: 0; max-width: 70%;">
-                                        Disposable Plates & Cutlery</h4>
-                                    <div
-                                        style="background: rgba(245, 200, 66, 0.15); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 1.1rem;">
-                                        ₹25</div>
+                        <!-- Non-Veg Panel -->
+                        <div class="snack-panel">
+                            <div class="snack-panel-header nonveg-header">
+                                <div class="snack-panel-title">
+                                    <div class="snack-dot-sq nonveg"></div>
+                                    <h4>Non-Veg Snacks</h4>
                                 </div>
-                                <div style="font-size: 0.95rem; font-weight: 600; color: #888; margin-bottom: 10px;">per
-                                    person</div>
-                                <p style="font-size: 1.05rem; color: #666; margin: 0; flex-grow: 1;">Paper plates,
-                                    spoons, tissues and basic plastic glasses included.</p>
+                                <span class="snack-price-tag">+₹100 / item / person</span>
                             </div>
-
-                            <div
-                                style="border: 2px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 25px; background: #fff; display: flex; flex-direction: column;">
-                                <div
-                                    style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 15px;">
-                                    <h4
-                                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--secondary); margin: 0; max-width: 70%;">
-                                        Drinking Water (20L Jar)</h4>
-                                    <div
-                                        style="background: rgba(245, 200, 66, 0.15); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 1.1rem;">
-                                        ₹80</div>
+                            <div class="snack-panel-body">
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot nonveg"></div><span class="snack-row-name">Chicken
+                                            Momos</span>
+                                    </div>
                                 </div>
-                                <div style="font-size: 0.95rem; font-weight: 600; color: #888; margin-bottom: 10px;">per
-                                    jar</div>
-                                <p style="font-size: 1.05rem; color: #666; margin: 0; flex-grow: 1;">20 Litre Bisleri
-                                    jar. (Includes paper glasses).</p>
-                            </div>
-
-                            <div
-                                style="border: 2px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 25px; background: #fff; display: flex; flex-direction: column;">
-                                <div
-                                    style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 15px;">
-                                    <h4
-                                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--secondary); margin: 0; max-width: 70%;">
-                                        Cold Drinks (2.25L Bottle)</h4>
-                                    <div
-                                        style="background: rgba(245, 200, 66, 0.15); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 1.1rem;">
-                                        ₹120</div>
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot nonveg"></div><span class="snack-row-name">Chicken
+                                            Tikka</span>
+                                    </div>
                                 </div>
-                                <div style="font-size: 0.95rem; font-weight: 600; color: #888; margin-bottom: 10px;">per
-                                    bottle</div>
-                                <p style="font-size: 1.05rem; color: #666; margin: 0; flex-grow: 1;">Coke / Pepsi /
-                                    Sprite (Includes paper glasses).</p>
-                            </div>
-
-                            <div
-                                style="border: 2px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 25px; background: #fff; display: flex; flex-direction: column;">
-                                <div
-                                    style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 15px;">
-                                    <h4
-                                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--secondary); margin: 0; max-width: 70%;">
-                                        Service Helpers (4-5 Hrs)</h4>
-                                    <div
-                                        style="background: rgba(245, 200, 66, 0.15); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 1.1rem;">
-                                        ₹800</div>
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot nonveg"></div><span class="snack-row-name">Afghani
+                                            Tikka</span>
+                                    </div>
                                 </div>
-                                <div style="font-size: 0.95rem; font-weight: 600; color: #888; margin-bottom: 10px;">per
-                                    helper</div>
-                                <p style="font-size: 1.05rem; color: #666; margin: 0; flex-grow: 1;">Professional staff
-                                    to help with serving and clearing.</p>
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot nonveg"></div><span class="snack-row-name">Chicken
+                                            Tandoori</span>
+                                    </div>
+                                </div>
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot nonveg"></div><span class="snack-row-name">Afghani
+                                            Chicken</span>
+                                    </div>
+                                </div>
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot nonveg"></div><span class="snack-row-name">Seekh
+                                            Kebab</span>
+                                    </div>
+                                </div>
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot nonveg"></div><span class="snack-row-name">Chicken
+                                            Chowmein</span>
+                                    </div>
+                                </div>
+                                <div class="snack-row">
+                                    <div class="snack-row-left">
+                                        <div class="snack-row-dot nonveg"></div><span class="snack-row-name">Chilly
+                                            Chicken</span>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                    </div>
 
+                    <!-- How it works -->
+                    <div class="snacks-how-strip">
+                        <div class="snacks-how-icon">💡</div>
+                        <div class="snacks-how-text">
+                            <strong>How snack pricing works</strong>
+                            <p>Each veg snack adds <strong>₹50/person</strong>, each non-veg snack adds
+                                <strong>₹100/person</strong> to your total. Example: 20 guests + Paneer Tikka + Chicken
+                                Tikka = 20 × ₹150 = <strong>₹3,000 extra.</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Other Extras -->
+                    <h3 class="extras-title">Other Extras</h3>
+                    <div class="extras-grid">
+                        <div class="extra-card">
+                            <div class="extra-card-top"><span class="extra-card-name">Disposable Plates &amp;
+                                    Cutlery</span><span class="extra-card-price">₹25</span></div>
+                            <div class="extra-card-unit">per person</div>
+                            <p class="extra-card-desc">Paper plates, spoons, tissues and plastic glasses.</p>
+                        </div>
+                        <div class="extra-card">
+                            <div class="extra-card-top"><span class="extra-card-name">Drinking Water (20L
+                                    Jar)</span><span class="extra-card-price">₹80</span></div>
+                            <div class="extra-card-unit">per jar</div>
+                            <p class="extra-card-desc">Bisleri 20L jar with paper glasses included.</p>
+                        </div>
+                        <div class="extra-card">
+                            <div class="extra-card-top"><span class="extra-card-name">Cold Drinks (2.25L
+                                    Bottle)</span><span class="extra-card-price">₹120</span></div>
+                            <div class="extra-card-unit">per bottle</div>
+                            <p class="extra-card-desc">Coke / Pepsi / Sprite with paper glasses.</p>
+                        </div>
+                        <div class="extra-card">
+                            <div class="extra-card-top"><span class="extra-card-name">Service Helpers (4–5
+                                    hrs)</span><span class="extra-card-price">₹800</span></div>
+                            <div class="extra-card-unit">per helper</div>
+                            <p class="extra-card-desc">Professional staff for serving and clearing.</p>
                         </div>
                     </div>
                 </div>
@@ -2824,7 +3453,7 @@
             <div class="footer-content-wrapper">
                 <div class="footer-brand">
                     <a href="#" class="footer-logo">
-                        <img src="images/brand logo/logo.png" alt="The Buffet Bhai Logo">
+                        <img src="images/brand_logo/logo.png" alt="The Buffet Bhai Logo">
                         The Buffet Bhai
                     </a>
                     <div class="footer-tagline">"Apka Buffet, Apki Shaan."</div>
@@ -2839,7 +3468,8 @@
 
                 <div class="social-icons">
                     <a href="https://www.instagram.com/thebuffetbhai?igsh=ZXVrdWxpbHFnMGV6&utm_source=qr"
-                        class="social-icon" target="_blank"><img src="images/social logos/instagram-svgrepo-com.svg" alt="Instagram"></a>
+                        class="social-icon" target="_blank"><img src="images/social logos/instagram-svgrepo-com.svg"
+                            alt="Instagram"></a>
                     <a href="https://www.facebook.com/share/18NHys7xiu/?mibextid=wwXIfr" class="social-icon"
                         target="_blank"><img src="images/social logos/facebook-svgrepo-com.svg" alt="Facebook"></a>
                     <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
@@ -2981,44 +3611,6 @@
             });
         });
     </script>
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
 </body>
 
 </html>
