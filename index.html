@@ -279,10 +279,10 @@
         }
 
         header.scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(26, 18, 8, 0.95);
             backdrop-filter: blur(10px);
             padding: 1rem 5%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .nav-container {
@@ -297,7 +297,7 @@
             font-family: var(--font-display);
             font-weight: 900;
             font-size: 1.8rem;
-            color: var(--dark);
+            color: var(--light);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -314,7 +314,7 @@
         }
 
         .nav-links a {
-            color: var(--dark);
+            color: var(--light);
             font-weight: 500;
             transition: color 0.3s;
             font-size: 1.05rem;
@@ -326,7 +326,7 @@
 
         .mobile-menu-btn {
             display: none;
-            color: var(--dark);
+            color: var(--light);
             background: none;
             border: none;
             cursor: pointer;
@@ -340,15 +340,16 @@
             position: relative;
             padding-top: 120px;
             overflow: hidden;
-            background: linear-gradient(135deg, var(--background-alt) 0%, var(--background-base) 100%);
+            background: radial-gradient(circle at top left, #2A1F16 0%, #1A1208 100%);
         }
 
         .hero::before {
             content: "";
             position: absolute;
             inset: 0;
-            background-image: var(--grain);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
             pointer-events: none;
+            opacity: 0.5;
         }
 
         .hero-grid {
@@ -378,7 +379,6 @@
             border-radius: 30px;
             position: relative;
             z-index: 2;
-            animation: float 6s ease-in-out infinite;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(232, 104, 26, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -437,7 +437,7 @@
         }
 
         .hero h1 {
-            color: var(--dark);
+            color: var(--light);
             margin-bottom: 20px;
         }
 
@@ -448,7 +448,7 @@
         }
 
         .hero p.lead {
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.85);
             font-size: 1.25rem;
             opacity: 0.9;
             margin-bottom: 40px;
@@ -467,14 +467,14 @@
             flex-wrap: wrap;
             gap: 30px;
             padding-top: 30px;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .proof-item {
             display: flex;
             align-items: center;
             gap: 10px;
-            color: var(--dark);
+            color: var(--light);
             font-family: var(--font-hinglish);
             font-size: 1.1rem;
         }
@@ -1405,51 +1405,32 @@
 
 
         @media (max-width: 770px) {
-            .package-card-inner {
-                transform: none !important;
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
+            .package-menu li {
+                padding: 6px 0 !important;
+                font-size: 0.9rem !important;
             }
 
-            .package-card-front,
-            .package-card-back {
-                position: static;
-                backface-visibility: visible;
-                transform: none !important;
-                width: 100%;
-                height: auto;
+            .package-menu {
+                margin: 10px 0 16px !important;
+                padding: 0 15px !important;
             }
 
-            .package-card-back {
-                display: none;
-                margin-top: 10px;
-                border-top: 2px dashed rgba(232, 104, 26, 0.3);
-                padding-top: 20px;
+            .package-pricing tbody tr td {
+                padding: 8px 10px !important;
+                font-size: 0.85rem !important;
             }
 
-            .package-card.accordion-open .package-card-back {
-                display: flex;
-                animation: fadeIn 0.4s ease;
-            }
-
-            .flip-hint {
-                background: rgba(232, 104, 26, 0.1);
-                padding: 12px;
-                border-radius: 8px;
-                color: var(--primary);
-                font-weight: 700;
-                cursor: pointer;
-                margin-top: 20px;
-                border: 1px solid rgba(232, 104, 26, 0.3);
+            .package-pricing thead tr th {
+                padding: 2px 10px 10px !important;
+                font-size: 0.7rem !important;
             }
 
             .desktop-hint {
-                display: none;
+                display: inline-block !important;
             }
 
             .mobile-hint {
-                display: inline-block;
+                display: none !important;
             }
 
         }
@@ -1521,6 +1502,11 @@
                 border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             }
 
+            .nav-active .nav-links a {
+                color: var(--dark) !important;
+                padding: 10px 0;
+            }
+
             .nav-active .nav-btn {
                 display: inline-flex;
                 margin-top: 20px;
@@ -1538,6 +1524,11 @@
             .step {
                 flex-direction: column;
                 text-align: center;
+            }
+
+            .areas-served {
+                justify-content: center;
+                line-height: 1.8;
             }
 
             .mobile-sticky-bar {
@@ -1569,13 +1560,23 @@
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 600px) {
             .insta-grid {
                 grid-template-columns: 1fr;
             }
 
             .hero h1 {
                 font-size: 2.5rem;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+                width: 100%;
+                gap: 15px;
+            }
+
+            .hero-ctas .btn {
+                width: 100%;
             }
         }
 
@@ -1976,13 +1977,7 @@
             box-shadow: 0 4px 20px rgba(124, 29, 46, 0.06) !important;
         }
 
-        /* Mobile accordion fix */
-        @media (max-width: 770px) {
-            .package-card-back {
-                border-top: none !important;
-                padding-top: 0 !important;
-            }
-        }
+        /* Mobile accordion fix removed for flip interaction */
     </style>
 </head>
 
@@ -2123,8 +2118,8 @@
                             makhani, shahi paneer, biryani — sab kuch dum wala. Mehman soochenge kaunsa restaurant tha.
                         </p>
                         <div class="trust-badge"
-                            style="background: rgba(245, 200, 66, 0.15); color: var(--dark); padding: 8px 16px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-                            🌶️ Authentic Delhi Flavors | 🧑‍🍳 Freshly Prepared
+                            style="background: rgba(245, 200, 66, 0.15); color: var(--dark); padding: 8px 16px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; text-align: center;">
+                            <span>🌶️ Authentic Delhi Flavors</span> <span style="color: rgba(0,0,0,0.2);">|</span> <span>🧑‍🍳 Freshly Prepared</span>
                         </div>
                     </div>
                 </div>
@@ -2147,8 +2142,8 @@
                             Premium disposables, chafing dishes, serving spoons, napkins — sab hamare saath aata hai.
                             Aapko kuch arrange nahi karna. Box kholo, buffet ready.</p>
                         <div class="trust-badge"
-                            style="background: rgba(245, 200, 66, 0.15); color: var(--dark); padding: 8px 16px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-                            📦 Zero Setup Stress | ✅ Everything Included
+                            style="background: rgba(245, 200, 66, 0.15); color: var(--dark); padding: 8px 16px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; text-align: center;">
+                            <span>📦 Zero Setup Stress</span> <span style="color: rgba(0,0,0,0.2);">|</span> <span>✅ Everything Included</span>
                         </div>
                     </div>
                 </div>
@@ -3146,60 +3141,234 @@
     </section>
 
     <!-- Offers Section -->
-    <section id="offers" class="offers-section"
-        style="padding: 60px 5%; background: var(--background-alt); position: relative; overflow: hidden;">
+    <style>
+        .offers-section {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, #1A1208 0%, #3A0D15 100%);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .offers-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--grain);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .offers-bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: floatShape 10s infinite alternate ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .shape-1 {
+            width: 400px; height: 400px;
+            background: var(--primary);
+            top: -100px; right: -100px;
+        }
+
+        .shape-2 {
+            width: 300px; height: 300px;
+            background: var(--accent);
+            bottom: -100px; left: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatShape {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-30px, 50px) scale(1.1); }
+        }
+
+        .offers-header h2 {
+            color: var(--white);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin: 0;
+            position: relative;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            font-family: var(--font-display);
+            font-weight: 700;
+        }
+
+        .offers-header h2 span {
+            color: var(--accent);
+            background: linear-gradient(to right, #F5C842, #E8681A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .offers-header p {
+            color: rgba(255, 255, 255, 0.85);
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .offer-card-premium {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .offer-card-premium::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 24px;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .offer-card-premium:hover {
+            transform: translateY(-15px) scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 40px rgba(232, 104, 26, 0.3);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .offer-card-premium .offer-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 25px rgba(232, 104, 26, 0.4);
+            position: relative;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .offer-card-premium:hover .offer-icon-wrapper {
+            transform: translateY(-10px) rotateY(180deg) scale(1.1);
+        }
+
+        .offer-card-premium .offer-icon-inner {
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .offer-card-premium:hover .offer-icon-inner {
+            transform: rotateY(180deg);
+        }
+
+        .offer-card-premium h3 {
+            color: var(--white);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-family: var(--font-display);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .offer-card-premium p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .offer-badge {
+            position: absolute;
+            top: 25px;
+            right: -35px;
+            background: var(--primary);
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 6px 40px;
+            transform: rotate(45deg);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        /* Shimmer effect on hover */
+        .offer-card-premium::after {
+            content: '';
+            position: absolute;
+            top: -100%; left: -100%;
+            width: 50%; height: 300%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(35deg);
+            transition: all 0.8s ease;
+            pointer-events: none;
+        }
+        
+        .offer-card-premium:hover::after {
+            left: 200%;
+        }
+    </style>
+
+    <section id="offers" class="offers-section">
+        <div class="offers-bg-shape shape-1"></div>
+        <div class="offers-bg-shape shape-2"></div>
+        
         <div class="container" style="position: relative; z-index: 2;">
-            <div class="section-header animate-on-scroll" style="margin-bottom: 40px;">
-                <h2 style="color: var(--dark); font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin: 0;">
-                    Special <span style="color: var(--accent);">Offers</span></h2>
-                <p style="color: var(--secondary); text-align: center; margin-top: 10px;">Grab these exclusive
-                    deals before they're gone!</p>
+            <div class="offers-header animate-on-scroll" style="margin-bottom: 40px;">
+                <h2>Special <span>Offers</span></h2>
+                <p>Grab these exclusive deals before they're gone! Guaranteed to make your dawaat extra special.</p>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <div class="offers-grid">
                 <!-- Offer 1 -->
-                <div class="offer-card animate-on-scroll"
-                    style="background: var(--background-base); border: 1px solid rgba(0,0,0,0.05); border-radius: 20px; padding: 40px 30px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.4s ease; cursor: pointer;">
-                    <div
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--accent);">
+                <div class="offer-card-premium animate-on-scroll">
+                    <div class="offer-badge">Insta Deal</div>
+                    <div class="offer-icon-wrapper">
+                        <div class="offer-icon-inner" style="display: flex; align-items: center; justify-content: center;">
+                            <img src="images/social logos/instagram-svgrepo-com.svg" alt="Instagram" style="width: 38px; height: 38px; filter: invert(1);">
+                        </div>
                     </div>
-                    <div
-                        style="width: 70px; height: 70px; background: rgba(245, 200, 66, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-                        <img src="images/social logos/instagram-svgrepo-com.svg" alt="Instagram"
-                            style="width: 35px; height: 35px; filter: invert(80%) sepia(30%) saturate(1000%) hue-rotate(350deg) brightness(110%);">
-                    </div>
-                    <h3
-                        style="color: var(--dark); font-size: 1.6rem; margin-bottom: 15px; font-family: var(--font-display);">
-                        5% Cashback</h3>
-                    <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">Upload an Instagram
-                        Story of our food & tag us! Show it to our team to get an instant 5% cashback on your order.</p>
+                    <h3>5% Cashback</h3>
+                    <p>Upload an Instagram Story of our food & tag us! Show it to our team to get an instant 5% cashback on your entire order.</p>
                 </div>
 
                 <!-- Offer 2 -->
-                <div class="offer-card animate-on-scroll"
-                    style="transition-delay: 0.1s; background: var(--background-base); border: 1px solid rgba(0,0,0,0.05); border-radius: 20px; padding: 40px 30px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.4s ease; cursor: pointer;">
-                    <div
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--primary);">
+                <div class="offer-card-premium animate-on-scroll" style="transition-delay: 0.15s;">
+                    <div class="offer-badge" style="background: var(--accent); color: var(--dark);">Gift</div>
+                    <div class="offer-icon-wrapper">
+                        <div class="offer-icon-inner" style="display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="cake" style="color: var(--white); width: 38px; height: 38px;"></i>
+                        </div>
                     </div>
-                    <div
-                        style="width: 70px; height: 70px; background: rgba(232, 104, 26, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-                        <i data-lucide="cake" style="color: var(--primary); width: 35px; height: 35px;"></i>
-                    </div>
-                    <h3
-                        style="color: var(--dark); font-size: 1.6rem; margin-bottom: 15px; font-family: var(--font-display);">
-                        Free Birthday Cake</h3>
-                    <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">Celebrating a
-                        birthday with us? Get a complimentary 1/2 KG Cake on the house! (Valid ID proof required).</p>
+                    <h3>Free Birthday Cake</h3>
+                    <p>Celebrating a birthday with us? Get a complimentary 1/2 KG premium Cake on the house! (Valid ID proof required).</p>
                 </div>
             </div>
-        </div>
-
-        <!-- Background decorative elements -->
-        <div
-            style="position: absolute; top: -100px; right: -50px; width: 300px; height: 300px; background: rgba(245, 200, 66, 0.05); border-radius: 50%; filter: blur(50px); pointer-events: none;">
-        </div>
-        <div
-            style="position: absolute; bottom: -100px; left: -50px; width: 300px; height: 300px; background: rgba(232, 104, 26, 0.05); border-radius: 50%; filter: blur(50px); pointer-events: none;">
         </div>
     </section>
 
@@ -3484,13 +3653,7 @@
         </div>
     </footer>
 
-    <!-- Floating Elements -->
-    <a href="https://wa.me/919643968546?text=Hi%20Buffet%20Bhai!%20I%20want%20to%20book%20catering."
-        class="fab-whatsapp" target="_blank" aria-label="WhatsApp Us">
-        <img src="images/social logos/whatsapp-symbol-logo-svgrepo-com.svg" alt="WhatsApp"
-            style="width: 24px; height: 24px;">
-        Book Now
-    </a>
+
 
     <!-- <div class="mobile-sticky-bar">
         <div style="display: flex; gap: 10px;">
@@ -3573,24 +3736,17 @@
             });
         });
 
-        // Package Card Accordion Logic for Mobile
+        // Package Card Flip Logic for Mobile
         const packageCards = document.querySelectorAll('.package-card');
         packageCards.forEach(card => {
-            const flipHint = card.querySelector('.flip-hint');
-            if (flipHint) {
-                flipHint.addEventListener('click', (e) => {
-                    if (window.innerWidth <= 770) {
-                        e.stopPropagation();
-                        card.classList.toggle('accordion-open');
-                        const hintText = card.querySelector('.mobile-hint');
-                        if (card.classList.contains('accordion-open')) {
-                            hintText.innerHTML = 'Hide Pricing ▲';
-                        } else {
-                            hintText.innerHTML = 'View Pricing for Larger Groups ▼';
-                        }
+            card.addEventListener('click', (e) => {
+                if (window.innerWidth <= 770) {
+                    // Prevent flip if clicking a button
+                    if (!e.target.closest('.btn')) {
+                        card.classList.toggle('flipped');
                     }
-                });
-            }
+                }
+            });
         });
 
         // FAQ Accordion Logic
